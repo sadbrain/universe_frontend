@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { publicRoutes } from '~/routes';
+import { DefaultLayout } from '~/components/Layouts';
+import { useGlobalState } from '~/components/GlobalState';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   const [state, dispatch] = useGlobalState();
+   console.log(state);
+   return (
+      <Router>
+         <div className="App">
+            <Routes>
+               {publicRoutes.map((r, i) => {
+                  let Layout = DefaultLayout;
+                  if (r.layout) Layout = r.layout;
+                  else if (r.layout === null) Layout = Fragment;
+
+                  const Page = r.component;
+                  return (
+                     <Route
+                        key={i}
+                        path={r.path}
+                        element={
+                           <Layout>
+                              <Page />
+                           </Layout>
+                        }
+                     ></Route>
+                  );
+               })}
+            </Routes>
+         </div>
+      </Router>
+   );
 }
 
 export default App;
