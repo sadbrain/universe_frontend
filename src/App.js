@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
 import { DefaultLayout } from '~/components/Layouts';
 import { useGlobalState } from '~/components/GlobalState';
+import Category from './Category';
+
 function App() {
    const [state, dispatch] = useGlobalState();
    console.log(state);
@@ -14,7 +16,6 @@ function App() {
                   let Layout = DefaultLayout;
                   if (r.layout) Layout = r.layout;
                   else if (r.layout === null) Layout = Fragment;
-
                   const Page = r.component;
                   return (
                      <Route
@@ -28,6 +29,7 @@ function App() {
                      ></Route>
                   );
                })}
+               <Route path="/category" element={<Category />} />
             </Routes>
          </div>
       </Router>

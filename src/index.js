@@ -4,7 +4,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from '~/components';
 import { GlobalProvider } from '~/components/GlobalState';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <React.StrictMode>
