@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jQuery (được yêu cầu bởi Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+    * {
+        font-family: 'Volkhov', serif;
+    }
+
+    .color-custom {
+        color: #FF6699;
+    }
+
+    .bg-custom {
+        background-color: #FF6699;
+    }
+
+    .flex-item {
+        display: flex;
+    }
+
+    .text-center {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .title-size {
+        font-size: 80px;
+    }
+
+    .main-size {
+        font-size: 30px;
+    }
+
+    .content-size {
+        font-size: 20px;
+    }
+
+    .subcontent-size {
+        font-size: 12px;
+    }
+
+    .btn-pink {
+        background-color: #FF6699 !important;
+        border: none;
+    }
+
+    .color-custom li a {
+        color: #FF6699;
+    }
+
+    .dropdown-menu {
+        width: 187px;
+        right: 0;
+    }
+
+    .product {
+        width: 100%;
+    }
+
+    .product img {
+        width: 100%;
+        height: auto;
+    }
+
+    .rounded-10 {
+        border-radius: 10px;
+    }
+
+    .position-relative {
+        position: relative;
+    }
+
+    .position-absolute {
+        position: absolute;
+        z-index: 1000;
+        /* Đảm bảo dropdown menu cao hơn các phần khác trong giao diện */
+    }
+</style>
+
+<body>
+    <div class="fluld-container">
+        <div class="ml-5">
+            <div class="head-content">
+                <h1 class="text-center title-size"><b>Fashion</b></h1>
+                <div class="text-center flex-item main-size">
+                    <p>Home > </p>
+                    <p class="color-custom">Fashion </p>
+                    <p> > Antiques Dress</p>
+                </div>
+            </div>
+            <div class="main-content mt-5">
+                <div class="row flex-item">
+                    <div class="col-2">
+                        <div class="dropdown" id="myDropdown">
+                            <button class="btn btn-pink dropdown-toggle main-size" type="button" data-toggle="dropdown"
+                                onclick="movePriceType()">Categories
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu color-custom text-center">
+                                <li><a href="#">Antique Dress</a></li>
+                                <li><a href="#">Hairpin</a></li>
+                                <li><a href="#">Jewelry</a></li>
+                                <li><a href="#">Ethnic shoes</a></li>
+                                <li><a href="#">Hand fan</a></li>
+                            </ul>
+                        </div>
+                        <div id="priceType">
+                            <p class="content-size">Price-type</p>
+                            <input type="number">
+                            <button class="btn-pink text-white mt-2 rounded-10">Apply</button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-10">
+                        <button class="btn-pink content-size ">ANTIQUE DRESS</button>
+                        <div class=" row mt-3">
+                            <div class="col-2">
+                                <div class="product bg-custom rounded-10">
+                                    <img class="rounded-10"
+                                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                                        alt="Vay co trang">
+                                    <div class="m-1 subcontent-size">
+                                        <div class="row">
+                                            <div class="col-6 ">Shiny Dress</div>
+                                            <div class="col-6"> *****</div>
+                                        </div>
+                                        <p>(4.1K) Customer reviews</p>
+                                        <div class="row">
+                                            <div class="col-5">95.000đ</div>
+                                            <div class="col-7">Almost Sold out</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="product bg-custom rounded-10">
+                                    <img class="rounded-10"
+                                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                                        alt="Vay co trang">
+                                    <div class="m-1 subcontent-size">
+                                        <div class="row">
+                                            <div class="col-6 ">Shiny Dress</div>
+                                            <div class="col-6"> *****</div>
+                                        </div>
+                                        <p>(4.1K) Customer reviews</p>
+                                        <div class="row">
+                                            <div class="col-5">95.000đ</div>
+                                            <div class="col-7">Almost Sold out</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="product bg-custom rounded-10">
+                                    <img class="rounded-10"
+                                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                                        alt="Vay co trang">
+                                    <div class="m-1 subcontent-size">
+                                        <div class="row">
+                                            <div class="col-6 ">Shiny Dress</div>
+                                            <div class="col-6"> *****</div>
+                                        </div>
+                                        <p>(4.1K) Customer reviews</p>
+                                        <div class="row">
+                                            <div class="col-5">95.000đ</div>
+                                            <div class="col-7">Almost Sold out</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="product bg-custom rounded-10">
+                                    <img class="rounded-10"
+                                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                                        alt="Vay co trang">
+                                    <div class="m-1 subcontent-size">
+                                        <div class="row">
+                                            <div class="col-6 ">Shiny Dress</div>
+                                            <div class="col-6"> *****</div>
+                                        </div>
+                                        <p>(4.1K) Customer reviews</p>
+                                        <div class="row">
+                                            <div class="col-5">95.000đ</div>
+                                            <div class="col-7">Almost Sold out</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="product bg-custom rounded-10">
+                                    <img class="rounded-10"
+                                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                                        alt="Vay co trang">
+                                    <div class="m-1 subcontent-size">
+                                        <div class="row">
+                                            <div class="col-6 ">Shiny Dress</div>
+                                            <div class="col-6"> *****</div>
+                                        </div>
+                                        <p>(4.1K) Customer reviews</p>
+                                        <div class="row">
+                                            <div class="col-5">95.000đ</div>
+                                            <div class="col-7">Almost Sold out</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination text-center">
+                  <li class="page-item"><a class="page-link color-custom" href="#"><<</a></li>
+                  <li class="page-item"><a class="page-link rounded-10 text-dark btn-pink" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link rounded-10 text-dark" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link rounded-10 text-dark" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link color-custom" href="#">>></a></li>
+                </ul>
+              </nav>
+              
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+
+        function movePriceType() {
+            var dropdown = document.getElementById('myDropdown');
+            var priceType = document.getElementById('priceType');
+
+            if (dropdown.classList.contains('show')) {
+                priceType.style.marginTop = '0';
+            } else {
+                priceType.style.marginTop = '100px'; // Điều chỉnh giá trị margin-top tùy theo nhu cầu
+            }
+        }
+
+    </script>
+</body>
+
+
+
+</html>
