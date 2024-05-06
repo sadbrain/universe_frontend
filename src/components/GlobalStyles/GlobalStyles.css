@@ -21,11 +21,11 @@ body {
 }
 
 .color-custom {
-   color: #FF6699;
+   color: #ff6699;
 }
 
 .bg-custom {
-   background-color: #FF6699;
+   background-color: #ff6699;
 }
 
 .flex-item {
@@ -39,7 +39,7 @@ body {
 }
 
 .title-size {
-   font-size: 80px;
+   font-size: 50px;
 }
 
 .main-size {
@@ -49,18 +49,31 @@ body {
 .content-size {
    font-size: 20px;
 }
-
+.maincontent-size {
+   font-size: 16px;
+}
 .subcontent-size {
    font-size: 12px;
 }
 
 .btn-pink {
-   background-color: #FF6699 !important;
+   background-color: #ff6699 !important;
    border: none;
+}
+.btn-hover {
+   border: none; /* Ẩn border */
+   cursor: pointer; /* Đổi con trỏ chuột khi hover */
+   margin: 0 30px;
+   background-color: white;
+   margin-top: 10px;
+}
+.btn-hover:hover {
+   border-bottom: 2px solid; /* Hiển thị border dưới khi hover */
+   padding-bottom: 3px; /* Tăng độ dài của gạch chân */
 }
 
 .color-custom li a {
-   color: #FF6699;
+   color: #ff6699;
 }
 
 .dropdown-menu {
@@ -89,4 +102,9 @@ body {
    position: absolute;
    z-index: 1000;
    /* Đảm bảo dropdown menu cao hơn các phần khác trong giao diện */
+}
+.custom-border {
+   border: 1px solid black; /* border đậm với màu đen */
+   border-radius: 5px; /* bo tròn góc */
+   padding: 10px; /* tạo khoảng cách giữa border và nội dung bên trong */
 }
