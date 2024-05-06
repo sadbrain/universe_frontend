@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- jQuery (được yêu cầu bởi Bootstrap) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/b0fd760852.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../src/components/GlobalStyles/GlobalStyles.css">
+    <!-- Add Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="bg-custom rounded-10 text-center">
+                    <p class="text-white ">Total price</p>
+                    <p>30,000,000 USD</p>
+                </div>
+                <div class="bg-custom rounded-10 text-center">
+                    <p class="text-white ">Current monthly </p>
+                    <p>20,000,000 USD</p>
+                </div>
+                <div class="bg-custom rounded-10 text-center">
+                    <p class="text-white ">Total orders </p>
+                    <p>5,000</p>
+                </div>
+                <div class="bg-custom rounded-10 text-center">
+                    <p class="text-white ">Monthly orders </p>
+                    <p>2,000</p>
+                </div>
+                <div class="bg-custom rounded-10 text-center">
+                    <p class="text-white ">Total</p>
+                    <p>2,000</p>
+                </div>
+                <div class="bg-custom rounded-10 text-center">
+                    <p class="text-white ">Monthly</p>
+                    <p>2,000</p>
+                </div>
+            </div>
+            <div class="col-9">
+                <canvas id="revenue_chart"></canvas>
+                <canvas id="new_chart"></canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        let revenueChart = document.getElementById('revenue_chart').getContext('2d');
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Volkhov';
+        Chart.defaults.global.defaultFontSize = 16;
+        Chart.defaults.global.defaultFontColor = '#F624ED';
+
+        let massPopChart = new Chart(revenueChart, {
+            type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: [1,2,3,4,5,6,7,8,9],
+                datasets: [{
+                    label: 'Population',
+                    data: [
+                        250,
+                        650,
+                        800,
+                        850,
+                        900,
+                        750,
+                        850,
+                        500,
+                        980
+                       
+                    ],
+                    //backgroundColor:'green',
+                    backgroundColor: [
+                    'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                       
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'REVENUE',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
+
+        let newChart = document.getElementById('new_chart').getContext('2d');
+        // Global Options
+        Chart.defaults.global.defaultFontFamily = 'Volkhov';
+        Chart.defaults.global.defaultFontSize = 16;
+        Chart.defaults.global.defaultFontColor = '#F624ED';
+
+        let new_massPopChart = new Chart(newChart, {
+            type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            data: {
+                labels: [1,2,3,4,5,6,7,8,9],
+                datasets: [{
+                    label: 'Population',
+                    data: [
+                        250,
+                        650,
+                        800,
+                        850,
+                        900,
+                        750,
+                        850,
+                        500,
+                        980
+                       
+                    ],
+                    //backgroundColor:'green',
+                    backgroundColor: [
+                    'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                        'rgba(189, 190, 198, 1)',
+                        'rgba(246, 36, 237, 1)',
+                       
+                    ],
+                    borderWidth: 1,
+                    borderColor: '#777',
+                    hoverBorderWidth: 3,
+                    hoverBorderColor: '#000'
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'New',
+                    fontSize: 25
+                },
+                legend: {
+                    display: true,
+                    position: 'right',
+                    labels: {
+                        fontColor: '#000'
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 50,
+                        right: 0,
+                        bottom: 0,
+                        top: 0
+                    }
+                },
+                tooltips: {
+                    enabled: true
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

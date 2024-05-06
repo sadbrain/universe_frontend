@@ -14,87 +14,16 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/b0fd760852.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../src/components/GlobalStyles/GlobalStyles.css">
+
 </head>
-<style>
-    * {
-        font-family: 'Volkhov', serif;
-    }
 
-    .color-custom {
-        color: #FF6699;
-    }
-
-    .bg-custom {
-        background-color: #FF6699;
-    }
-
-    .flex-item {
-        display: flex;
-    }
-
-    .text-center {
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .title-size {
-        font-size: 80px;
-    }
-
-    .main-size {
-        font-size: 30px;
-    }
-
-    .content-size {
-        font-size: 20px;
-    }
-
-    .subcontent-size {
-        font-size: 12px;
-    }
-
-    .btn-pink {
-        background-color: #FF6699 !important;
-        border: none;
-    }
-
-    .color-custom li a {
-        color: #FF6699;
-    }
-
-    .dropdown-menu {
-        width: 187px;
-        right: 0;
-    }
-
-    .product {
-        width: 100%;
-    }
-
-    .product img {
-        width: 100%;
-        height: auto;
-    }
-
-    .rounded-10 {
-        border-radius: 10px;
-    }
-
-    .position-relative {
-        position: relative;
-    }
-
-    .position-absolute {
-        position: absolute;
-        z-index: 1000;
-        /* Đảm bảo dropdown menu cao hơn các phần khác trong giao diện */
-    }
-</style>
 
 <body>
     <div class="fluld-container">
-        <div class="ml-5">
+        <div class=" ml-4 mr-4">
             <div class="head-content">
                 <h1 class="text-center title-size"><b>Fashion</b></h1>
                 <div class="text-center flex-item main-size">
@@ -120,15 +49,31 @@
                         </div>
                         <div id="priceType">
                             <p class="content-size">Price-type</p>
-                            <input type="number">
+                            <input type="number" min="1">
                             <button class="btn-pink text-white mt-2 rounded-10">Apply</button>
                         </div>
                     </div>
-
-
                     <div class="col-10">
                         <button class="btn-pink content-size ">ANTIQUE DRESS</button>
-                        <div class=" row mt-3">
+                        <div class="row mt-3">
+                            <div class="col-2">
+                                <div class="product bg-custom rounded-10">
+                                    <img class="rounded-10"
+                                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                                        alt="Vay co trang">
+                                    <div class="m-1 subcontent-size">
+                                        <div class="row">
+                                            <div class="col-6 ">Shiny Dress</div>
+                                            <div class="col-6"> *****</div>
+                                        </div>
+                                        <p>(4.1K) Customer reviews</p>
+                                        <div class="row">
+                                            <div class="col-5">95.000đ</div>
+                                            <div class="col-7">Almost Sold out</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-2">
                                 <div class="product bg-custom rounded-10">
                                     <img class="rounded-10"

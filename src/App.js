@@ -29,7 +29,6 @@ function App() {
                      ></Route>
                   );
                })}
-               <Route path="/category" element={<Category />} />
             </Routes>
          </div>
       </Router>

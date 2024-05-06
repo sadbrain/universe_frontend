@@ -14,8 +14,79 @@ html {
 }
 
 body {
-   font-family: 'JetBrains Mono', monospace;
+   font-family: 'Volkhov', serif;
    font-size: 1.6rem;
    line-height: 1.5;
    text-rendering: optimizeSpeed;
+}
+
+.color-custom {
+   color: #FF6699;
+}
+
+.bg-custom {
+   background-color: #FF6699;
+}
+
+.flex-item {
+   display: flex;
+}
+
+.text-center {
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.title-size {
+   font-size: 80px;
+}
+
+.main-size {
+   font-size: 30px;
+}
+
+.content-size {
+   font-size: 20px;
+}
+
+.subcontent-size {
+   font-size: 12px;
+}
+
+.btn-pink {
+   background-color: #FF6699 !important;
+   border: none;
+}
+
+.color-custom li a {
+   color: #FF6699;
+}
+
+.dropdown-menu {
+   width: 187px;
+   right: 0;
+}
+
+.product {
+   width: 100%;
+}
+
+.product img {
+   width: 100%;
+   height: auto;
+}
+
+.rounded-10 {
+   border-radius: 10px;
+}
+
+.position-relative {
+   position: relative;
+}
+
+.position-absolute {
+   position: absolute;
+   z-index: 1000;
+   /* Đảm bảo dropdown menu cao hơn các phần khác trong giao diện */
 }
