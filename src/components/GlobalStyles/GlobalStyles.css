@@ -19,6 +19,11 @@ body {
    line-height: 1.5;
    text-rendering: optimizeSpeed;
 }
+.d-flex {
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+}
 
 .color-custom {
    color: #ff6699;
@@ -107,4 +112,21 @@ body {
    border: 1px solid black; /* border đậm với màu đen */
    border-radius: 5px; /* bo tròn góc */
    padding: 10px; /* tạo khoảng cách giữa border và nội dung bên trong */
+}
+.form-check-input:checked {
+   background-color: blue;
+}
+.hidden {
+   display: none;
+}
+input[type='text'],
+input[type='phone'],
+input[type='email'] {
+   border: none;
+   border-bottom: 1px solid black;
+   outline: none;
+   background-color: transparent;
+}
+::placeholder {
+   color: black;
 }
