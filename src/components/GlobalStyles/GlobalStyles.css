@@ -50,7 +50,7 @@ body {
 }
 
 .main-size {
-   font-size: 30px;
+   font-size: 25px;
 }
 
 .content-size {
@@ -83,7 +83,7 @@ body {
    padding-bottom: 3px;
 }
 
-.color-custom li a {
+.color-custom li a{
    color: #ff6699;
 }
 
@@ -118,6 +118,11 @@ body {
    border: 1px solid black; /* border đậm với màu đen */
    border-radius: 5px; /* bo tròn góc */
    padding: 10px; /* tạo khoảng cách giữa border và nội dung bên trong */
+}
+.border-pink{
+   border: 1px solid #ff6699; /* border đậm với màu đen */
+   border-radius: 5px; /* bo tròn góc */
+   padding: 10px;
 }
 .form-check-input:checked {
    background-color: blue;
