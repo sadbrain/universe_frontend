@@ -23,160 +23,196 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../src/components/GlobalStyles/GlobalStyles.css">
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body>
     <div class="container">
         <h1 class="title-size text-center"><b>Order Summary</b></h1>
         <div class="text-center flex-item ">
-            <h2 class="fw-bold">Cart > </h2>
-            <h2 class="color-custom fw-bold"> Checkout</h2>
+            <h2 class="font-weight-bold">Cart </h2>
+            <i class="ml-3 mr-3 fa-solid fa-chevron-right"></i>
+            <h2 class="color-custom font-weight-bold"> Checkout</h2>
         </div>
-        <div class="text-center flex-item m-5 ">
-            <button class="color-custom btn-hover h2">All</button>
-            <button class="color-custom btn-hover h2">Ordering</button>
-            <button class="color-custom btn-hover h2">Ordered</button>
-            <button class="color-custom btn-hover h2">Cancelled</button>
+        <div class="text-center flex-item m-5 align-items-center ">
+            <button class="color-custom btn-hover h2 active font-weight-bold" id="allButton">All</button>
+            <button class="color-custom btn-hover h2 font-weight-bold" onmouseover="hoverButton(this)">Ordering</button>
+            <button class="color-custom btn-hover h2 font-weight-bold" onmouseover="hoverButton(this)">Ordered</button>
+            <button class="color-custom btn-hover h2 font-weight-bold"
+                onmouseover="hoverButton(this)">Cancelled</button>
         </div>
-        <div class="item">
-            <div class="row custom-border mb-5">
-                <div class="col-3">
-                    <img class="w-50 h-100"
-                        src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg" alt="">
-                </div>
-                <div class="col-9">
-                    <div class="row maincontent-size">
-                        <div class="col-6">
-                            <p>Ultra-Light School Slippers for introverts</p>
-                            <p>Size: 37</p>
-                            <p>Color: White</p>
-                            <p>quality: 01</p>
-                        </div>
-                        <div class="col-3">
-                            <b>Price: $400.00</b>
-                        </div>
-                        <div class="col-3">
-                            <p class="color-custom font-weight-bold">Cancelled</p>
-                            <p class="font-weight-bold">Discount: -20%</p>
-                            <div class="row flex-item">
-                                <p class="col-7 font-weight-bold">Total Price: </p>
-                                <p class="col-5 bg-custom text-white rounded-sm font-weight-bold p-2"> $200.00</p>
-                            </div>
-                            <div class="row flex-item">
-                                <p class="col-7">
-                                </p>
-                                <p class="col-5 btn btn-success font-weight-bold subcontent-size">Buy again
-                                </p>
-                            </div>
-
-                        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 custom-border mb-5">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img class="w-100 h-100"
+                            src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg" alt="">
                     </div>
-                </div>
-            </div>
-
-
-
-            <!-- Delivered -->
-            <div class="row custom-border mb-5">
-                <div class="col-3">
-                    <img class="w-50 h-100"
-                        src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg" alt="">
-                </div>
-                <div class="col-9">
-                    <div class="row maincontent-size">
-                        <div class="col-6">
-                            <p>Ultra-Light School Slippers for introverts</p>
-                            <p>Size: 37</p>
-                            <p>Color: White</p>
-                            <p>quality: 01</p>
-                        </div>
-                        <div class="col-3">
-                            <b>Price: $400.00</b>
-                        </div>
-                        <div class="col-3">
-                            <p class="color-custom font-weight-bold">Delivered</p>
-                            <p class="font-weight-bold">Discount: -20%</p>
-                            <div class="row flex-item">
-                                <p class="col-7 font-weight-bold">Total Price: </p>
-                                <p class="col-5 bg-custom text-white rounded-sm font-weight-bold p-2"> $200.00</p>
+                    <div class="col-9">
+                        <div class="row maincontent-size">
+                            <div class="col-5">
+                                <p>Ultra-Light School Slippers for introverts</p>
+                                <p>Size: 37</p>
+                                <p>Color: White</p>
+                                <p>Quality: 01</p>
                             </div>
-                            <div class="row flex-item">
-                                <p class="col-7">
-                                </p>
-                                <p class="col-5 btn btn-success font-weight-bold subcontent-size">Buy again
-                                </p>
+                            <div class="col-2">
+                                <b>Price: $400.00</b>
                             </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Shipped -->
-            <div class="row custom-border mb-5">
-                <div class="col-3">
-                    <img class="w-50 h-100"
-                        src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg" alt="">
-                </div>
-                <div class="col-9">
-                    <div class="row maincontent-size">
-                        <div class="col-6">
-                            <p>Ultra-Light School Slippers for introverts</p>
-                            <p>Size: 37</p>
-                            <p>Color: White</p>
-                            <p>quality: 01</p>
-                        </div>
-                        <div class="col-3">
-                            <b>Price: $400.00</b>
-                        </div>
-                        <div class="col-3">
-                            <p class="color-custom font-weight-bold">Shipped</p>
-                            <p class="font-weight-bold">Discount: -20%</p>
-                            <div class="row flex-item">
-                                <p class="col-7 font-weight-bold">Total Price: </p>
-                                <p class="col-5 bg-custom text-white rounded-sm font-weight-bold p-2"> $200.00</p>
-                            </div>
-                            <!-- Modal -->
-                            <div class="modal fade " id="confirmationModal" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content content-size">
-                                        <div class="modal-body text-center">
-                                            Are you sure?
-                                        </div>
-                                        <div class="modal-footer flex-item text-center">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">NO</button>
-                                            <button type="button" class=" btn btn-pink "
-                                                onclick="handleConfirmation()">YES</button>
-                                        </div>
-                                    </div>
+                            <div class="col-5">
+                                <p class="color-custom font-weight-bold font-italic">Cancelled</p>
+                                <p class="font-weight-bold">Discount: -20%</p>
+                                <div class="row flex-item ">
+                                    <p class="col-6 font-weight-bold">Total Price: </p>
+                                    <p class="col-5 bg-custom text-white rounded-15 font-weight-bold text-center p-2">
+                                        $200.00</p>
+                                </div>
+                                <div class="row flex-item ">
+                                    <p class="col-6"></p>
+                                    <p class="col-5 btn rounded-15 btn-success font-weight-bold maincontent-size">Buy
+                                        again</p>
                                 </div>
                             </div>
-                            <div class="row flex-item">
-                                <p class="col-6 btn btn-dark subcontent-size" onclick="openConfirmationModal()">
-                                    Cancelled</p>
-                                <p class="col-6 btn btn-success font-weight-bold subcontent-size">Buy again</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+
+            <div class="col-1"></div>
+            <div class="col-10 custom-border mb-5">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img class="w-100 h-100"
+                            src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg" alt="">
+                    </div>
+                    <div class="col-9">
+                        <div class="row maincontent-size">
+                            <div class="col-5">
+                                <p>Ultra-Light School Slippers for introverts</p>
+                                <p>Size: 37</p>
+                                <p>Color: White</p>
+                                <p>Quality: 01</p>
+                            </div>
+                            <div class="col-2">
+                                <b>Price: $400.00</b>
+                            </div>
+                            <div class="col-5">
+                                <p class="color-custom font-weight-bold font-italic">Delivered</p>
+                                <p class="font-weight-bold">Discount: -20%</p>
+                                <div class="row flex-item ">
+                                    <p class="col-6 font-weight-bold">Total Price: </p>
+                                    <p class="col-5 bg-custom text-white rounded-15 font-weight-bold text-center p-2">
+                                        $200.00</p>
+                                </div>
+                                <div class="row flex-item ">
+                                    <p class="col-6"></p>
+                                    <p class="col-5 btn rounded-15 btn-success font-weight-bold maincontent-size">Buy
+                                        again</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-1"></div>
 
+            <div class="col-1"></div>
+            <div class="col-10 custom-border mb-5">
+                <div class="row align-items-center">
+                    <div class="col-3">
+                        <img class="w-100 h-100"
+                            src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg" alt="">
+                    </div>
+                    <div class="col-9">
+                        <div class="row maincontent-size">
+                            <div class="col-5">
+                                <p>Ultra-Light School Slippers for introverts</p>
+                                <p>Size: 37</p>
+                                <p>Color: White</p>
+                                <p>Quality: 01</p>
+                            </div>
+                            <div class="col-2">
+                                <b>Price: $400.00</b>
+                            </div>
+                            <div class="col-5">
+                                <p class="color-custom font-weight-bold font-italic">Shipped</p>
+                                <p class="font-weight-bold">Discount: -20%</p>
+                                <div class="row flex-item ">
+                                    <p class="col-6 font-weight-bold">Total Price: </p>
+                                    <p class="col-5 bg-custom text-white rounded-15 font-weight-bold text-center p-2">
+                                        $200.00</p>
+                                </div>
+                                <div class="row flex-item ">
+                                    <!-- <p class="col-1"></p>   -->
+                                    <p class="col-5 btn rounded-15 btn-dark maincontent-size ml-4" id="cancelled">
+                                        Cancelled</p>
+                                    <p class="col-5 btn rounded-15 btn-success font-weight-bold maincontent-size ml-3">
+                                        Buy again</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
     </div>
 </body>
 <script>
-    function openConfirmationModal() {
-        $('#confirmationModal').modal('show');
+    document.getElementById("cancelled").onclick = function () {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger",
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                    title: "Cancelled",
+                    text: "Your imaginary file is safe :)",
+                    icon: "error"
+                });
+            }
+        });
     }
+    function hoverButton(button) {
+        var allButton = document.getElementById('allButton');
 
-    function handleConfirmation() {
-        // Xử lý khi chọn "Yes"
-        alert("You have cancelled your order!");
-        $('#confirmationModal').modal('hide');
+        if (button === allButton) {
+            allButton.classList.add('active');
+        } else {
+            allButton.classList.remove('active');
+        }
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </html>

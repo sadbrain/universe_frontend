@@ -42,7 +42,9 @@ body {
    justify-content: center;
    text-align: center;
 }
-
+.bold-text {
+   font-weight: bold;
+}
 .title-size {
    font-size: 50px;
 }
@@ -55,7 +57,7 @@ body {
    font-size: 20px;
 }
 .maincontent-size {
-   font-size: 16px;
+   font-size: 18px;
 }
 .subcontent-size {
    font-size: 12px;
@@ -75,6 +77,10 @@ body {
 .btn-hover:hover {
    border-bottom: 2px solid; /* Hiển thị border dưới khi hover */
    padding-bottom: 3px; /* Tăng độ dài của gạch chân */
+}
+.active {
+   border-bottom: 2px solid; /* Hiển thị border dưới khi hover */
+   padding-bottom: 3px;
 }
 
 .color-custom li a {
@@ -129,4 +135,7 @@ input[type='email'] {
 }
 ::placeholder {
    color: black;
+}
+.rounded-15 {
+   border-radius: 15px;
 }
