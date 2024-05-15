@@ -83,7 +83,7 @@ body {
    padding-bottom: 3px;
 }
 
-.color-custom li a{
+.color-custom li a {
    color: #ff6699;
 }
 
@@ -119,7 +119,7 @@ body {
    border-radius: 5px; /* bo tròn góc */
    padding: 10px; /* tạo khoảng cách giữa border và nội dung bên trong */
 }
-.border-pink{
+.border-pink {
    border: 1px solid #ff6699; /* border đậm với màu đen */
    border-radius: 5px; /* bo tròn góc */
    padding: 10px;
@@ -144,3 +144,15 @@ input[type='email'] {
 .rounded-15 {
    border-radius: 15px;
 }
+.no-bullets {
+   list-style-type: none; /* Removes the bullets from the list items */
+   padding-left: 0; /* Removes any default padding */
+}
+.dropdown-menu {
+   display: block; /* Ensures the dropdown menu is visible when toggled */
+   max-height: 200px; /* Adjust as needed */
+   overflow-y: auto; /* Add scrollbar if the list is too long */
+ }
+ .w-100{
+   width: 100%;
+ }
