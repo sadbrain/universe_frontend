@@ -15,7 +15,7 @@ const publicRoutes = [
 ];
 const privateRoutes = [
    {
-      path: '/dashboard',
+      path: '/admin/dashboard',
       component: Dashboard,
       layout: AdminLayout,
       error: () => {
