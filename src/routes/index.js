@@ -1,6 +1,6 @@
 import { AdminLayout } from '../components/Layouts';
 import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp } from '~/pages';
-import { AboutUs, Summary, OrderManagementCus, AddMoreUser } from '../pages';
+import { AboutUs, Summary, OrderManagementCus, AddMoreUser, OrderList } from '../pages';
 
 const publicRoutes = [
    { path: '/', component: Home },
@@ -47,6 +47,14 @@ const privateRoutes = [
       layout: AdminLayout,
       path: '/admin/user/create',
       component: AddMoreUser,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/order',
+      component: OrderList,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
       },

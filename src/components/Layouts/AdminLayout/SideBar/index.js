@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.css';
 
 function SideBar() {
@@ -11,7 +11,10 @@ function SideBar() {
          </div>
 
          <ul className="left-side-bar">
-            <li className={nav === 'dashboard' ? 'left-side-bar-item active' : 'left-side-bar-item'}>
+            <li
+               className={nav === 'dashboard' ? 'left-side-bar-item active' : 'left-side-bar-item'}
+               onClick={() => setNav('dashboard')}
+            >
                <Link to="/admin/dashboard">Dashboard</Link>
             </li>
             <li className={'left-side-bar-item'} onClick={() => setNav('home')}>
@@ -45,7 +48,7 @@ function SideBar() {
                className={nav === 'm-order' ? 'left-side-bar-item active' : 'left-side-bar-item'}
                onClick={() => setNav('m-order')}
             >
-               <Link to="/admin/order">Order Management</Link>
+               <Link to="/admin/order?status=all">Order Management</Link>
             </li>
          </ul>
       </div>
