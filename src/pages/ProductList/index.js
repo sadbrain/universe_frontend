@@ -1,49 +1,22 @@
-import { useParams } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import ProductPagination from '../../components/pagination';
 import './index.css';
 
 function ProductList() {
+   let [searchParams, setSearchParams] = useSearchParams();
+   const navigate = useNavigate();
+   let sort = searchParams.get('sort');
+   let page = searchParams.get('page');
+   let category = searchParams.get('category');
+
    const [productList, setProductList] = useState();
    const [showCategories, setShowCategories] = useState(false);
    const [selectedCategory, setSelectedCategory] = useState(null); // Set to null initially
    const [categories, setCategories] = useState([]); // State for categories
    const inputRef = useRef(null); // Create a ref for the input element
 
-   const Pagination = () => {
-      return (
-         <nav aria-label="Page navigation" className="mt-5">
-            <ul className="pagination text-center maincontent-size">
-               <li className="page-item">
-                  <a className="page-link rounded-10 p-4 m-1 text-dark btn-pink" href="#">
-                     1
-                  </a>
-               </li>
-               <li className="page-item">
-                  <a className="page-link rounded-10 p-4 m-1 text-dark" href="#">
-                     2
-                  </a>
-               </li>
-               <li className="page-item">
-                  <a className="page-link rounded-10 p-4 m-1 text-dark" href="#">
-                     3
-                  </a>
-               </li>
-               <li className="page-item">
-                  <a className="page-link rounded-10 p-4 m-1 text-dark" href="#">
-                     4
-                  </a>
-               </li>
-
-               <li className="page-item">
-                  <a className="page-link rounded-10 p-4 m-1 text-dark" href="#">
-                     5
-                  </a>
-               </li>
-            </ul>
-         </nav>
-      );
-   };
    // fetch productList default
    // Fetch categories from API
    useEffect(() => {
@@ -56,21 +29,21 @@ function ProductList() {
             console.error('Error fetching categories:', error);
          }
       };
-      const fetchProductListDefault = async () => {
+      const fetchProductList = async () => {
          try {
-            const response = await fetch('http://127.0.0.1:8000/api/v1/products/get-products-by-category/1/1');
+            const response = await fetch('http://127.0.0.1:8000/api/v1/products/get-products-by-category/${}/1');
             const data = await response.json();
             setProductList(data.data);
          } catch (error) {
             console.error('Error fetching products by category:', error);
          }
       };
-      fetchProductListDefault();
+      fetchProductList();
       fetchCategories();
    }, []); // Empty dependency array means this useEffect runs once after initial render
 
    const handleCategoryClick = async (categoryId) => {
-      setSelectedCategory(categoryId);
+      navigate(`/products?category=${categoryId}`);
       console.log(`Selected category ID: ${categoryId}`);
 
       // Fetch products by category when a category is clicked
@@ -180,7 +153,7 @@ function ProductList() {
                )}
             </div>
          </div>
-         <Pagination />
+         <ProductPagination current={parseInt(page)} totalProduct={100} productEachPage={10} />
       </div>
    );
 }
