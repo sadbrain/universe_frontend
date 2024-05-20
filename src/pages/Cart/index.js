@@ -1,5 +1,15 @@
-function Cart() {
-   return <h1>Cart page</h1>;
+import Slider from '~/components/Slider';
+// import Outstanding from '~/components/Outstanding';
+// import Sellingproducts from '../../components/Sellingproducts';
+
+function Home() {
+   return (
+      <>
+         <Slider />
+         {/* <Outstanding />
+         <Sellingproducts /> */}
+      </>
+   );
 }
 
-export default Cart;
+export default Home;
