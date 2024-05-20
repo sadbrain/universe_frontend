@@ -1,0 +1,64 @@
+.custom-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start; /* Đặt văn bản và slider lên trên cùng */
+   width: 100%;
+   max-width: 1200px;
+   margin: auto;
+   margin-top: 50px; /* Thêm khoảng cách 20px từ phía trên */
+}
+
+.custom-text {
+   flex: 1;
+   padding-right: 20px;
+}
+
+.custom-text h3 {
+   font-size: 60px;
+   color: #ff6699;
+}
+
+.custom-text p {
+   margin-bottom: 20px; /* Khoảng cách giữa đoạn văn và nút */
+}
+
+.buy-now-button {
+   background-color: #ff6699;
+   color: #fff;
+   border: none;
+   border-radius: 10px;
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.buy-now-button:hover {
+   background-color: #e05588;
+}
+
+.custom-carousel-container {
+   flex: 1;
+   max-width: 600px; /* Đặt chiều rộng tối đa cho phần carousel */
+   padding-left: 20px; /* Thêm padding 20px bên trái */
+}
+
+.custom-carousel-content {
+   height: 300px; /* Chiều cao của banner */
+   color: #fff;
+   text-align: center;
+   background: #364d79;
+}
+
+.custom-carousel-img-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+}
+
+.custom-carousel-img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
