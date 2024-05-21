@@ -30,7 +30,7 @@ export function Cards(props) {
                         className="maincontent-size"
                      >
                         <span style={{ flex: 1 }}>{truncateProductName(productName, 6)}</span>
-                        <Rate disabled defaultValue={5} style={{ color: '#ffc107', fontSize: '14px' }} />
+                        <Rate disabled defaultValue={4} style={{ color: '#ffc107', fontSize: '14px' }} />
                      </div>
                      <div style={{ marginTop: '5px' }}>
                         <span className="subcontent-size">{rankComments}</span>

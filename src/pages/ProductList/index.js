@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProductPagination from '../../components/pagination';
 import './index.css';
 import { jsx as _jsx, jsxs as _jsxs } from 'react/jsx-runtime';
@@ -14,17 +14,24 @@ function ProductList() {
    const toggleCategoryDropdown = () => {
       setShowCategories(!showCategories);
    };
-   const { Meta } = Card;
+   useEffect(() => {
+      const dropdown = document.getElementById('myDropdown');
+      const priceType = document.getElementById('priceType');
 
-   const productName = 'This is a very long product name that needs to be truncated or wrapped';
+      const handleMovePriceType = () => {
+         if (dropdown.classList.contains('show')) {
+            priceType.style.marginTop = '100px';
+         } else {
+            priceType.style.marginTop = '0px';
+         }
+      };
 
-   // Hàm này sẽ rút gọn hoặc xuống dòng tên sản phẩm nếu nó quá dài
-   const truncateProductName = (name, maxLength) => {
-      if (name.length > maxLength) {
-         return name.slice(0, maxLength) + '...';
-      }
-      return name;
-   };
+      dropdown.addEventListener('click', handleMovePriceType);
+
+      return () => {
+         dropdown.removeEventListener('click', handleMovePriceType);
+      };
+   }, []);
 
    return (
       <div className="ml-4 mr-4">
@@ -51,7 +58,7 @@ function ProductList() {
                <div className="col-3 ">
                   <div className="dropdown" id="myDropdown">
                      <button
-                        className="btn btn-pink dropdown-toggle main-size w-100"
+                        className="btn btn-pink dropdown-toggle main-size w-100 "
                         type="button"
                         onClick={toggleCategoryDropdown}
                      >
@@ -63,7 +70,7 @@ function ProductList() {
                         <ul className={'dropdown-menu text-center color-custom subcontent-size w-100 no-bullets'}>
                            {categories.length > 0 ? (
                               categories.map((category, index) => (
-                                 <li className="maincontent-size w-100" key={index}>
+                                 <li className="maincontent-size w-100 m-2" key={index}>
                                     <a key={category} href="#">
                                        {category}
                                     </a>
@@ -99,27 +106,28 @@ function ProductList() {
                         rankComments="(4.1K) Customer reviews"
                         currentPrice="49.99"
                         oldPrice="69.99"
-                     /><Cards
-                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
-                        productName="Awesome Product"
-                        rankComments="(4.1K) Customer reviews"
-                        currentPrice="49.99"
-                        oldPrice="69.99"
-                     /><Cards
-                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
-                        productName="Awesome Product"
-                        rankComments="(4.1K) Customer reviews"
-                        currentPrice="49.99"
-                        oldPrice="69.99"
-                     /><Cards
+                     />
+                     <Cards
                         src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
                         productName="Awesome Product"
                         rankComments="(4.1K) Customer reviews"
                         currentPrice="49.99"
                         oldPrice="69.99"
                      />
-
-                     
+                     <Cards
+                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                        productName="Awesome Product"
+                        rankComments="(4.1K) Customer reviews"
+                        currentPrice="49.99"
+                        oldPrice="69.99"
+                     />
+                     <Cards
+                        src="https://cf.shopee.vn/file/1b874305dfdff03c3786983c2576d3fc"
+                        productName="Awesome Product"
+                        rankComments="(4.1K) Customer reviews"
+                        currentPrice="49.99"
+                        oldPrice="69.99"
+                     />
                   </div>
                </div>
             </div>
