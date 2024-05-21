@@ -1,13 +1,13 @@
 import Slider from '~/components/Slider';
 import Outstanding from '~/components/Outstanding';
-// import Sellingproducts from '../../components/Sellingproducts';
+import Selling from '../../components/Selling';
 
 function Home() {
    return (
       <>
          <Slider />
          <Outstanding />
-         {/* <Sellingproducts />  */}
+         <Selling />
       </>
    );
 }
