@@ -289,6 +289,10 @@ input[type='email'] {
    text-decoration: none; /* Removes the underline from the links */
    color: inherit; /* Inherits the color from the parent element */
 }
+.non-text-decoration{
+   text-decoration: none; /* Removes the underline from the links */
+  
+}
 .w-100 {
    width: 100%;
 }
