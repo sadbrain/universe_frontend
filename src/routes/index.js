@@ -1,6 +1,15 @@
 import { AdminLayout } from '../components/Layouts';
 import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp } from '~/pages';
-import { AboutUs, Summary, OrderManagementCus, AddMoreUser, OrderList, OrderDetail } from '../pages';
+import {
+   AboutUs,
+   Summary,
+   OrderManagementCus,
+   AddMoreUser,
+   EditUser,
+   OrderList,
+   OrderDetail,
+   ListUser,
+} from '../pages';
 
 const publicRoutes = [
    { path: '/', component: Home },
@@ -10,6 +19,10 @@ const publicRoutes = [
    { path: '/aboutUs', component: AboutUs },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
+   // { path: '/user-management', component: UserManagement },
+   { path: '/list-user', component: ListUser },
+   { path: '/addmoreUser', component: AddMoreUser },
+   { path: '/editUser', component: EditUser },
 
    // exmaple for a route when it use a diff layout,
 ];
