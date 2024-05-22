@@ -1,7 +1,19 @@
 import { AdminLayout } from '../components/Layouts';
+import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp } from '~/pages';
+import {
+   AboutUs,
+   Summary,
+   OrderManagementCus,
+   AddMoreUser,
+   OrderList,
+  OrderDetail,
+   Products,
+   ProductCreate,
+   ProductUpdate,
+} from '../pages';
+
 import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp, OrderManagementCus } from '~/pages';
 import { AboutUs, Summary, AddMoreUser, OrderList } from '../pages';
-
 const publicRoutes = [
    { path: '/', component: Home },
    { path: '/home', component: Home },
@@ -67,6 +79,34 @@ const privateRoutes = [
          alert('ban khong con quyen truy cap yeu cau nay');
       },
    },
+    {
+       layout: AdminLayout,
+       path: '/admin/order/detail/:id',
+       component: OrderDetail,
+     error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+       },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/product',
+      component: Products,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/product/create',
+      component: ProductCreate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/product/update/:id',
+      component: ProductUpdate,
    {
       layout: AdminLayout,
       path: '/admin/order/detail/:id',
