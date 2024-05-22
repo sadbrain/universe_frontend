@@ -10,7 +10,9 @@ const publicRoutes = [
    { path: '/aboutUs', component: AboutUs },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
+   { path: '/dashboard', component: Dashboard },
    { path: '/orderSumary', component: OrderManagementCus },
+
 
    // exmaple for a route when it use a diff layout,
 ];
