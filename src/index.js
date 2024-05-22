@@ -5,15 +5,18 @@ import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from '~/components';
 import { GlobalProvider } from '~/components/GlobalState';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    // <React.StrictMode>
    <GlobalProvider>
       <GlobalStyles>
          <App />
+         <ToastContainer />
       </GlobalStyles>
    </GlobalProvider>,
+
    // </React.StrictMode>
 );
 

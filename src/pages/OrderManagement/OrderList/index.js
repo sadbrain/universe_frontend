@@ -11,16 +11,10 @@ function OrderList() {
    const [status, setStatus] = useState('all');
    const [orders, setOrders] = useState([]);
    const statusParams = queryParams.get('status');
-   // setStatus(queryParams.get('status'));
-   // setStatus(statusParams);
    useEffect(() => {
       logOrders();
    }, [status]);
    async function logOrders() {
-      localStorage.setItem(
-         'token',
-         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTYyNjQ2ODEsImV4cCI6MTcxNjI2ODI4MSwibmJmIjoxNzE2MjY0NjgxLCJqdGkiOiJXMGIzZVlEUk15ZnU5aHVzIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5oM5tZD173lZ90OGF-3ah4RUBpbs-S-V0I-DC0xwaio',
-      );
       const token = localStorage.getItem('token');
       const url = BASE_URL + v1API + `orders/admin/${status}`;
       const options = {
@@ -39,10 +33,6 @@ function OrderList() {
 
          const responseObj = await response.json();
          setOrders(responseObj.data);
-         console.log({
-            status,
-            data: responseObj.data,
-         });
       } catch (error) {
          console.error('Fetch error:', error.message);
          return null;
