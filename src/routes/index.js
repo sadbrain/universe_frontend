@@ -90,6 +90,10 @@ const privateRoutes = [
       layout: AdminLayout,
       path: '/admin/product/update/:id',
       component: ProductUpdate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
    {
       layout: AdminLayout,
       path: '/admin/order/detail/:id',
