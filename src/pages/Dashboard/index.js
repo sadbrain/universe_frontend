@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 import {
    Chart as ChartJS,
    BarController,
@@ -151,38 +152,30 @@ function Dashboard() {
    return (
       <div className="container">
          <div className="row ml-10 mr-10">
-            <div className="col-1"></div>
+           
             <div className="col-3 maincontent-size bold-text">
-               <div className="bg-custom rounded-10 text-center mt-5 p-3">
-                  <p className="text-white m-2">Total price</p>
+               <div className="bg-custom rounded-10 text-center p-3">
+                  <p className="text-white mb-2">Total price</p>
                   <p>30,000,000 USD</p>
                </div>
-               <div className="bg-custom rounded-10 text-center mt-5 p-3">
-                  <p className="text-white m-2">Current monthly</p>
+               <div className="bg-custom rounded-10 text-center mt-4 p-3">
+                  <p className="text-white mb-2">Current monthly</p>
                   <p>20,000,000 USD</p>
                </div>
-               <div className="bg-custom rounded-10 text-center mt-5 p-3">
-                  <p className="text-white m-2">Total orders</p>
+               <div className="bg-custom rounded-10 text-center mt-4 p-3">
+                  <p className="text-white mb-2">Total orders</p>
                   <p>5,000</p>
                </div>
-               <div className="bg-custom rounded-10 text-center mt-5 p-3">
-                  <p className="text-white m-2">Monthly orders</p>
-                  <p>2,000</p>
-               </div>
-               <div className="bg-custom rounded-10 text-center mt-5 p-3">
-                  <p className="text-white m-2">Total</p>
-                  <p>2,000</p>
-               </div>
-               <div className="bg-custom rounded-10 text-center mt-5 p-3">
-                  <p className="text-white m-2">Monthly</p>
+               <div className="bg-custom rounded-10 text-center mt-4 p-3">
+                  <p className="text-white mb-2">Total</p>
                   <p>2,000</p>
                </div>
             </div>
-            <div className="col-7">
+            <div className="col-9">
                <canvas ref={canvasRef1} id="chart1"></canvas>
                <canvas ref={canvasRef2} id="chart2"></canvas>
             </div>
-            <div className="col-1"></div>
+           
          </div>
       </div>
    );
