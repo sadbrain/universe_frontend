@@ -1,9 +1,12 @@
 import { memo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './index.css';
 
 function SideBar() {
-   const [nav, setNav] = useState('dashboard');
+   const location = useLocation();
+   const isMatchPath = (pattern, path) => {
+      return pattern.test(path);
+   };
    return (
       <div className="left-side">
          <div className="left-side-heading">
@@ -12,41 +15,53 @@ function SideBar() {
 
          <ul className="left-side-bar">
             <li
-               className={nav === 'dashboard' ? 'left-side-bar-item active' : 'left-side-bar-item'}
-               onClick={() => setNav('dashboard')}
+               className={
+                  isMatchPath(/^\/admin\/dashboard(\/.*)?$/, location.pathname)
+                     ? 'left-side-bar-item active'
+                     : 'left-side-bar-item'
+               }
             >
                <Link to="/admin/dashboard">Dashboard</Link>
             </li>
-            <li className={'left-side-bar-item'} onClick={() => setNav('home')}>
+            <li className={'left-side-bar-item'}>
                <Link to="/">Home</Link>
             </li>
-            <li
-               className={nav === 'm-user' ? 'left-side-bar-item active' : 'left-side-bar-item'}
-               onClick={() => setNav('m-user')}
-            >
+            <li className="left-side-bar-item">
                <Link to="/admin/user">User Management</Link>
             </li>
             <li
-               className={nav === 'm-company' ? 'left-side-bar-item active' : 'left-side-bar-item'}
-               onClick={() => setNav('m-company')}
+               className={
+                  isMatchPath(/^\/admin\/company(\/.*)?$/, location.pathname)
+                     ? 'left-side-bar-item active'
+                     : 'left-side-bar-item'
+               }
             >
                <Link to="/admin/company">Company Management</Link>
             </li>
             <li
-               className={nav === 'm-category' ? 'left-side-bar-item active' : 'left-side-bar-item'}
-               onClick={() => setNav('m-category')}
+               className={
+                  isMatchPath(/^\/admin\/category(\/.*)?$/, location.pathname)
+                     ? 'left-side-bar-item active'
+                     : 'left-side-bar-item'
+               }
             >
                <Link to="/admin/category">Category Management</Link>
             </li>
             <li
-               className={nav === 'm-product' ? 'left-side-bar-item active' : 'left-side-bar-item'}
-               onClick={() => setNav('m-product')}
+               className={
+                  isMatchPath(/^\/admin\/product(\/.*)?$/, location.pathname)
+                     ? 'left-side-bar-item active'
+                     : 'left-side-bar-item'
+               }
             >
                <Link to="/admin/product">Product Management</Link>
             </li>
             <li
-               className={nav === 'm-order' ? 'left-side-bar-item active' : 'left-side-bar-item'}
-               onClick={() => setNav('m-order')}
+               className={
+                  isMatchPath(/^\/admin\/order(\/.*)?$/, location.pathname)
+                     ? 'left-side-bar-item active'
+                     : 'left-side-bar-item'
+               }
             >
                <Link to="/admin/order?status=all">Order Management</Link>
             </li>
