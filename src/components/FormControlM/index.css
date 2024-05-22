@@ -1,0 +1,39 @@
+.formControlM #inputM {
+   border: none;
+   border-bottom: 2px solid #ff6699;
+   color: #ff6699;
+   font-size: 20px;
+   width: 100%;
+   padding: 10px;
+}
+.formControlM #inputM::placeholder {
+   font-size: 20px;
+   color: #ff6699;
+   opacity: 0.5;
+}
+.formControlM #inputM:focus {
+   border: none;
+   border-bottom: 2px solid #ff6699;
+   color: #ff6699;
+   font-size: 20px;
+}
+.formControlM label {
+   color: #ff6699;
+   font-size: 25px;
+   display: inline-block;
+   width: 100%;
+   margin-bottom: 15 px;
+}
+.formControlM {
+   margin: 30px 0px;
+   width: 100%;
+}
+.formControlM #inputM[type='file']:active {
+   background-color: #003f7f;
+}
+.formControlMforAvatar #inputM:focus {
+   border: none;
+   border-bottom: none !important;
+   color: #ff6699;
+   font-size: 20px;
+}

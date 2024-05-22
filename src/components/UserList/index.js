@@ -1,4 +1,5 @@
 import Link from 'antd/es/typography/Link';
+import Swal from 'sweetalert2';
 function UserList(props) {
    const { userName, email, phoneNumber } = props;
    return (
@@ -16,8 +17,43 @@ function UserList(props) {
                   </Link>
                </button>
                <button className="btn btn-danger maincontent-size">
-                  <i className="fa-solid fa-trash"></i>
-                  Delete
+                 <Link className="maincontent-size text-white" onClick={() => {
+                           const swalWithBootstrapButtons = Swal.mixin({
+                              customClass: {
+                                 confirmButton: 'btn btn-success',
+                                 cancelButton: 'btn btn-danger',
+                              },
+                              buttonsStyling: false,
+                           });
+                           swalWithBootstrapButtons
+                              .fire({
+                                 title: 'Are you sure?',
+                                 text: "You won't be able to revert this!",
+                                 icon: 'warning',
+                                 showCancelButton: true,
+                                 confirmButtonText: 'Yes, delete it!',
+                                 cancelButtonText: 'No, cancel!',
+                                 reverseButtons: true,
+                              })
+                              .then((result) => {
+                                 if (result.isConfirmed) {
+                                    swalWithBootstrapButtons.fire({
+                                       title: 'Deleted!',
+                                       text: 'Your file has been deleted.',
+                                       icon: 'success',
+                                    });
+                                 } else if (
+                                    /* Read more about handling dismissals below */
+                                    result.dismiss === Swal.DismissReason.cancel
+                                 ) {
+                                    swalWithBootstrapButtons.fire({
+                                       title: 'Cancelled',
+                                       text: 'Your imaginary file is safe :)',
+                                       icon: 'error',
+                                    });
+                                 }
+                              });
+                        }}>Delete</Link>
                </button>
             </div>
          </td>

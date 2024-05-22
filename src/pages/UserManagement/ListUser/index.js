@@ -1,12 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserList from '../../../components/UserList';
 import Link from 'antd/es/typography/Link';
+import './index.css';
 function ListUser() {
    return (
       <div className="container">
          <h1 className="color-custom text-center title-size">User list</h1>
          <button className=" mb-3 btn-pink content-size rounded-10 float-right">
-            <Link to={"/addmoreUser"} className='text-dark main-size bold-text'>Create+</Link>
+            <Link to="/addmoreUser" className="text-dark main-size bold-text">
+               Create+
+            </Link>
          </button>
          <table className="table table-bordered">
             <thead>
