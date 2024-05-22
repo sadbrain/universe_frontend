@@ -1,3 +1,21 @@
+
+.d-flex {
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+}
+
+.color-custom{
+   color: #ff6699;
+}
+
+.bg-custom {
+   background-color: #ff6699;
+}
+
+.flex-item {
+   display: flex;
+
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
@@ -7,6 +25,8 @@
 
 * {
    box-sizing: border-box;
+   margin: 0px;
+   padding: 0px;
 }
 
 html {
@@ -120,6 +140,7 @@ menu,
 nav,
 section {
    display: block;
+
 }
 body {
    line-height: 1;
@@ -278,13 +299,14 @@ input[type='email'] {
 .no-bullets {
    list-style-type: none; /* Removes the bullets from the list items */
    padding-left: 0; /* Removes any default padding */
-   
+
 }
 .dropdown-menu {
    display: block; /* Ensures the dropdown menu is visible when toggled */
    max-height: 200px; /* Adjust as needed */
    overflow-y: auto; /* Add scrollbar if the list is too long */
 }
+
 .dropdown-menu li a {
    text-decoration: none; /* Removes the underline from the links */
    color: inherit; /* Inherits the color from the parent element */
@@ -293,9 +315,52 @@ input[type='email'] {
    text-decoration: none; /* Removes the underline from the links */
   
 }
+
 .w-100 {
    width: 100%;
 }
 .h-100 {
    height: 100%;
+}
+.product-image {
+   height: 200px; /* Điều chỉnh chiều cao ảnh */
+   object-fit: cover; /* Giữ tỷ lệ ảnh và cắt phần dư thừa */
+   width: 100%; /* Đảm bảo ảnh chiếm toàn bộ chiều rộng */
+}
+
+.ant-rate-star {
+   color: #ffc107 !important; /* Đảm bảo màu sao vàng */
+}
+
+.ant-card-meta-title {
+   display: flex;
+   justify-content: space-between;
+   align-items: 3px;
+}
+
+.ant-card-meta-description {
+   margin-top: 5px; /* Thêm khoảng cách giữa phần mô tả và phần tiêu đề */
+}
+
+.ant-card-meta-description span {
+   display: block;
+   margin-bottom: 5px;
+}
+
+.ant-card-meta-description div {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.non-border {
+   border-color: #ff6699;
+}
+.ant-card .ant-card-body{
+   padding-left: 0px;
+   padding-right: 0px;
+
+}
+.btn-success{
+   background-color: darkgreen;
+
 }

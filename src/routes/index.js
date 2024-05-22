@@ -1,6 +1,6 @@
 import { AdminLayout } from '../components/Layouts';
-import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp } from '~/pages';
-import { AboutUs, Summary, OrderManagementCus, AddMoreUser } from '../pages';
+import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp, OrderManagementCus } from '~/pages';
+import { AboutUs, Summary, AddMoreUser, OrderList } from '../pages';
 
 const publicRoutes = [
    { path: '/', component: Home },
@@ -10,12 +10,20 @@ const publicRoutes = [
    { path: '/aboutUs', component: AboutUs },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
+   { path: '/orderSumary', component: OrderManagementCus },
 
    // exmaple for a route when it use a diff layout,
 ];
 const privateRoutes = [
    {
-      path: '/dashboard',
+      path: '/summary',
+      component: Summary,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      path: '/admin/dashboard',
       component: Dashboard,
       layout: AdminLayout,
       error: () => {
@@ -47,6 +55,22 @@ const privateRoutes = [
       layout: AdminLayout,
       path: '/admin/user/create',
       component: AddMoreUser,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/order',
+      component: OrderList,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/order/detail/:id',
+      component: OrderDetail,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
       },
