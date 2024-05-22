@@ -16,6 +16,13 @@ const publicRoutes = [
 ];
 const privateRoutes = [
    {
+      path: '/summary',
+      component: Summary,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
       path: '/admin/dashboard',
       component: Dashboard,
       layout: AdminLayout,
@@ -56,6 +63,14 @@ const privateRoutes = [
       layout: AdminLayout,
       path: '/admin/order',
       component: OrderList,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/order/detail/:id',
+      component: OrderDetail,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
       },
