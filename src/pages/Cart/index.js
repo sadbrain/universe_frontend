@@ -1,15 +1,3 @@
-import Slider from '~/components/Slider';
-// import Outstanding from '~/components/Outstanding';
-// import Sellingproducts from '../../components/Sellingproducts';
+const Cart = () => {};
 
-function Home() {
-   return (
-      <>
-         <Slider />
-         {/* <Outstanding />
-         <Sellingproducts /> */}
-      </>
-   );
-}
-
-export default Home;
+export default Cart;

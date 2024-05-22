@@ -12,3 +12,7 @@ export { default as AddMoreUser } from './UserManagement/AddMoreUser';
 export { default as OrderList } from './OrderManagement/OrderList';
 export { default as OrderDetail } from './OrderManagement/OrderDetail';
 export { default as OrderConfirmation } from './OrderConfirmation';
+export { default as Products } from './ProductManagement/ProductList';
+export { default as ProductCreate } from './ProductManagement/ProductCreate';
+export { default as ProductUpdate } from './ProductManagement/ProductUpdate';
+
