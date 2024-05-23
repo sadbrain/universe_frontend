@@ -1,6 +1,6 @@
 import { AdminLayout } from '../components/Layouts';
 import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp } from '~/pages';
-import { AboutUs, Summary, OrderManagementCus, AddMoreUser, OrderList } from '../pages';
+import { AboutUs, Summary, OrderManagementCus, AddMoreUser, OrderList, CompanyList, CompanyCreate, CompanyUpdate } from '../pages';
 
 const publicRoutes = [
    { path: '/', component: Home },
@@ -8,6 +8,9 @@ const publicRoutes = [
    { path: '/login', component: SignIn },
    { path: '/register', component: SignUp },
    { path: '/aboutUs', component: AboutUs },
+   { path: '/companyList', component: CompanyList },
+   { path: '/companyCreate', component: CompanyCreate },
+   { path: '/companyUpdate', component: CompanyUpdate },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
 
