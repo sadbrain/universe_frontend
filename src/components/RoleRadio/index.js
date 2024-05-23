@@ -12,7 +12,7 @@ const RoleRadio = () => {
       <Radio.Group onChange={onChange} value={value}>
          <div className="row">
             <div className="col-6">
-               <Radio value="Customer" className="text-custom maincontent-size"
+               <Radio value="Customer" className="text-custom maincontent-size bold-text color-custom"
                onClick={() =>{
                   const select = document.getElementById("companySelected");
                   select.classList.add("hidden");
@@ -22,7 +22,7 @@ const RoleRadio = () => {
                </Radio>
             </div>
             <div className="col-6">
-               <Radio value="Company" className="ttext-custom maincontent-size" id="company" onClick={() =>{
+               <Radio value="Company" className="text-custom maincontent-size bold-text color-custom" id="company" onClick={() =>{
                   const select = document.getElementById("companySelected");
                   select.classList.remove("hidden");
                }}>

@@ -42,73 +42,19 @@ function EditUser() {
             <h2 className="py-2 table-heading">Edit User</h2>
          </div>
          <div className="row">
-            <div className="col-6 mt-4">
-               <img src="https://cf.shopee.vn/file/be11ab46fb4528ec6793b03cefeaa1f4" alt="" className="img-cover" />
-            </div>
+            <div className="col-3"></div>
             <div className="col-6">
-               <FormControlM label="Name: " value={FormData.user.name} onChange={handleChange} name="user.name" />
-               <FormControlM
-                  label="Email: "
-                  type="email"
-                  value={FormData.user.email}
-                  onChange={handleChange}
-                  name="user.email"
-               />
-               <FormControlM
-                  label="Phone Number: "
-                  type="tel"
-                  value={FormData.user.phone}
-                  onChange={handleChange}
-                  name="user.phone"
-               />
-               <div className="row">
-                  <div className="col-6">
-                     <FormControlM
-                        label="Street Address: "
-                        value={FormData.user.street_address}
-                        onChange={handleChange}
-                        name="user.street_address"
-                     />
-                  </div>
-                  <div className="col-6">
-                     <FormControlM
-                        label="District Address: "
-                        value={FormData.user.district_address}
-                        onChange={handleChange}
-                        name="user.district_address"
-                     />
-                  </div>
-               </div>
-               <div className="row">
-                  <div className="col-6">
-                     <FormControlM label="City: " value={FormData.user.city} onChange={handleChange} name="user.city" />
-                  </div>
-                  <div className="col-6">
-                     <FormControlM
-                        label="Avatar: "
-                        type="file"
-                        value={FormData.user.avatar}
-                        onChange={handleChange}
-                        name="user.avatar"
-                     />
-                  </div>
-               </div>
-               <div className="row">
-                  <RoleRadio />
-               </div>
-               <div className="row">
-                  <div className="col-6"></div>
-                  <div className="col-6">
-                     <button
-                        type="submit"
-                        value="Place Order"
-                        className="card-summary_place-order form-control"
-                     >
-                        Edit
-                     </button>
-                  </div>
-               </div>
+               <RoleRadio />
             </div>
+         </div>
+         <div className="row mt-3">
+            <div className="col-3"></div>
+            <div className="col-6">
+               <button type="submit" value="Place Order" className="card-summary_place-order form-control">
+                  Edit
+               </button>
+            </div>
+            <div className="col-3"></div>
          </div>
       </form>
    );

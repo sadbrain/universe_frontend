@@ -96,7 +96,7 @@ function AddMoreUser() {
                <div className="row">
                  <RoleRadio />
                </div>
-               <div className="row">
+               <div className="row mt-2">
                   <div className="col-6"></div>
                   <div className="col-6">
                      <button type="submit" value="Place Order" className="card-summary_place-order form-control">

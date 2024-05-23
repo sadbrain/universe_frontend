@@ -177,3 +177,7 @@ input[type='email'] {
 .btn-success {
    background-color: darkgreen;
 }
+.text-right {
+   /* Định dạng văn bản */
+   text-align: right;
+ }
