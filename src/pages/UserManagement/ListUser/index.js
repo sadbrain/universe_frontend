@@ -7,7 +7,7 @@ function ListUser() {
       <div className="container">
          <h1 className="color-custom text-center title-size">User list</h1>
          <button className="mb-3 btn-pink content-size rounded-10 text-right">
-            <Link to="/admin/user/create" className="text-dark main-size bold-text text-decoration-none">
+            <Link to="/admin/user/create" className="text-white main-size bold-text text-decoration-none">
                Create+
             </Link>
          </button>
