@@ -144,11 +144,11 @@ table {
    border-spacing: 0;
 }
 /* Am */
-.d-flex {
+/* .d-flex {
    align-items: center;
    justify-content: center;
    min-height: 100vh;
-}
+} */
 
 .color-custom {
    color: #ff6699;
@@ -194,7 +194,7 @@ table {
 }
 
 .btn-success {
-   background-color:green !important;
+   background-color: green !important;
    border: none;
 }
 

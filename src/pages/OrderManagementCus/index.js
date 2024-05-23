@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState, useRef } from 'react';
 import { RightOutlined } from '@ant-design/icons';
 import Link from 'antd/es/typography/Link';
-import "./index.css"
+import './index.css';
 function OrderManagementCus() {
    return (
       <div className="container">
@@ -10,13 +10,10 @@ function OrderManagementCus() {
             <b>Order Summary</b>
          </h1>
          <div className="text-center flex-item ">
-            <Link to="/home" className="maincontent-size non-text-decoration text-dark">
-               Cart
-            </Link>
+            <p className="maincontent-size non-text-decoration ">Cart</p>
             <RightOutlined className="color-custom m-2" />
-            <Link to="/dashboard" className="color-custom maincontent-size non-text-decoration ">
-               Checkout
-            </Link>
+
+            <p className="color-custom maincontent-size non-text-decoration ">Checkout</p>
          </div>
          <div className="text-center flex-item m-5 align-items-center ">
             <button className="color-custom btn-hover h2 active font-weight-bold " id="allButton">
@@ -56,7 +53,9 @@ function OrderManagementCus() {
                            <p>Price: $400.00</p>
                         </div>
                         <div className="col-5">
-                           <p className="mb-2 color-custom font-weight-bold"><i>Cancelled</i></p>
+                           <p className="mb-2 color-custom font-weight-bold">
+                              <i>Cancelled</i>
+                           </p>
                            <p className=" mb-2 font-weight-bold">Discount: -20%</p>
                            <div className="row flex-item ">
                               <p className="col-6 font-weight-bold">Total Price: </p>
@@ -98,7 +97,9 @@ function OrderManagementCus() {
                            <p>Price: $400.00</p>
                         </div>
                         <div className="col-5">
-                           <p className="mb-2 color-custom font-weight-bold "><i>Delivered</i></p>
+                           <p className="mb-2 color-custom font-weight-bold ">
+                              <i>Delivered</i>
+                           </p>
                            <p className=" mb-2 font-weight-bold">Discount: -20%</p>
                            <div className="row flex-item ">
                               <p className="col-6 font-weight-bold">Total Price: </p>
@@ -141,7 +142,9 @@ function OrderManagementCus() {
                            <p>Price: $400.00</p>
                         </div>
                         <div className="col-5">
-                           <p className="mb-2 color-custom font-weight-bold "><i>Shipped</i></p>
+                           <p className="mb-2 color-custom font-weight-bold ">
+                              <i>Shipped</i>
+                           </p>
                            <p className=" mb-2 font-weight-bold">Discount: -20%</p>
                            <div className="row flex-item ">
                               <p className="col-6 font-weight-bold">Total Price: </p>

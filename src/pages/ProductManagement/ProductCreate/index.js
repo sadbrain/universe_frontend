@@ -155,7 +155,7 @@ function ProductCreate() {
                      </button>
                   </h2>
                   {formData.sizes.map((s, i) => (
-                     <div key={i} className="row d-flex w-100 text-start my-2">
+                     <div key={i} className="row w-100 text-start my-2">
                         <FormControlM
                            label={`Name ${i + 1}:`}
                            value={s.name}

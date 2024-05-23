@@ -186,7 +186,7 @@ function ProductUpdate() {
                      </button>
                   </h2>
                   {formData.existingSizes.map((s, i) => (
-                     <div key={i} className="row d-flex w-100 text-start my-2">
+                     <div key={i} className="row w-100 text-start my-2">
                         <FormControlM
                            label={`Name ${i + 1}:`}
                            value={s.name}
@@ -384,7 +384,7 @@ function ProductUpdate() {
                            textDecoration: 'none',
                         }}
                      >
-                        + Create
+                        Update
                      </Link>
                   </button>
                   <button style={{ border: 'none', outline: 'none' }}>

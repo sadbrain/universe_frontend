@@ -1,8 +1,8 @@
-.d-flex {
+/* .d-flex {
    align-items: center;
    justify-content: center;
    min-height: 100vh;
-}
+} */
 
 .color-custom {
    color: #ff6699;
@@ -187,7 +187,7 @@ section {
    padding-bottom: 3px;
 }
 
-.color-custom li a {
+.color-custom {
    color: #ff6699;
 }
 

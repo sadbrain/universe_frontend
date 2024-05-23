@@ -150,9 +150,8 @@ function Dashboard() {
       };
    }, []);
    return (
-      <div className="container">
-         <div className="row ml-10 mr-10">
-           
+      <div className="container mt-5">
+         <div className="row ml-10 mr-10 pt-5">
             <div className="col-3 maincontent-size bold-text">
                <div className="bg-custom rounded-10 text-center p-3">
                   <p className="text-white mb-2">Total price</p>
@@ -175,7 +174,6 @@ function Dashboard() {
                <canvas ref={canvasRef1} id="chart1"></canvas>
                <canvas ref={canvasRef2} id="chart2"></canvas>
             </div>
-           
          </div>
       </div>
    );
