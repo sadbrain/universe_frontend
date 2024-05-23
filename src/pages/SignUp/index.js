@@ -43,16 +43,6 @@ function SignUp() {
                   <input type="email" placeholder="Email Address" className="input-field" />
                   <div className="underline"></div>
                </div>
-               <div className="password-fields">
-                  <div className="input-container">
-                     <input type="password" placeholder="Password" className="input-field" />
-                     <div className="underline"></div>
-                  </div>
-                  <div className="input-container">
-                     <input type="password" placeholder="Confirm Password" className="input-field" />
-                     <div className="underline"></div>
-                  </div>
-               </div>
                <div className="contact-fields">
                   <div className="input-container">
                      <input type="text" placeholder="Fullname" className="input-field" />
@@ -63,9 +53,19 @@ function SignUp() {
                      <div className="underline"></div>
                   </div>
                </div>
+               <div className="password-fields">
+                  <div className="input-container">
+                     <input type="password" placeholder="Password" className="input-field" />
+                     <div className="underline"></div>
+                  </div>
+                  <div className="input-container">
+                     <input type="password" placeholder="Confirm Password" className="input-field" />
+                     <div className="underline"></div>
+                  </div>
+               </div>
                <div className="address-fields">
                   <div className="input-container">
-                     <input type="text" placeholder="Street Name" className="input-field" />
+                     <input type="text" placeholder="Street" className="input-field" />
                      <div className="underline"></div>
                   </div>
                   <div className="input-container">
@@ -75,7 +75,7 @@ function SignUp() {
                </div>
                <div className="address-fields">
                   <div className="input-container">
-                     <input type="text" placeholder="District/District" className="input-field" />
+                     <input type="text" placeholder="District" className="input-field" />
                      <div className="underline"></div>
                   </div>
                   <div className="input-container">
