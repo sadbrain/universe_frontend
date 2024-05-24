@@ -175,3 +175,6 @@ input[type='email'] {
    padding-left: 0px;
    padding-right: 0px;
 }
+.non-text-decoration{
+   text-decoration: none;
+}
