@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BASE_URL, v1API } from '~/enums/core';
+import { BASE_URL, vAPI } from '~/enums/core';
 import { toast } from 'react-toastify';
 
 function OrderConfirmation() {
@@ -16,7 +16,7 @@ function OrderConfirmation() {
    }, []);
    const confirmOrder = async () => {
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + `carts/order-confirmation/${order_id}`;
+      const url = BASE_URL + vAPI + `carts/order-confirmation/${order_id}`;
       const options = {
          method: 'GET',
          headers: {

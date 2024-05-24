@@ -1,7 +1,7 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 import './index.css';
 import { useState, useEffect } from 'react';
-import { BASE_URL, v1API } from '~/enums/core';
+import { BASE_URL, vAPI } from '~/enums/core';
 import { ToastContainer, toast } from 'react-toastify';
 import { ORDER_STATUS, PAYMENT_STATUS } from '../../../enums/core';
 import Swal from 'sweetalert2';
@@ -43,7 +43,7 @@ function OrderList() {
 
    const logOrder = async () => {
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + prefix + `detail/${id}`;
+      const url = BASE_URL + vAPI + prefix + `detail/${id}`;
       const options = {
          method: 'GET',
          headers: {
@@ -74,7 +74,7 @@ function OrderList() {
    const updateOrderDetails = async (e) => {
       e.preventDefault();
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + prefix + `detail/${orderContainer.order.id}`;
+      const url = BASE_URL + vAPI + prefix + `detail/${orderContainer.order.id}`;
       const options = {
          method: 'PUT',
          headers: {
@@ -102,7 +102,7 @@ function OrderList() {
    const payNow = async (e) => {
       e.preventDefault();
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + prefix + `paynow`;
+      const url = BASE_URL + vAPI + prefix + `paynow`;
       const options = {
          method: 'PUT',
          headers: {
@@ -130,7 +130,7 @@ function OrderList() {
    const startProcessing = async (e) => {
       e.preventDefault();
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + prefix + `start-processing`;
+      const url = BASE_URL + vAPI + prefix + `start-processing`;
       const options = {
          method: 'PUT',
          headers: {
@@ -178,7 +178,7 @@ function OrderList() {
    const cancelOrder = async (e) => {
       e.preventDefault();
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + prefix + `cancel-order`;
+      const url = BASE_URL + vAPI + prefix + `cancel-order`;
       const options = {
          method: 'PUT',
          headers: {
@@ -211,7 +211,7 @@ function OrderList() {
       e.preventDefault();
       if (validateAndShipOrder()) {
          const token = localStorage.getItem('token');
-         const url = BASE_URL + v1API + prefix + `ship-order`;
+         const url = BASE_URL + vAPI + prefix + `ship-order`;
          const options = {
             method: 'PUT',
             headers: {

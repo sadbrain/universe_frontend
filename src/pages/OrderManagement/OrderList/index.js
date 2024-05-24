@@ -1,7 +1,7 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 import './index.css';
 import { useState, useEffect } from 'react';
-import { BASE_URL, v1API } from '~/enums/core';
+import { BASE_URL, vAPI } from '~/enums/core';
 function OrderList() {
    const location = useLocation();
    const getQueryParams = (query) => {
@@ -16,7 +16,7 @@ function OrderList() {
    }, [status]);
    async function logOrders() {
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + `orders/admin/${status}`;
+      const url = BASE_URL + vAPI + `orders/admin/${status}`;
       const options = {
          method: 'GET',
          headers: {
