@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.form-container {
+    display: flex;
+    flex-grow: 1;
+    max-width: 90%;
+    margin: 50px auto;
+    background-color: #FF6699;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    font-family: 'Poppins';
+}
+
+.image-container {
+    flex: 1;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+}
+
+.form-wrapper {
+    flex: 1;
+    padding: 30px;
+    margin: 35px;
+}
+
+.form-header {
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: 'Volkhov';
+}
+
+.form-header h1 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+.form-header h2 {
+    color: #000;
+    font-size: 26px;
+}
+
+.signin-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.google-signin,
+.facebook-signin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    max-width: 45%;
+}
+
+.google-signin {
+    margin-right: 5px;
+}
+
+.facebook-signin {
+    margin-left: 5px;
+}
+
+.google-signin img,
+.facebook-signin img {
+    margin-right: 10px;
+    height: 30px;
+}
+
+
+.or {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 20px;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #000000;
+    background-color: transparent;
+    outline: none;
+    color: #fff;
+}
+
+.input-field::placeholder {
+    color: #fff;
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.input-field:focus + .underline {
+    width: 100%;
+}
+
+.SignIn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 10px;
+    background-color: #000000;
+    color: brown;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.register-link {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #5B86E5;
+}
+
+.register-link a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.fgpassword-link {
+    text-align: right;
+}
+
+.fgpassword-link a {
+    text-decoration: none;
+    color: white;
+}
