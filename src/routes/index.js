@@ -5,6 +5,8 @@ import {
    Summary,
    OrderManagementCus,
    AddMoreUser,
+   EditUser,
+   ListUser,
    OrderList,
    OrderDetail,
    OrderConfirmation,
@@ -22,10 +24,33 @@ const publicRoutes = [
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
    { path: '/orderSumary', component: OrderManagementCus },
-
    // exmaple for a route when it use a diff layout,
 ];
 const privateRoutes = [
+   {
+      layout: AdminLayout,
+      path: '/admin/user/create',
+      component: AddMoreUser,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/user/edit',
+      component: EditUser,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/user',
+      component: ListUser,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
    {
       path: '/summary',
       component: Summary,
