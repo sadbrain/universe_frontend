@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
+import { Link } from 'react-router-dom';
 
 function SignUp() {
    const [role, setRole] = useState('customer');
@@ -83,7 +84,7 @@ function SignUp() {
                      <div className="underline"></div>
                   </div>
                </div>
-               <div className="role-selection">
+               {/* <div className="role-selection">
                   <input
                      type="radio"
                      id="customer"
@@ -120,13 +121,13 @@ function SignUp() {
                         </li>
                      </ul>
                   </div>
-               )}
+               )} */}
                <button type="submit" className="create-account">
                   Create Account
                </button>
             </form>
             <p className="login-link">
-               Already have an account? <a href="#">Login</a>
+               Already have an account? <Link to="/login">Login</Link>
             </p>
          </div>
       </div>

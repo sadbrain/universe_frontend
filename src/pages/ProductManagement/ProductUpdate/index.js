@@ -372,36 +372,33 @@ function ProductUpdate() {
 
             <div className="row my-4">
                <div className="col-12 text-end">
-                  <button style={{ border: 'none', outline: 'none', marginRight: '20px' }}>
-                     <Link
-                        to={'/admin/product/create'}
-                        style={{
-                           fontSize: '30px',
-                           color: '#fff',
-                           backgroundColor: '#0F881B',
-                           padding: '30px',
-                           borderRadius: '10px',
-                           textDecoration: 'none',
-                        }}
-                     >
-                        Update
-                     </Link>
-                  </button>
-                  <button style={{ border: 'none', outline: 'none' }}>
-                     <Link
-                        to={'/admin/product'}
-                        style={{
-                           fontSize: '30px',
-                           color: '#fff',
-                           backgroundColor: '#FF6699',
-                           padding: '30px',
-                           borderRadius: '10px',
-                           textDecoration: 'none',
-                        }}
-                     >
-                        Back to list
-                     </Link>
-                  </button>
+                  <Link
+                     to={'/admin/product/create'}
+                     style={{
+                        fontSize: '30px',
+                        color: '#fff',
+                        backgroundColor: '#0F881B',
+                        padding: '30px',
+                        borderRadius: '10px',
+                        textDecoration: 'none',
+                        marginRight: '20px',
+                     }}
+                  >
+                     Update
+                  </Link>
+                  <Link
+                     to={'/admin/product'}
+                     style={{
+                        fontSize: '30px',
+                        color: '#fff',
+                        backgroundColor: '#FF6699',
+                        padding: '30px',
+                        borderRadius: '10px',
+                        textDecoration: 'none',
+                     }}
+                  >
+                     Back to list
+                  </Link>
                </div>
             </div>
          </div>

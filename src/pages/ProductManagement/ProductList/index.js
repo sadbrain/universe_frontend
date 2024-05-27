@@ -27,23 +27,19 @@ function ProductList() {
             </div>
             <div className="row my-4">
                <div className="col-12 text-end">
-                  <h2>
-                     <button style={{ border: 'none', outline: 'none' }}>
-                        <Link
-                           to={'/admin/product/create'}
-                           style={{
-                              fontSize: '30px',
-                              color: '#fff',
-                              backgroundColor: '#FF6699',
-                              padding: '30px',
-                              borderRadius: '10px',
-                              textDecoration: 'none',
-                           }}
-                        >
-                           Create +
-                        </Link>
-                     </button>
-                  </h2>
+                  <Link
+                     to={'/admin/product/create'}
+                     style={{
+                        fontSize: '30px',
+                        color: '#fff',
+                        backgroundColor: '#FF6699',
+                        padding: '30px',
+                        borderRadius: '10px',
+                        textDecoration: 'none',
+                     }}
+                  >
+                     Create +
+                  </Link>
                </div>
             </div>
             <div className="p-4">
