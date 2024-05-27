@@ -8,9 +8,6 @@ const publicRoutes = [
    { path: '/login', component: SignIn },
    { path: '/register', component: SignUp },
    { path: '/aboutUs', component: AboutUs },
-   { path: '/companyList', component: CompanyList },
-   { path: '/companyCreate', component: CompanyCreate },
-   { path: '/companyUpdate', component: CompanyUpdate },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
 
@@ -21,6 +18,30 @@ const privateRoutes = [
       path: '/admin/dashboard',
       component: Dashboard,
       layout: AdminLayout,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/company',
+      component: CompanyList,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/company/create',
+      component: CompanyCreate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/company/update',
+      component: CompanyUpdate,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
       },
