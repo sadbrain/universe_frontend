@@ -6,9 +6,13 @@ import {
    OrderManagementCus,
    AddMoreUser,
    EditUser,
+   ListUser,
    OrderList,
    OrderDetail,
-   ListUser,
+   OrderConfirmation,
+   Products,
+   ProductCreate,
+   ProductUpdate,
 } from '../pages';
 
 const publicRoutes = [
@@ -19,11 +23,7 @@ const publicRoutes = [
    { path: '/aboutUs', component: AboutUs },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
-   // { path: '/user-management', component: UserManagement },
-   // { path: '/list-user', component: ListUser },
-   // { path: '/addmoreUser', component: AddMoreUser },
-   // { path: '/editUser', component: EditUser },
-
+   { path: '/orderSumary', component: OrderManagementCus },
    // exmaple for a route when it use a diff layout,
 ];
 const privateRoutes = [
@@ -74,14 +74,7 @@ const privateRoutes = [
       },
    },
    {
-      path: '/summary',
-      component: Summary,
-      error: () => {
-         alert('ban khong con quyen truy cap yeu cau nay');
-      },
-   },
-   {
-      path: '/orderSummary/:status',
+      path: '/orderSummary',
       component: OrderManagementCus,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
@@ -107,6 +100,45 @@ const privateRoutes = [
       layout: AdminLayout,
       path: '/admin/order/detail/:id',
       component: OrderDetail,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/product',
+      component: Products,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/product/create',
+      component: ProductCreate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/product/update/:id',
+      component: ProductUpdate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/order/detail/:id',
+      component: OrderDetail,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      path: '/orderConfirmation',
+      component: OrderConfirmation,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
       },

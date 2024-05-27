@@ -7,4 +7,4 @@ function FormControlM({ label, name, style, ...props }) {
       </div>
    );
 }
- export default FormControlM;
+export default FormControlM;

@@ -31,9 +31,11 @@
 .formControlM #inputM[type='file']:active {
    background-color: #003f7f;
 }
+
 .formControlMforAvatar #inputM:focus {
    border: none;
    border-bottom: none !important;
    color: #ff6699;
    font-size: 20px;
 }
+
