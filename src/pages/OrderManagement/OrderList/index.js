@@ -1,7 +1,7 @@
 import { Link, useParams, useLocation } from 'react-router-dom';
 import './index.css';
 import { useState, useEffect } from 'react';
-import { BASE_URL, v1API } from '~/enums/core';
+import { BASE_URL, vAPI } from '~/enums/core';
 function OrderList() {
    const location = useLocation();
    const getQueryParams = (query) => {
@@ -11,18 +11,12 @@ function OrderList() {
    const [status, setStatus] = useState('all');
    const [orders, setOrders] = useState([]);
    const statusParams = queryParams.get('status');
-   // setStatus(queryParams.get('status'));
-   // setStatus(statusParams);
    useEffect(() => {
       logOrders();
    }, [status]);
    async function logOrders() {
-      localStorage.setItem(
-         'token',
-         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTYyNjQ2ODEsImV4cCI6MTcxNjI2ODI4MSwibmJmIjoxNzE2MjY0NjgxLCJqdGkiOiJXMGIzZVlEUk15ZnU5aHVzIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5oM5tZD173lZ90OGF-3ah4RUBpbs-S-V0I-DC0xwaio',
-      );
       const token = localStorage.getItem('token');
-      const url = BASE_URL + v1API + `orders/admin/${status}`;
+      const url = BASE_URL + vAPI + `orders/admin/${status}`;
       const options = {
          method: 'GET',
          headers: {
@@ -39,10 +33,6 @@ function OrderList() {
 
          const responseObj = await response.json();
          setOrders(responseObj.data);
-         console.log({
-            status,
-            data: responseObj.data,
-         });
       } catch (error) {
          console.error('Fetch error:', error.message);
          return null;
@@ -50,13 +40,13 @@ function OrderList() {
    }
    return (
       <div className="">
-         <div className=" my-5">
+         <div className="">
             <div className="col-12 text-center">
                <h2 className="py-2 table-heading">Order List</h2>
             </div>
 
-            <div className=" p-4">
-               <div className="d-flex justify-content-between pb-5 pt-2 order-status-list">
+            <div className="">
+               <div className="my-5 order-status-list">
                   <span></span>
                   <ul className="list-group list-group-horizontal-sm">
                      <Link
@@ -64,7 +54,7 @@ function OrderList() {
                         to="/admin/order?status=inprocess"
                         onClick={() => setStatus('inprocess')}
                      >
-                        <li className="list-group-item ">In Process</li>
+                        <li className="list-group-item">In Process</li>
                      </Link>
                      <Link
                         className={status === 'pending' ? 'active order-status-link' : 'order-status-link'}
@@ -116,13 +106,13 @@ function OrderList() {
                      <tbody>
                         {orders.map((o) => (
                            <tr key={o.id}>
-                              <td>{o.id}</td>
-                              <td>{o.name}</td>
-                              <td>{o.phone}</td>
-                              <td>{o.user.email}</td>
-                              <td>{o.order_status}</td>
-                              <td>{o.order_total}</td>
-                              <td>
+                              <td style={{ padding: '4px' }}>{o.id}</td>
+                              <td style={{ padding: '4px' }}>{o.name}</td>
+                              <td style={{ padding: '4px' }}>{o.phone}</td>
+                              <td style={{ padding: '4px' }}>{o.user.email}</td>
+                              <td style={{ padding: '4px' }}>{o.order_status}</td>
+                              <td style={{ padding: '4px' }}>{o.order_total}</td>
+                              <td style={{ padding: '4px' }}>
                                  <div
                                     className=" btn-group d-flex justify-content-center align-items-center"
                                     role="group"

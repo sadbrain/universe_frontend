@@ -46,3 +46,7 @@
    border-radius: 15px;
    display: inline-block;
 }
+.order-status-list {
+   display: flex;
+   justify-content: space-between;
+}

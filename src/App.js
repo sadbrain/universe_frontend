@@ -8,53 +8,55 @@ function App() {
    const [state, dispatch] = useGlobalState();
    console.log(state);
    return (
-      <Router>
-         <div className="App">
-            <Routes>
-               {publicRoutes.map((r, i) => {
-                  let Layout = DefaultLayout;
-                  if (r.layout) Layout = r.layout;
-                  else if (r.layout === null) Layout = Fragment;
+      <>
+         <Router>
+            <div className="App">
+               <Routes>
+                  {publicRoutes.map((r, i) => {
+                     let Layout = DefaultLayout;
+                     if (r.layout) Layout = r.layout;
+                     else if (r.layout === null) Layout = Fragment;
 
-                  const Page = r.component;
-                  return (
-                     <Route
-                        key={i}
-                        path={r.path}
-                        element={
-                           <Layout>
-                              <Page />
-                           </Layout>
-                        }
-                     ></Route>
-                  );
-               })}
+                     const Page = r.component;
+                     return (
+                        <Route
+                           key={i}
+                           path={r.path}
+                           element={
+                              <Layout>
+                                 <Page />
+                              </Layout>
+                           }
+                        ></Route>
+                     );
+                  })}
 
-               {privateRoutes.map((r, i) => {
-                  let Layout = r.layout || DefaultLayout;
-                  if (r.layout) Layout = r.layout;
-                  else if (r.layout === null) Layout = Fragment;
-                  const Page = r.component;
-                  return (
-                     <Route
-                        key={i}
-                        path={r.path}
-                        element={
-                           <ProtectedRoute
-                              element={
-                                 <Layout>
-                                    <Page />
-                                 </Layout>
-                              }
-                              error={r.error}
-                           />
-                        }
-                     />
-                  );
-               })}
-            </Routes>
-         </div>
-      </Router>
+                  {privateRoutes.map((r, i) => {
+                     let Layout = r.layout || DefaultLayout;
+                     if (r.layout) Layout = r.layout;
+                     else if (r.layout === null) Layout = Fragment;
+                     const Page = r.component;
+                     return (
+                        <Route
+                           key={i}
+                           path={r.path}
+                           element={
+                              <ProtectedRoute
+                                 element={
+                                    <Layout>
+                                       <Page />
+                                    </Layout>
+                                 }
+                                 error={r.error}
+                              />
+                           }
+                        />
+                     );
+                  })}
+               </Routes>
+            </div>
+         </Router>
+      </>
    );
 }
 
