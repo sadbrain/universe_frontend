@@ -14,7 +14,7 @@ function ProductList() {
    const navigate = useNavigate();
    const [showCategories, setShowCategories] = useState(false);
    const [currentPage, setCurrentPage] = useState(1);
-   const { cateSlug, page } = useParams();
+   const { cateSlug, page, price } = useParams();
    const toggleCategoryDropdown = () => {
       setShowCategories(!showCategories);
    };
@@ -23,7 +23,6 @@ function ProductList() {
    const [products, setProducts] = useState([]);
    const [loading, setLoading] = useState(true);
    const ProductPagination = ({ current, totalProduct, productEachPage }) => {
-      // const navigate = useNavigate();
       const onChange = (page) => {
          navigate(`../productList/${cateSlug}/${page}`);
       };
@@ -44,6 +43,18 @@ function ProductList() {
       return () => clearTimeout(timer);
    }, []);
    useEffect(() => {
+      const fetchProductDefault = async () => {
+         setLoading(true);
+         try {
+            const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-category/1/1`);
+            const data = res.data;
+            setProducts(data.data);
+            setLoading(false);
+         } catch (error) {
+            console.error('Error fetching products:', error);
+            setLoading(false);
+         }
+      };
       const fetchCategories = async () => {
          try {
             const res = await axios.get('http://127.0.0.1:8000/api/v1/categories');
@@ -54,41 +65,9 @@ function ProductList() {
             console.error('Error fetching categories:', error);
          }
       };
-
+      fetchProductDefault();
       fetchCategories();
    }, []);
-
-   // const fetchProductByCategory = async (cateSlug, page) => {
-   //    setLoading(true);
-   //    try {
-   //       const res = await axios.get(
-   //          `http://127.0.0.1:8000/api/v1/products/get-products-by-category/${cateSlug}/${page}`,
-   //       );
-   //       const data = await res.data;
-   //       setProducts(data.data);
-   //       console.log(data.data);
-   //    } catch (error) {
-   //       console.error('Error fetching products:', error);
-   //    }finally{
-   //       setLoading(false)
-   //    }
-   // };
-   // const fetchProductDefault = async () => {
-   //    try {
-   //       const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-category/1/1`);
-   //       const data = await res.data;
-   //       setProducts(data.data);
-   //       console.log(data.data);
-   //    } catch (error) {
-   //       console.error('Error fetching products:', error);
-   //    }
-   // };
-
-   // useEffect(() => {
-   //    fetchProductDefault();
-   //    fetchProductByCategory()
-   // }, [cateSlug, page]);
-
    const fetchData = async () => {
       setLoading(true);
       try {
@@ -103,14 +82,15 @@ function ProductList() {
          setLoading(false);
       }
    };
+
    useEffect(() => {
       fetchData();
-   }, [cateSlug, page]);
-
+      fetchProductsByPrice();
+   }, [cateSlug, page, price]);
    const handleCategoryClick = (categoryId, currentPage) => {
       navigate(`../productList/${categoryId}/${currentPage}`);
    };
-   const productsByPrice = async (price) => {
+   const fetchProductsByPrice = async () => {
       try {
          const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-price/${price}`);
          const data = await res.data;
@@ -120,15 +100,13 @@ function ProductList() {
          console.error('Error fetching products:', error);
       }
    };
-   const handlePriceClick = (price) => {
+   const handlePriceClick = () => {
       const priceValue = inputRef.current.value;
-      productsByPrice(priceValue);
+      navigate(`../productList/${priceValue}`);
    };
-
    useEffect(() => {
       const dropdown = document.getElementById('myDropdown');
       const priceType = document.getElementById('priceType');
-
       const handleMovePriceType = () => {
          if (dropdown.classList.contains('show')) {
             priceType.style.marginTop = '100px';
@@ -136,9 +114,7 @@ function ProductList() {
             priceType.style.marginTop = '0px';
          }
       };
-
       dropdown.addEventListener('click', handleMovePriceType);
-
       return () => {
          dropdown.removeEventListener('click', handleMovePriceType);
       };
@@ -151,15 +127,15 @@ function ProductList() {
                <b>Fashion</b>
             </h1>
             <div className="text-center flex-item bold-text">
-               <Link to="/home" className="maincontent-size non-text-decoration text-dark">
+               <Link to="/home" className="maincontent-size text-decoration-none text-dark">
                   Home
                </Link>
                <RightOutlined className="m-3" />
-               <Link to="#" className="maincontent-size color-custom mr-2 non-text-decoration">
+               <Link to="#" className="maincontent-size color-custom mr-2 text-decoration-none">
                   Fashion
                </Link>
                <RightOutlined className="m-3 color-custom" />
-               <Link to="#" className="maincontent-size non-text-decoration text-dark">
+               <Link to="#" className="maincontent-size text-decoration-none text-dark">
                   Antiques Dress
                </Link>
             </div>
@@ -209,30 +185,21 @@ function ProductList() {
                      {loading ? (
                         <Skeleton active />
                      ) : (
-                        products.map((product, index) => (
-                           <div className="col-3" key={index}>
-                              <Cards
-                                 src={product.thumbnail}
-                                 productName={product.name}
-                                 rankComments={product.description}
-                                 currentPrice={product.discount.price}
-                                 oldPrice={product.price}
-                              />
-                           </div>
+                        products.map((product) => (
+                           <Cards
+                              src={product.thumbnail}
+                              productName={product.name}
+                              rankComments={product.description}
+                              currentPrice={product.discount.price}
+                              oldPrice={product.price}
+                           />
                         ))
                      )}
                   </div>
                </div>
             </div>
          </div>
-         <ProductPagination
-            className="text-center"
-            current={parseInt(10)}
-            totalProduct={100}
-            productEachPage={10}
-            onChange={(current) => handlePageChange(current)}
-         />
-         ;
+         <ProductPagination className="text-center" current={parseInt(10)} totalProduct={100} productEachPage={10} />;
       </div>
    );
 }
