@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect, useRef } from 'react';
 import { RightOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Cards } from '../../components/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -10,11 +10,19 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from 'antd';
 
+// "http://localhost:8000/api/products?category=${category}&page=x&priceFrom=${priceFrom}&priceTo=${priceTo}"
+
 function ProductList() {
    const navigate = useNavigate();
    const [showCategories, setShowCategories] = useState(false);
    const [currentPage, setCurrentPage] = useState(1);
-   const { cateSlug, page, price } = useParams();
+
+   const [searchParams, setSearchParams] = useSearchParams();
+   const category = searchParams.get('category');
+   const page = searchParams.get('page');
+   const priceFrom = searchParams.get('priceFrom');
+   const priceTo = searchParams.get('priceTo');
+
    const toggleCategoryDropdown = () => {
       setShowCategories(!showCategories);
    };
@@ -22,9 +30,12 @@ function ProductList() {
    const inputRef = useRef(null);
    const [products, setProducts] = useState([]);
    const [loading, setLoading] = useState(true);
+
    const ProductPagination = ({ current, totalProduct, productEachPage }) => {
       const onChange = (page) => {
-         navigate(`../productList/${cateSlug}/${page}`);
+         setSearchParams((prevParams) => {
+            return { ...prevParams, page };
+         });
       };
       return (
          <Pagination
@@ -36,74 +47,65 @@ function ProductList() {
          />
       );
    };
-   useEffect(() => {
-      const timer = setTimeout(() => {
-         setLoading(false);
-      }, 3000);
-      return () => clearTimeout(timer);
-   }, []);
-   useEffect(() => {
-      const fetchProductDefault = async () => {
-         setLoading(true);
-         try {
-            const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-category/1/1`);
-            const data = res.data;
-            setProducts(data.data);
-            setLoading(false);
-         } catch (error) {
-            console.error('Error fetching products:', error);
-            setLoading(false);
-         }
-      };
-      const fetchCategories = async () => {
-         try {
-            const res = await axios.get('http://127.0.0.1:8000/api/v1/categories');
-            const data = await res.data;
-            setCategories(data.data);
-            console.log(data.data);
-         } catch (error) {
-            console.error('Error fetching categories:', error);
-         }
-      };
-      fetchProductDefault();
-      fetchCategories();
-   }, []);
-   const fetchData = async () => {
-      setLoading(true);
-      try {
-         const res = await axios.get(
-            `http://127.0.0.1:8000/api/v1/products/get-products-by-category/${cateSlug}/${page}`,
-         );
-         const data = res.data;
-         setProducts(data.data);
-         setLoading(false);
-      } catch (error) {
-         console.error('Error fetching products:', error);
-         setLoading(false);
-      }
-   };
 
    useEffect(() => {
-      fetchData();
-      fetchProductsByPrice();
-   }, [cateSlug, page, price]);
-   const handleCategoryClick = (categoryId, currentPage) => {
-      navigate(`../productList/${categoryId}/${currentPage}`);
-   };
-   const fetchProductsByPrice = async () => {
-      try {
-         const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-price/${price}`);
-         const data = await res.data;
+      const fetchProducts = async () => {
+         const url = new URL('http://127.0.0.1:8000/api/v1/products');
+         const urlSearchParams = url.searchParams;
+         if (category) {
+            urlSearchParams.set('category', category);
+         }
+
+         if (page) {
+            urlSearchParams.set('page', page);
+         }
+
+         if (priceFrom) {
+            urlSearchParams.set('priceFrom', priceFrom);
+         }
+
+         if (priceTo) {
+            urlSearchParams.set('priceTo', priceTo);
+         }
+
+         const res = await axios.get(url.href);
+
+         const data = res.data;
          setProducts(data.data);
-         console.log(data.data);
+      };
+      const fetchCategories = async () => {
+         const res = await axios.get('http://127.0.0.1:8000/api/v1/categories');
+         const data = await res.data;
+         setCategories(data.data);
+      };
+
+      setLoading(true);
+
+      try {
+         fetchProducts();
+         fetchCategories();
       } catch (error) {
-         console.error('Error fetching products:', error);
+         console.log('Error fetching data', error);
+      } finally {
+         setLoading(false);
       }
+   }, []);
+
+   const handleCategoryClick = (categoryId, currentPage) => {
+      setSearchParams((prevParams) => {
+         return {
+            ...prevParams,
+            category: categoryId,
+            page: 1,
+         };
+      });
    };
+
    const handlePriceClick = () => {
       const priceValue = inputRef.current.value;
       navigate(`../productList/${priceValue}`);
    };
+
    useEffect(() => {
       const dropdown = document.getElementById('myDropdown');
       const priceType = document.getElementById('priceType');
