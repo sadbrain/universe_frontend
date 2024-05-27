@@ -1,26 +1,42 @@
-// Phải npm install react-data-table-component de sd paginnation cua datta table
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect, useRef } from 'react';
-import ProductPagination from '../../components/pagination';
-import './index.css';
 import { RightOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { Cards } from '../../components/Card';  
+import { Cards } from '../../components/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Skeleton } from 'antd';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Pagination } from 'antd';
 
 function ProductList() {
+   const navigate = useNavigate();
    const [showCategories, setShowCategories] = useState(false);
+   const [currentPage, setCurrentPage] = useState(1);
+   const { cateSlug, page } = useParams();
    const toggleCategoryDropdown = () => {
       setShowCategories(!showCategories);
    };
    const [categories, setCategories] = useState([]);
-   // const [productsByCategory, setProductsByCategory] = useState([]);
    const inputRef = useRef(null);
    const [products, setProducts] = useState([]);
-
    const [loading, setLoading] = useState(true);
+   const ProductPagination = ({ current, totalProduct, productEachPage }) => {
+      // const navigate = useNavigate();
+      const onChange = (page) => {
+         navigate(`../productList/${cateSlug}/${page}`);
+      };
+      return (
+         <Pagination
+            className="text-center"
+            current={current}
+            defaultPageSize={productEachPage}
+            total={totalProduct}
+            onChange={onChange}
+         />
+      );
+   };
    useEffect(() => {
       const timer = setTimeout(() => {
          setLoading(false);
@@ -42,37 +58,57 @@ function ProductList() {
       fetchCategories();
    }, []);
 
-   const fetchProductByCategory = async (categoryId, pageNumber) => {
+   // const fetchProductByCategory = async (cateSlug, page) => {
+   //    setLoading(true);
+   //    try {
+   //       const res = await axios.get(
+   //          `http://127.0.0.1:8000/api/v1/products/get-products-by-category/${cateSlug}/${page}`,
+   //       );
+   //       const data = await res.data;
+   //       setProducts(data.data);
+   //       console.log(data.data);
+   //    } catch (error) {
+   //       console.error('Error fetching products:', error);
+   //    }finally{
+   //       setLoading(false)
+   //    }
+   // };
+   // const fetchProductDefault = async () => {
+   //    try {
+   //       const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-category/1/1`);
+   //       const data = await res.data;
+   //       setProducts(data.data);
+   //       console.log(data.data);
+   //    } catch (error) {
+   //       console.error('Error fetching products:', error);
+   //    }
+   // };
+
+   // useEffect(() => {
+   //    fetchProductDefault();
+   //    fetchProductByCategory()
+   // }, [cateSlug, page]);
+
+   const fetchData = async () => {
       setLoading(true);
       try {
          const res = await axios.get(
-            `http://127.0.0.1:8000/api/v1/products/get-products-by-category/${categoryId}/${pageNumber}`,
+            `http://127.0.0.1:8000/api/v1/products/get-products-by-category/${cateSlug}/${page}`,
          );
-         const data = await res.data;
+         const data = res.data;
          setProducts(data.data);
-         console.log(data.data);
+         setLoading(false);
       } catch (error) {
          console.error('Error fetching products:', error);
-      }finally{
-         setLoading(false)
-      }
-   };
-   const fetchProductDefault = async () => {
-      try {
-         const res = await axios.get(`http://127.0.0.1:8000/api/v1/products/get-products-by-category/1/1`);
-         const data = await res.data;
-         setProducts(data.data);
-         console.log(data.data);
-      } catch (error) {
-         console.error('Error fetching products:', error);
+         setLoading(false);
       }
    };
    useEffect(() => {
-      fetchProductDefault();
-   }, []);
+      fetchData();
+   }, [cateSlug, page]);
 
-   const handleCategoryClick = (categoryId) => {
-      fetchProductByCategory(categoryId, 2);
+   const handleCategoryClick = (categoryId, currentPage) => {
+      navigate(`../productList/${categoryId}/${currentPage}`);
    };
    const productsByPrice = async (price) => {
       try {
@@ -145,7 +181,10 @@ function ProductList() {
                         <ul>
                            {categories.map((category, index) => (
                               <li className="maincontent-size w-100 m-2 text-center color-custom" key={index}>
-                                 <span className="non-text-decoration" onClick={() => handleCategoryClick(category.id)}>
+                                 <span
+                                    className="non-text-decoration"
+                                    onClick={() => handleCategoryClick(category.id, currentPage)}
+                                 >
                                     {loading ? <Skeleton active /> : category.name}
                                  </span>
                               </li>
@@ -186,7 +225,14 @@ function ProductList() {
                </div>
             </div>
          </div>
-         <ProductPagination className="text-center" current={parseInt(10)} totalProduct={100} productEachPage={10} />;
+         <ProductPagination
+            className="text-center"
+            current={parseInt(10)}
+            totalProduct={100}
+            productEachPage={10}
+            onChange={(current) => handlePageChange(current)}
+         />
+         ;
       </div>
    );
 }
