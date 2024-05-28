@@ -2,7 +2,7 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 import './index.css';
 import { useState, useEffect } from 'react';
 import { BASE_URL, vAPI } from '~/enums/core';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { ORDER_STATUS, PAYMENT_STATUS } from '../../../enums/core';
 import Swal from 'sweetalert2';
 function OrderList() {
@@ -39,7 +39,6 @@ function OrderList() {
       setOrderStatus(orderContainer?.order?.order_status);
       setPaymentStatus(orderContainer?.payment?.payment_status);
    }, [orderContainer]);
-   useEffect(() => {}, []);
 
    const logOrder = async () => {
       const token = localStorage.getItem('token');
