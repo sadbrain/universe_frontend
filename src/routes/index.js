@@ -19,7 +19,9 @@ const publicRoutes = [
    { path: '/login', component: SignIn },
    { path: '/register', component: SignUp },
    { path: '/aboutUs', component: AboutUs },
-   { path: '/productList', component: ProductList },
+   // { path: '/productList', component: ProductList },
+   { path: '/productList/:cateSlug/:page', component: ProductList },
+   { path: '/productList/:price/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
    { path: '/orderSumary', component: OrderManagementCus },
 

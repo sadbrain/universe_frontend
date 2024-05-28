@@ -1,31 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect, useRef } from 'react';
 import { RightOutlined } from '@ant-design/icons';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { Cards } from '../../components/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { Skeleton } from 'antd';
-import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from 'antd';
-
-// "http://localhost:8000/api/products?category=${category}&page=x&priceFrom=${priceFrom}&priceTo=${priceTo}"
+import { useParams } from 'react-router-dom';
+// "http://localhost:8000/api/v1/products?category=${category}&page=x&priceFrom=${priceFrom}&priceTo=${priceTo}"
 
 function ProductList() {
    const navigate = useNavigate();
+   const location = useLocation();
+   const { pathname } = location;
+   const { categorySlug } = useParams();
    const [showCategories, setShowCategories] = useState(false);
    const [currentPage, setCurrentPage] = useState(1);
-
-   const [searchParams, setSearchParams] = useSearchParams();
-   const category = searchParams.get('category');
-   const page = searchParams.get('page');
-   const priceFrom = searchParams.get('priceFrom');
-   const priceTo = searchParams.get('priceTo');
-
+   const [pages, setPages] = useState(1);
    const toggleCategoryDropdown = () => {
       setShowCategories(!showCategories);
    };
+   const categoryId = pathname.split('/')[2];
+   const page = pathname.split('/')[3];
+   const [price, setPrice] = useState(100);
    const [categories, setCategories] = useState([]);
    const inputRef = useRef(null);
    const [products, setProducts] = useState([]);
@@ -33,9 +32,8 @@ function ProductList() {
 
    const ProductPagination = ({ current, totalProduct, productEachPage }) => {
       const onChange = (page) => {
-         setSearchParams((prevParams) => {
-            return { ...prevParams, page };
-         });
+         setPages(page);
+         navigate(`../productList/${categoryId}/${pages}`);
       };
       return (
          <Pagination
@@ -50,28 +48,15 @@ function ProductList() {
 
    useEffect(() => {
       const fetchProducts = async () => {
-         const url = new URL('http://127.0.0.1:8000/api/v1/products');
-         const urlSearchParams = url.searchParams;
-         if (category) {
-            urlSearchParams.set('category', category);
-         }
-
-         if (page) {
-            urlSearchParams.set('page', page);
-         }
-
-         if (priceFrom) {
-            urlSearchParams.set('priceFrom', priceFrom);
-         }
-
-         if (priceTo) {
-            urlSearchParams.set('priceTo', priceTo);
-         }
-
+         const categoryId = pathname.split('/')[2].match(/-(\d+)/) ? pathname.split('/')[2].match(/-(\d+)/)[1] : '1';
+         const page = pathname.split('/')[3].match(/-(\d+)/) ? pathname.split('/')[3].match(/-(\d+)/) : '1';
+         const searchParams = new URLSearchParams();
+         const url = new URL(`http://127.0.0.1:8000/api/v1/products/get-products-by-category/${categoryId}/${page}`);
+         url.search = searchParams.toString();
          const res = await axios.get(url.href);
-
          const data = res.data;
          setProducts(data.data);
+         setLoading(false);
       };
       const fetchCategories = async () => {
          const res = await axios.get('http://127.0.0.1:8000/api/v1/categories');
@@ -79,31 +64,37 @@ function ProductList() {
          setCategories(data.data);
       };
 
-      setLoading(true);
+      fetchCategories();
+      fetchProducts();
+   }, [categoryId, page]);
 
+   const fetchByprice = async (price) => {
       try {
-         fetchProducts();
-         fetchCategories();
+         const searchParams = new URLSearchParams();
+         const url = new URL(`http://127.0.0.1:8000/api/v1/products/get-products-by-price/${price}`);
+         url.search = searchParams.toString();
+         const res = await axios.get(url.href);
+         const data = res.data;
+         setProducts(data.data);
+         console.log('products By Price: ', products);
       } catch (error) {
-         console.log('Error fetching data', error);
-      } finally {
-         setLoading(false);
+         console.log(error);
       }
-   }, []);
+   };
 
-   const handleCategoryClick = (categoryId, currentPage) => {
-      setSearchParams((prevParams) => {
-         return {
-            ...prevParams,
-            category: categoryId,
-            page: 1,
-         };
-      });
+   const handleCategoryClick = (categoryId, currentPage, categorySlug) => {
+      navigate(`../productList/${categorySlug}-${categoryId}/${currentPage}`);
+   };
+
+   const handleProductListDefault = () => {
+      navigate(`../productList/fans-1/1`);
    };
 
    const handlePriceClick = () => {
       const priceValue = inputRef.current.value;
-      navigate(`../productList/${priceValue}`);
+      setPrice(priceValue);
+      fetchByprice(priceValue);
+      navigate(`../productList/${priceValue}/${pages}`);
    };
 
    useEffect(() => {
@@ -161,7 +152,7 @@ function ProductList() {
                               <li className="maincontent-size w-100 m-2 text-center color-custom" key={index}>
                                  <span
                                     className="non-text-decoration"
-                                    onClick={() => handleCategoryClick(category.id, currentPage)}
+                                    onClick={() => handleCategoryClick(category.id, currentPage, category.slug)}
                                  >
                                     {loading ? <Skeleton active /> : category.name}
                                  </span>
@@ -169,13 +160,14 @@ function ProductList() {
                            ))}
                         </ul>
                      )}
+                     <button onClick={handleProductListDefault}>Product List</button>
                   </div>
                   <div id="priceType">
                      <p className="content-size mt-4 mb-2">Price-type</p>
                      <input type="number" min="1" placeholder="" className="pl-5 w-100 border-pink" ref={inputRef} />
                      <button
                         className="btn-pink maincontent-size text-white mt-2 rounded-10 text-center p-3 "
-                        onClick={() => handlePriceClick(inputRef)}
+                        onClick={() => handlePriceClick(inputRef, currentPage)}
                      >
                         Apply
                      </button>
@@ -194,6 +186,9 @@ function ProductList() {
                               rankComments={product.description}
                               currentPrice={product.discount.price}
                               oldPrice={product.price}
+                              onClick={() => {
+                                 navigate(`/productList/${categorySlug}-${categoryId}/${product.id}`);
+                              }}
                            />
                         ))
                      )}
