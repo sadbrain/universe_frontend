@@ -1,0 +1,86 @@
+.header {
+  width: 100%;
+  background-color: var(--color-white);
+  padding: 10px 0; /* Optional: Add some padding for better visual spacing */
+}
+
+.nav-bar-parent {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 50px;
+  align-items: center;
+}
+
+.nav-menu {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.nav-elements {
+  display: flex;
+  align-items: center; /* Center align the buttons vertically */
+}
+
+.sign-up-button,
+.sign-in-button {
+  background-color: #ff6699;
+  border: none;
+  color: white;
+  margin-right: 10px; /* Add margin to the right of the buttons */
+}
+.button-link {
+  color: white; /* Set the color of the link to white */
+  text-decoration: none; /* Remove underline from the link */
+}
+.sign-up-button:hover .button-link {
+  color: #53cbfe !important;
+}
+.sign-in-button:hover .button-link {
+  color: #53cbfe !important;
+}
+
+.notification-badge {
+  color: var(--color-hotpink);
+}
+
+.search-input {
+  width: 300px;
+  border: 1px solid #000;
+}
+
+.search-icon {
+  color: #ff6699; /* Set the color of the search icon */
+  font-size: 30px; /* Set the size of the search icon */
+}
+
+.ant-menu .ant-menu-item .anticon {
+  color: #ff6699; /* Set the color of other icons */
+  font-size: 30px;
+}
+.ant-menu .ant-menu-item .anticon:hover {
+  color: #53cbfe;
+}
+.ant-menu-light .ant-menu-item {
+  color: #ff6699; /* Set the color of menu items */
+  font-size: 20px;
+}
+.ant-menu-light .ant-menu-item:hover {
+  color: #53cbfe !important;
+}
+/* Add custom styles for UNIVERSE */
+.universe-title {
+  font-size: 50px;
+  color: #ff6699;
+  margin-left: -10px;
+}
+
+/* Additional styles for links */
+a {
+  color: inherit; /* Inherit color from parent */
+  text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+  color: #53cbfe; /* Set hover color */
+}
