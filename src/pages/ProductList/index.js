@@ -16,6 +16,7 @@ function ProductList() {
    const location = useLocation();
    const { pathname } = location;
    const { categorySlug } = useParams();
+   const [slug, setSlug] = useState() || "fans";
    const [showCategories, setShowCategories] = useState(false);
    const [currentPage, setCurrentPage] = useState(1);
    const [pages, setPages] = useState(1);
@@ -83,6 +84,7 @@ function ProductList() {
    };
 
    const handleCategoryClick = (categoryId, currentPage, categorySlug) => {
+      setSlug(categorySlug)
       navigate(`../productList/${categorySlug}-${categoryId}/${currentPage}`);
    };
 
@@ -95,6 +97,10 @@ function ProductList() {
       setPrice(priceValue);
       fetchByprice(priceValue);
       navigate(`../productList/${priceValue}/${pages}`);
+   };
+   const handleCardClick = (productSlug) => {
+      // console.log(slug)
+      navigate(`../detail/${slug}/${productSlug}`);
    };
 
    useEffect(() => {
@@ -186,8 +192,8 @@ function ProductList() {
                               rankComments={product.description}
                               currentPrice={product.discount.price}
                               oldPrice={product.price}
-                              onClick={() => {
-                                 navigate(`/productList/${categorySlug}-${categoryId}/${product.id}`);
+                              onClick={()=>{
+                                 handleCardClick( product.slug)
                               }}
                            />
                         ))
