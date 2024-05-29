@@ -169,3 +169,6 @@ input[type='email'] {
    padding-left: 0px;
    padding-right: 0px;
 }
+.text-decoration-none {
+   text-decoration: none !important;
+}
