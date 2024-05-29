@@ -36,10 +36,6 @@ const Cart = () => {
       }
    };
    async function logCarts() {
-      localStorage.setItem(
-         'token',
-         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTY5MDk2NDIsImV4cCI6MTcxNjkxMzI0MywibmJmIjoxNzE2OTA5NjQzLCJqdGkiOiJQSnZPWkVrVkFMVVFYTWJ1Iiwic3ViIjoyLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.nyFUGcNo_ezgElSlNjBRMowYMfNhRBCrilSCKg-XIG8',
-      );
       const token = localStorage.getItem('token');
       const url = BASE_URL + vAPI + 'carts/show-cart';
       const options = {
