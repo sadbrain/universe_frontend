@@ -23,7 +23,7 @@ const publicRoutes = [
    { path: '/aboutUs', component: AboutUs },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
-   { path: '/orderSumary/:status', component: OrderManagementCus },
+   { path: '/orderSumary', component: OrderManagementCus },
 ];
 
 const privateRoutes = [
