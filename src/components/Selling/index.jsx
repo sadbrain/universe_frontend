@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const { Meta } = Card;
 
-const App = () => {
+const Selling = () => {
    const navigate = useNavigate();
    const [products, setProducts] = useState([]);
    useEffect(() => {
@@ -142,4 +142,4 @@ const App = () => {
    );
 };
 
-export default App;
+export default Selling;
