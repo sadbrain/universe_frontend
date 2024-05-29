@@ -1,0 +1,75 @@
+/* index.css */
+.footer {
+    background-color: #ff66a3;
+    color: white;
+    padding: 10px 30px; /* Reduced padding for lower height */
+    height: auto; /* Auto height to fit content */
+    margin-top: 50px;
+ }
+ 
+ .footer-section h3 {
+    color: #5d1a33;
+    font-size: 30px; /* Adjusted for better readability */
+    margin-bottom: 10px; /* Reduced margin */
+ }
+ 
+ .newsletter-section {
+    text-align: center;
+ }
+ 
+ .newsletter-section h3 {
+    color: #5d1a33;
+    margin-top: 10px; /* Reduced margin */
+    margin-bottom: 10px; /* Added margin-bottom for spacing */
+ }
+ 
+ .social-icons .anticon {
+    font-size: 20px; /* Reduced font size */
+    margin: 0 8px; /* Reduced margin */
+    color: white;
+    cursor: pointer;
+ }
+ 
+ .footer-bottom {
+    margin-top: 10px; /* Reduced margin */
+ }
+ 
+ .footer-menu {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 5px; /* Reduced padding */
+    background-color: #e89b93;
+ }
+ 
+ .footer-menu .ant-menu-item {
+    border-bottom: none !important;
+    color: #5d1a33;
+ }
+ 
+ .footer-menu .ant-menu-item:hover {
+    color: white !important;
+ }
+ 
+ .footer p {
+    color: #5d1a33;
+    text-align: center;
+    margin: 5px 0; /* Reduced margin */
+ }
+ 
+ .ant-menu-light {
+    background: transparent !important;
+    color: rgba(0, 0, 0, 0.88) !important;
+ }
+ 
+ .ant-menu-vertical .ant-menu-item {
+    padding: 0 !important; /* Remove padding for vertical menu items */
+ }
+ 
+ .ant-input-group .ant-btn-primary {
+    width: 80px; /* Adjusted button width */
+ }
+ .social-icons .anticon {
+    color: #e89b93;
+ }
+ 

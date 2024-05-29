@@ -169,6 +169,10 @@ input[type='email'] {
    padding-left: 0px;
    padding-right: 0px;
 }
-.ant-card {
-   padding: 10px;
+.btn-success {
+   background-color: darkgreen;
+}
+.text-right {
+   /* Định dạng văn bản */
+   text-align: right;
 }

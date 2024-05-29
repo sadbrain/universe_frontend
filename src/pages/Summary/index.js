@@ -254,7 +254,7 @@ function Summary() {
                            </h4>
                            <ul className="list-group mb-3">
                               {carts.map((c) => {
-                                 let price = c.product.price;
+                                 let price = c.product?.price;
 
                                  if (c.product?.discount?.end_date) {
                                     const discountEndDate = new Date(c.product.discount.end_date);

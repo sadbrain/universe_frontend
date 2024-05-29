@@ -3,7 +3,7 @@ import './index.css';
 
 function AboutUs() {
    return (
-      <div class="content">
+      <div class="content-a">
          <div class="product-info">
             <div>
                <h3>Về chúng tôi</h3>
@@ -75,7 +75,10 @@ function AboutUs() {
                   Cam kết bền vững
                </button>
                <button>
-                  <img src="https://phalehinhtho.vn/profiles/phalehinhthovn/uploads/attach/thumbnail/1698935814_istockphoto-1276523914-170x170.jpg" alt="Delivery" />
+                  <img
+                     src="https://phalehinhtho.vn/profiles/phalehinhthovn/uploads/attach/thumbnail/1698935814_istockphoto-1276523914-170x170.jpg"
+                     alt="Delivery"
+                  />
                   Vận chuyển hỏa tốc
                </button>
             </div>
