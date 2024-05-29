@@ -1,5 +1,5 @@
 import { AdminLayout } from '../components/Layouts';
-import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp } from '~/pages';
+import { Home, ProductList, ProductDetail, Cart, Dashboard, SignIn, SignUp,  } from '~/pages';
 import {
    AboutUs,
    Summary,
@@ -23,6 +23,7 @@ const publicRoutes = [
    { path: '/aboutUs', component: AboutUs },
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
+   { path: '/orderSumary/:status', component: OrderManagementCus },
 ];
 
 const privateRoutes = [

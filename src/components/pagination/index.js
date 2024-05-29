@@ -1,4 +1,5 @@
 import { Pagination } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const ProductPagination = ({ current, totalProduct, productEachPage }) => {
    const onChange = (page) => {
