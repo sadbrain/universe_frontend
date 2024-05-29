@@ -1,11 +1,41 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Carousel } from 'antd';
 // import 'antd/dist/antd.css'; // đảm bảo bạn đã import CSS của Ant Design
 import './index.css'; // import CSS tùy chỉnh của bạn
+import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
+import { Link, useNavigate } from 'react-router-dom';
 
-const App = () => {
+const Outstanding = () => {
    const carouselRef = useRef(null);
+   const navigate = useNavigate();
+   const [products, setProducts] = useState([]);
+   useEffect(() => {
+      getProducts();
+   }, []);
+   const handleCardClick = (cateSlug, cateId, proSlug, proId) => {
+      navigate(`/detail/${cateSlug}-${cateId}/${proSlug}-${proId}`);
+   };
+   const getProducts = async () => {
+      const url = BASE_URL + vAPI + 'products/get-best-rating-products';
+      const options = {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      };
+      try {
+         const response = await fetch(url, options);
+         if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+         }
 
+         const responseObj = await response.json();
+         setProducts(responseObj.data);
+      } catch (error) {
+         console.error('Fetch error:', error.message);
+         return null;
+      }
+   };
    return (
       <div className="custom-container">
          <div className="custom-text">
@@ -22,25 +52,31 @@ const App = () => {
                autoplay
                autoplaySpeed={3000} // Chuyển đổi mỗi 3 giây
             >
-               <div className="custom-carousel-content">
-                  <div className="custom-carousel-img-container">
-                     <img src="./images/Slider1.jpg" alt="Slide 1" className="custom-carousel-img" />
+               {products.map((p) => (
+                  <div
+                     className="custom-carousel-content"
+                     onClick={() => {
+                        handleCardClick(p.category?.slug, p.category?.id, p.slug, p.id);
+                     }}
+                     key={p.id}
+                  >
+                     <div className="custom-carousel-img-container">
+                        <img
+                           src={
+                              p.thumbnail.includes('https://via.placeholder.com')
+                                 ? p.thumbnail
+                                 : BE_URL + 'images/product/' + p.thumbnail
+                           }
+                           alt="Slide 1"
+                           className="custom-carousel-img"
+                        />
+                     </div>
                   </div>
-               </div>
-               <div className="custom-carousel-content">
-                  <div className="custom-carousel-img-container">
-                     <img src="./images/Slider2.jpg" alt="Slide 2" className="custom-carousel-img" />
-                  </div>
-               </div>
-               <div className="custom-carousel-content">
-                  <div className="custom-carousel-img-container">
-                     <img src="./images/Slider4.jpg" alt="Slide 3" className="custom-carousel-img" />
-                  </div>
-               </div>
+               ))}
             </Carousel>
          </div>
       </div>
    );
 };
 
-export default App;
+export default Outstanding;
