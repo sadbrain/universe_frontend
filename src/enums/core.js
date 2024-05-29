@@ -1,5 +1,6 @@
 export const BASE_URL = 'http://localhost:8000/api/';
 export const vAPI = 'v1/';
+export const BASE_FE_URL = 'http://localhost:3000/';
 export const ORDER_STATUS = {
    PENDING: 'Pending',
    APPROVED: 'Approved',

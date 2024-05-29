@@ -45,7 +45,7 @@ function SignIn() {
                </button>
             </form>
             <p class="register-link">
-               <Link to="/register">Register Now</Link>
+               <Link to="/signup">Register Now</Link>
             </p>
             <p class="fgpassword-link">
                <Link to="">Forget Password?</Link>

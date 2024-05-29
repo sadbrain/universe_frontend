@@ -16,7 +16,7 @@ function ProductList() {
    const location = useLocation();
    const { pathname } = location;
    const { categorySlug } = useParams();
-   const [slug, setSlug] = useState() || "fans";
+   const [slug, setSlug] = useState() || 'fans';
    const [showCategories, setShowCategories] = useState(false);
    const [currentPage, setCurrentPage] = useState(1);
    const [pages, setPages] = useState(1);
@@ -46,7 +46,6 @@ function ProductList() {
          />
       );
    };
-
    useEffect(() => {
       const fetchProducts = async () => {
          const categoryId = pathname.split('/')[2].match(/-(\d+)/) ? pathname.split('/')[2].match(/-(\d+)/)[1] : '1';
@@ -84,12 +83,8 @@ function ProductList() {
    };
 
    const handleCategoryClick = (categoryId, currentPage, categorySlug) => {
-      setSlug(categorySlug)
+      setSlug(categorySlug);
       navigate(`../productList/${categorySlug}-${categoryId}/${currentPage}`);
-   };
-
-   const handleProductListDefault = () => {
-      navigate(`../productList/fans-1/1`);
    };
 
    const handlePriceClick = () => {
@@ -98,9 +93,8 @@ function ProductList() {
       fetchByprice(priceValue);
       navigate(`../productList/${priceValue}/${pages}`);
    };
-   const handleCardClick = (productSlug) => {
-      // console.log(slug)
-      navigate(`../detail/${slug}/${productSlug}`);
+   const handleCardClick = (cateSlug, cateId, proSlug, proId) => {
+      navigate(`/detail/${cateSlug}-${cateId}/${proSlug}-${proId}`);
    };
 
    useEffect(() => {
@@ -166,7 +160,6 @@ function ProductList() {
                            ))}
                         </ul>
                      )}
-                     <button onClick={handleProductListDefault}>Product List</button>
                   </div>
                   <div id="priceType">
                      <p className="content-size mt-4 mb-2">Price-type</p>
@@ -187,13 +180,14 @@ function ProductList() {
                      ) : (
                         products.map((product) => (
                            <Cards
+                              key={product.id}
                               src={product.thumbnail}
                               productName={product.name}
                               rankComments={product.description}
                               currentPrice={product.discount.price}
                               oldPrice={product.price}
-                              onClick={()=>{
-                                 handleCardClick( product.slug)
+                              onClick={() => {
+                                 handleCardClick(product.category.slug, product.category.id, product.slug, product.id);
                               }}
                            />
                         ))

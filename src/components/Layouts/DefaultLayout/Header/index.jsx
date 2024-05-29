@@ -1,12 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Input, Menu, Badge } from 'antd';
 import { SearchOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { BASE_URL, vAPI, BASE_FE_URL } from '~/enums/core';
 import './index.css';
 
 const { SubMenu } = Menu;
 
 const Header = () => {
+   const navigate = useNavigate();
+
+   const navigateProductList = async (e) => {
+      e.preventDefault();
+      const url = BASE_URL + vAPI + `categories`;
+      const options = {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+      };
+      try {
+         const response = await fetch(url, options);
+         if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+         }
+
+         const responseObj = await response.json();
+         if (responseObj.data.length !== 0) {
+            const category = responseObj.data[0];
+            navigate(`/productList/${category.slug}-${category.id}/1`);
+         }
+      } catch (error) {
+         console.error('Fetch error:', error.message);
+         return null;
+      }
+   };
    return (
       <div className="header">
          <div className="nav-bar-parent">
@@ -15,7 +43,7 @@ const Header = () => {
                   key="universe"
                   title={
                      <span className="universe-title">
-                        <Link to="/universe">UNIVERSE</Link>
+                        <Link to="/">UNIVERSE</Link>
                      </span>
                   }
                >
@@ -34,10 +62,12 @@ const Header = () => {
                   </Link>
                </Menu.Item>
                <Menu.Item key="product" className="menu-item-color">
-                  <Link to="/product">Product</Link>
+                  <Link to="/product" onClick={navigateProductList}>
+                     Product
+                  </Link>
                </Menu.Item>
                <Menu.Item key="about-us" className="menu-item-color">
-                  <Link to="/about-us">About Us</Link>
+                  <Link to="/aboutUs">About Us</Link>
                </Menu.Item>
                <Menu.Item key="privacy" className="menu-item-color">
                   <Link to="/privacy">Privacy</Link>
@@ -45,7 +75,7 @@ const Header = () => {
                <Menu.Item key="notifications">
                   <Badge count={99}>
                      <span className="notification-badge">
-                        <Link to="/notifications">
+                        <Link to="/cart">
                            <ShoppingCartOutlined className="icon-color" />
                         </Link>
                      </span>

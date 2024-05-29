@@ -18,8 +18,8 @@ import {
 const publicRoutes = [
    { path: '/', component: Home },
    { path: '/home', component: Home },
-   { path: '/login', component: SignIn },
-   { path: '/register', component: SignUp },
+   { path: '/signin', component: SignIn },
+   { path: '/signup', component: SignUp },
    { path: '/aboutUs', component: AboutUs },
    // { path: '/productList', component: ProductList },
    { path: '/productList/:cateSlug/:page', component: ProductList },
