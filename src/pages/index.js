@@ -17,4 +17,6 @@ export { default as OrderConfirmation } from './OrderConfirmation';
 export { default as Products } from './ProductManagement/ProductList';
 export { default as ProductCreate } from './ProductManagement/ProductCreate';
 export { default as ProductUpdate } from './ProductManagement/ProductUpdate';
-
+export {default as CompanyList} from './CompanyManagement/CompanyList';
+export {default as CompanyCreate} from './CompanyManagement/CompanyCreate';
+export {default as CompanyUpdate} from './CompanyManagement/CompanyUpdate'
