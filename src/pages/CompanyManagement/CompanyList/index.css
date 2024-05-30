@@ -34,7 +34,6 @@
   border-collapse: collapse;
   margin-top: 20px;
   font-size: 1.5em;
-  border: 1px solid #000000;
 }
 
 .company-list th, 
@@ -42,6 +41,15 @@
   border: 1px solid #000000;
   padding: 8px;
   text-align: left;
+}
+
+.button-cell {
+  display: flex;
+  justify-content: center;
+}
+
+.button-wrapper {
+  display: flex;
 }
 
 thead {

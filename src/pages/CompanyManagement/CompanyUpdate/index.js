@@ -11,10 +11,10 @@ function CompanyUpdate() {
                 <input type="text" id="companyName" className="input" />
             </div>
             <div className="button-group">
-                <Link to="/companyList">
+                <Link to="/admin/company">
                     <button className="btn create">+ Update</button>
                 </Link>
-                <Link to="/companyList">
+                <Link to="/admin/company">
                     <button className="btn back">Back to list</button>
                 </Link>
             </div>
