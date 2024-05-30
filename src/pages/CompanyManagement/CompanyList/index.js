@@ -6,7 +6,7 @@ import './index.css';
 
 function CompanyList() {
    return (
-      <div className="container">
+      <div className="container-cn">
          <h1 className="title">Company List</h1>
          <div className="button-container">
             <Link to="/companyCreate">

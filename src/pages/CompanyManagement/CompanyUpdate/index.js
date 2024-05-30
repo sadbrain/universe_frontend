@@ -4,7 +4,7 @@ import './index.css';
 
 function CompanyUpdate() {
     return (
-        <div className="container">
+        <div className="container-cn">
             <h1 className="title">Update Company</h1>
             <div className="form-group">
                 <label className="label" htmlFor="companyName">Company name:</label>
