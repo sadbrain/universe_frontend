@@ -13,6 +13,7 @@ import {
    Products,
    ProductCreate,
    ProductUpdate,
+   Privacy,
 } from '../pages';
 
 const publicRoutes = [
@@ -25,6 +26,7 @@ const publicRoutes = [
    { path: '/productList/:cateSlug/:page', component: ProductList },
    { path: '/productList/:price/:page', component: ProductList },
    { path: '/detail/:cateSlug/:productSlug', component: ProductDetail },
+   { path: 'privacy', component: Privacy },
 ];
 
 const privateRoutes = [
