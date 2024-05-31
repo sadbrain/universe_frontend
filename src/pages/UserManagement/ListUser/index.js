@@ -6,11 +6,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 function ListUser() {
    const [users, setUsers] = useState([]);
+   const [companies, setCompanies] = useState([])
    useEffect(() => {
       try {
          localStorage.setItem(
             'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTY5OTg0MDksImV4cCI6MTcxNzAwMjAwOSwibmJmIjoxNzE2OTk4NDA5LCJqdGkiOiJIZng1Szd6akE0ZUx1MHNqIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-xasqUYyd0dIJHNLbMKhxAmvsWFoKoburA9DzSv-_EQ',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcxNDk4MjMsImV4cCI6MTcxNzE1MzQyMywibmJmIjoxNzE3MTQ5ODIzLCJqdGkiOiJmOHBqRGJxMG5aT29WMTNyIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.FTjIh11xe4tcN-VT7lJNk9xN4PKYLdzlX88SYhdSN44',
          );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
@@ -26,6 +27,13 @@ function ListUser() {
             console.log('Data', users);
          };
          userManagers();
+         const companyManagers = async () => {
+            const res = await axiosInstance.get('/companies');
+            const data = res.data.data;
+            setCompanies(data);
+            console.log('Data', companies);
+         }
+         companyManagers();
       } catch (error) {
          console.error(error);
       }
@@ -51,11 +59,15 @@ function ListUser() {
                </tr>
             </thead>
             <tbody>
-              {
-               users.map ((user) =>(
-                  <UserList id= {user.id} userName={user.name} email={user.email} phoneNumber={user.phone} locked={user.locked} />
-               ))
-              }
+               {users.map((user) => (
+                  <UserList
+                     id={user.id}
+                     userName={user.name}
+                     email={user.email}
+                     phoneNumber={user.phone}
+                     locked={user.locked}
+                  />
+               ))}
             </tbody>
          </table>
       </div>
