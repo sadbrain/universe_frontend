@@ -6,7 +6,7 @@ import { useGlobalState } from '~/components/GlobalState';
 import ProtectedRoute from '~/components/ProtectedRoute';
 function App() {
    const [state, dispatch] = useGlobalState();
-   console.log(state);
+   console.log(state, dispatch);
    return (
       <>
          <Router>
