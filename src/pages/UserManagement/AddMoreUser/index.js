@@ -3,19 +3,10 @@ import './index.css';
 import FormControlM from '../../../components/FormControlM';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Radio from 'antd/es/radio/radio';
-import { useContext } from 'react';
 import RoleRadio from '../../../components/RoleRadio';
 function AddMoreUser() {
    const navigate = useNavigate();
-   const [value, setValue] = useState(1);
    const roleValue = parseInt(localStorage.getItem('role'));
-   // const onChange = (e) => {
-   //    setValue(e.target.value);
-   //    localStorage.setItem('role', value);
-   //    setFormData(FormData.user.role_id, value);
-   // };
-
    const handleRoleChange = (value) => {
       setFormData((prevFormData) => ({
          ...prevFormData,
@@ -25,7 +16,6 @@ function AddMoreUser() {
          },
       }));
    };
-   const [companies, setCompanies] = useState([]);
    const [roles, setRoles] = useState([]);
 
    const [FormData, setFormData] = useState({
@@ -69,7 +59,7 @@ function AddMoreUser() {
       try {
          localStorage.setItem(
             'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMjY0MzgsImV4cCI6MTcxNzIzMDAzOCwibmJmIjoxNzE3MjI2NDM4LCJqdGkiOiJqblVNMXRzMWNWTnJsTW1mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.B8zi6CvUkfNdZWfX52XkjIrqHWrx6QF_Dgqa8D81nmA',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMzE3MzcsImV4cCI6MTcxNzIzNTMzNywibmJmIjoxNzE3MjMxNzM3LCJqdGkiOiJ0Q3JQQ3JjTXlubXlhNUQ1Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.tPSSyZX-2zYOhw7x5l1c23hqBHrsDAUAz0nC1rN0hkQ',
          );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
@@ -93,7 +83,7 @@ function AddMoreUser() {
       try {
          localStorage.setItem(
             'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMjI4MjAsImV4cCI6MTcxNzIyNjQyMCwibmJmIjoxNzE3MjIyODIwLCJqdGkiOiJtSnNmSlA3eFB2bEdtZ0JtIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.hG9eB-M6cPgFDyxlA8qVUvBeONDuGlbPF8E-NPopPXI',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMzE3MzcsImV4cCI6MTcxNzIzNTMzNywibmJmIjoxNzE3MjMxNzM3LCJqdGkiOiJ0Q3JQQ3JjTXlubXlhNUQ1Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.tPSSyZX-2zYOhw7x5l1c23hqBHrsDAUAz0nC1rN0hkQ',
          );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
@@ -102,13 +92,6 @@ function AddMoreUser() {
                Authorization: `Bearer ${token}`,
             },
          });
-         const companyManagers = async () => {
-            const res = await axiosInstance.get('/companies');
-            const data = res.data.data;
-            setCompanies(data);
-            console.log('Data', companies);
-         };
-         companyManagers();
          const roleManagers = async () => {
             const res = await axiosInstance.get('/users/get-roles');
             const data = res.data.data;

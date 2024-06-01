@@ -6,12 +6,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 function ListUser() {
    const [users, setUsers] = useState([]);
-   const [companies, setCompanies] = useState([])
+   const [companies, setCompanies] = useState([]);
    useEffect(() => {
       try {
          localStorage.setItem(
             'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMjY0MzgsImV4cCI6MTcxNzIzMDAzOCwibmJmIjoxNzE3MjI2NDM4LCJqdGkiOiJqblVNMXRzMWNWTnJsTW1mIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.B8zi6CvUkfNdZWfX52XkjIrqHWrx6QF_Dgqa8D81nmA',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMzU0NjgsImV4cCI6MTcxNzIzOTA2OCwibmJmIjoxNzE3MjM1NDY4LCJqdGkiOiJwYnFwT21UZ2pUcm5Ldms2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GC3T1OWzE82o0grqJdoDGBLjJ_jHP7052e49znQvs74',
          );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
@@ -32,7 +32,7 @@ function ListUser() {
             const data = res.data.data;
             setCompanies(data);
             console.log('Data', companies);
-         }
+         };
          companyManagers();
       } catch (error) {
          console.error(error);
