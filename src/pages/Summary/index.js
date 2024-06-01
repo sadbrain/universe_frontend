@@ -96,7 +96,7 @@ function Summary() {
          }
       }
    };
-
+   console.log(carts);
    const handleChange = (e) => {
       const { value, name } = e.target;
       const keys = name.split('.');

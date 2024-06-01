@@ -115,8 +115,45 @@ const ProductPage = () => {
       return name;
    };
 
-   const handleAddToCart = () => {
-      toast.success('Product added to cart!');
+   // const handleAddToCart = () => {
+   //    toast.success('Product added to cart!');
+   // };
+   const handleAddToCart = async (e) => {
+      const formData = {
+         quantity,
+         size,
+         color,
+         product_id: product.id,
+      };
+      setColor('');
+      setQuantity(1);
+      setSize('');
+
+      const token = localStorage.getItem('token');
+      const url = BASE_URL + vAPI + `carts/add-to-cart`;
+      const options = {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+         },
+         mode: 'cors',
+         body: JSON.stringify({ ...formData }),
+      };
+      try {
+         const response = await fetch(url, options);
+         if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+         }
+
+         const responseObj = await response.json();
+         if (response.status === 201) {
+            toast.success(responseObj.success_messages);
+         }
+      } catch (error) {
+         console.error('Fetch error:', error.message);
+         return null;
+      }
    };
 
    const handleCardClick = (categorySlug, categoryId, productSlug, productId) => {
@@ -166,8 +203,8 @@ const ProductPage = () => {
                   <div className="mb-3">
                      <Text strong>Size:</Text>
                      <Radio.Group onChange={handleSizeChange} value={size} className="d-block">
-                        {product?.inventory?.sizes?.map((s) => (
-                           <Radio.Button key={s.name} value={s.name}>
+                        {product?.inventory?.sizes?.map((s, i) => (
+                           <Radio.Button key={i} value={s.name}>
                               {s.name}
                            </Radio.Button>
                         ))}
@@ -221,17 +258,14 @@ const ProductPage = () => {
             Product description
          </Title>
          <Text className="product-description">
-            Dép đúng size, vì size đôi nên không thể vừa khít tất cả các chân, các bạn nên lựa chọn theo thói quen đi
-            dép của cá nhân ạ.
-            <br />
-            Đế dép dày khoảng 3.5cm (đo bằng tay).
-            <br />
-            Đế dép thiết kế chống trơn, chất liệu EVA hàng loại 1 thân thiện với môi trường.
-            <br />
-            Dép đang hot lắm các bạn thích màu và size nào order luôn không hết màu, hết size ạ.
-            <br />
-            Vì là size đôi nên có thể rộng hoặc chật hơn so với chân xíu các bạn lựa chọn theo thói quen thích đi rộng,
-            chật của mỗi cá nhân ạ.
+            {' '}
+            The size is accurate, but since it is a double size, it may not perfectly fit all feet. Customers should
+            choose the size based on their personal preference for how they typically like to wear slippers. <br /> The
+            slipper sole is approximately 3.5cm thick (measured by hand). <br /> The slipper sole is designed to be
+            anti-slip, made of high-quality EVA material that is environmentally friendly. <br /> These slippers are
+            very popular right now, so customers should order their desired color and size quickly before they sell out.{' '}
+            <br /> Since it is a double size, the fit may be looser or tighter than your foot. Choose based on your
+            personal preference for a looser or tighter fit.{' '}
          </Text>
          <div className="related-container">
             <h3 style={{ color: '#ff6699', fontSize: '60px', margin: '30px 0 10px' }}>Related Products</h3>
