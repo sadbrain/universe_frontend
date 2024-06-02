@@ -17,7 +17,7 @@ const RoleRadio = ({ onRoleChange }) => {
       try {
          localStorage.setItem(
             'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyMzU0NjgsImV4cCI6MTcxNzIzOTA2OCwibmJmIjoxNzE3MjM1NDY4LCJqdGkiOiJwYnFwT21UZ2pUcm5Ldms2Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.GC3T1OWzE82o0grqJdoDGBLjJ_jHP7052e49znQvs74',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyOTA1NzAsImV4cCI6MTcxNzI5NDE3MCwibmJmIjoxNzE3MjkwNTcwLCJqdGkiOiJZTE02STk3SHZ5djNXVGlNIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.l-3d7DAhEMDwcUSTbmOS91BGskTfh2PoOxykLbx3XIE',
          );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
@@ -65,16 +65,17 @@ const RoleRadio = ({ onRoleChange }) => {
                      }}
                   >
                      {role.name}
-                     <select id="companySelected" className="hidden">
+                     <select
+                        id="companySelected"
+                        className="hidden"
+                        onChange={(e) => {
+                           const selectedCompanyId = e.target.value;
+                           localStorage.setItem('company_id', selectedCompanyId);
+                           console.log('company_id select:' + selectedCompanyId);
+                        }}
+                     >
                         {companies.map((company) => (
-                           <option
-                              value={company.id}
-                              onClick={() => {
-                                 localStorage.setItem('company_id', company.id);
-                              }}
-                           >
-                              {company.name}
-                           </option>
+                           <option value={company.id} key={company.id}>{company.name}</option>
                         ))}
                      </select>
                   </Radio>
