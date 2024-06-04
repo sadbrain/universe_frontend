@@ -35,14 +35,12 @@ function SignIn() {
         const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/login', values);
         localStorage.setItem('token', response.data.access_token);
 
-        // Lưu trữ thông tin người dùng trong localStorage
         const userData = {
           role: response.data.user.role.name,
           name: response.data.user.name,
         };
         localStorage.setItem('userData', JSON.stringify(userData));
 
-        // Redirect based on user's role
         const userRole = response.data.user.role.name;
         if (userRole === 'Customer' || userRole === 'Company') {
           navigate('/home');
