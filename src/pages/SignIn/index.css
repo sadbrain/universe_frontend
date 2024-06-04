@@ -109,13 +109,16 @@
 }
 
 .underline {
-    position: absolute;
     bottom: 0;
     left: 0;
     height: 2px;
     width: 0;
     background-color: #fff;
     transition: width 0.3s ease;
+}
+
+.error-message {
+    color:#ec101b;
 }
 
 .input-field:focus + .underline {
