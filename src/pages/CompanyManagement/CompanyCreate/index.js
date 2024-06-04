@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
 
 function CompanyCreate() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     phone_number: '',
@@ -10,17 +11,42 @@ function CompanyCreate() {
     district_address: '',
     city: '',
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' });
   };
 
   const handleCreate = async () => {
     try {
-        localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcxNTM2MTIsImV4cCI6MTcxNzE1NzIxMiwibmJmIjoxNzE3MTUzNjEyLCJqdGkiOiJBeVhQM2xpTWZXejQ0Qlo1Iiwic3ViIjo1MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.G931P6pSfFalzCqSRImgm54t1uQTsA5Cp4NFs20RnbQ',
-         );
+      // Validate form data
+      const validationErrors = {};
+      if (formData.name.length < 6 || formData.name.length > 255) {
+        validationErrors.name = 'Company name must be between 6 and 255 characters';
+      }
+      if (formData.phone_number.length < 10 || formData.phone_number.length > 20) {
+        validationErrors.phone_number = 'Phone number must be between 10 and 20 characters';
+      }
+      if (formData.street_address.length < 6 || formData.street_address.length > 255) {
+        validationErrors.street_address = 'Street address must be between 6 and 255 characters';
+      }
+      if (formData.district_address.length < 6 || formData.district_address.length > 255) {
+        validationErrors.district_address = 'District address must be from 6 to 255 characters';
+      }
+      if (formData.city.length < 6 || formData.city.length > 255) {
+        validationErrors.city = 'The city name must be between 6 and 255 characters';
+      }
+
+      if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        return;
+      }
+
+      localStorage.setItem(
+        'token',
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc1MTc0OTIsImV4cCI6MTcxNzUyMTA5MiwibmJmIjoxNzE3NTE3NDkyLCJqdGkiOiJBd0FGSW1QdmJhWDhrcmlOIiwic3ViIjo2MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.6Od1G5WKGNDItWSkCWuKp5Qn9Z0kRml7XOpdHlMvPOQ'
+      );
       const token = localStorage.getItem('token');
       const url = 'http://127.0.0.1:8000/api/v1/companies';
       const options = {
@@ -42,6 +68,7 @@ function CompanyCreate() {
           district_address: '',
           city: '',
         });
+        navigate('/admin/company');
       } else {
         console.error('Error creating company');
       }
@@ -50,7 +77,7 @@ function CompanyCreate() {
     }
   };
 
-    return (
+  return (
     <div className="container-cn">
       <h1 className="title">Create Company</h1>
       <div className="form-group">
@@ -65,6 +92,7 @@ function CompanyCreate() {
           value={formData.name}
           onChange={handleChange}
         />
+        {errors.name && <div className="error">{errors.name}</div>}
       </div>
       <div className="form-group">
         <label className="label" htmlFor="phone_number">
@@ -78,6 +106,7 @@ function CompanyCreate() {
           value={formData.phone_number}
           onChange={handleChange}
         />
+        {errors.phone_number && <div className="error">{errors.phone_number}</div>}
       </div>
       <div className="form-group">
         <label className="label" htmlFor="street_address">
@@ -91,6 +120,7 @@ function CompanyCreate() {
           value={formData.street_address}
           onChange={handleChange}
         />
+        {errors.street_address && <div className="error">{errors.street_address}</div>}
       </div>
       <div className="form-group">
         <label className="label" htmlFor="district_address">
@@ -104,6 +134,7 @@ function CompanyCreate() {
           value={formData.district_address}
           onChange={handleChange}
         />
+        {errors.district_address && <div className="error">{errors.district_address}</div>}
       </div>
       <div className="form-group">
         <label className="label" htmlFor="city">
@@ -117,13 +148,12 @@ function CompanyCreate() {
           value={formData.city}
           onChange={handleChange}
         />
+        {errors.city && <div className="error">{errors.city}</div>}
       </div>
       <div className="button-group">
-      <Link to="/admin/company">
         <button className="btn create" onClick={handleCreate}>
           + Create
         </button>
-        </Link>
         <Link to="/admin/company">
           <button className="btn back">Back to list</button>
         </Link>

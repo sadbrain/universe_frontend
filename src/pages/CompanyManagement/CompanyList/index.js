@@ -11,7 +11,7 @@ function CompanyList() {
     const fetchCompanies = async () => {
       localStorage.setItem(
         'token',
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcxNTM2MTIsImV4cCI6MTcxNzE1NzIxMiwibmJmIjoxNzE3MTUzNjEyLCJqdGkiOiJBeVhQM2xpTWZXejQ0Qlo1Iiwic3ViIjo1MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.G931P6pSfFalzCqSRImgm54t1uQTsA5Cp4NFs20RnbQ',
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc1MTc0OTIsImV4cCI6MTcxNzUyMTA5MiwibmJmIjoxNzE3NTE3NDkyLCJqdGkiOiJBd0FGSW1QdmJhWDhrcmlOIiwic3ViIjo2MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.6Od1G5WKGNDItWSkCWuKp5Qn9Z0kRml7XOpdHlMvPOQ',
      );
       const token = localStorage.getItem('token');
       const url = 'http://127.0.0.1:8000/api/v1/companies';
@@ -40,7 +40,7 @@ function CompanyList() {
     try {
       localStorage.setItem(
         'token',
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcxNTM2MTIsImV4cCI6MTcxNzE1NzIxMiwibmJmIjoxNzE3MTUzNjEyLCJqdGkiOiJBeVhQM2xpTWZXejQ0Qlo1Iiwic3ViIjo1MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.G931P6pSfFalzCqSRImgm54t1uQTsA5Cp4NFs20RnbQ',
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc1MTc0OTIsImV4cCI6MTcxNzUyMTA5MiwibmJmIjoxNzE3NTE3NDkyLCJqdGkiOiJBd0FGSW1QdmJhWDhrcmlOIiwic3ViIjo2MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.6Od1G5WKGNDItWSkCWuKp5Qn9Z0kRml7XOpdHlMvPOQ',
      );
   const token = localStorage.getItem('token');
   const url = `http://127.0.0.1:8000/api/v1/companies/${id}`;
