@@ -68,17 +68,17 @@ function Ordering() {
                      </p>
                   </div>
                   <div className="row flex-item m-2">
-                     <p className="col-5 btn rounded-15 btn-dark maincontent-size mr-3 ml-2" id="cancelled">
-                        Cancelled
-                     </p>
-                     <p className="col-1"></p>
-                     {ordering.payment.payment_status === 'Processing' ? (
+                     {ordering.payment.payment_status === PAYMENT_STATUS.APPRROVED_FOR_DELAYED_PAYMENT ? (
                         <p className="col-5 btn rounded-15 btn-success font-weight-bold maincontent-size ml-2">
                            Pay now
                         </p>
                      ) : (
-                        ''
+                        <p className="col-5" ></p>
                      )}
+                     <p className="col-1"></p>
+                     <p className="col-5 btn rounded-15 btn-dark maincontent-size mr-3 ml-2" id="cancelled">
+                        Cancelled
+                     </p>
                   </div>
                </div>
             </div>
