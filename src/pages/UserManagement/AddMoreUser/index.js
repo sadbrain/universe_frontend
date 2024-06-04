@@ -4,6 +4,19 @@ import FormControlM from '../../../components/FormControlM';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import RoleRadio from '../../../components/RoleRadio';
+import Swal from 'sweetalert2';
+
+export const Toast = Swal.mixin({
+   toast: true,
+   position: 'top-end',
+   showConfirmButton: false,
+   timer: 2500,
+   timerProgressBar: true,
+   didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+   },
+});
 function AddMoreUser() {
    const navigate = useNavigate();
    const roleValue = parseInt(localStorage.getItem('role'));
@@ -31,6 +44,7 @@ function AddMoreUser() {
          role_id: roleValue,
       },
    });
+
    console.log('role_id ', FormData.user.role_id);
    const handleChange = (e) => {
       const { value, name } = e.target;
@@ -57,10 +71,6 @@ function AddMoreUser() {
    const handleCreateUser = (e) => {
       e.preventDefault();
       try {
-         localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyOTA1NzAsImV4cCI6MTcxNzI5NDE3MCwibmJmIjoxNzE3MjkwNTcwLCJqdGkiOiJZTE02STk3SHZ5djNXVGlNIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.l-3d7DAhEMDwcUSTbmOS91BGskTfh2PoOxykLbx3XIE',
-         );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/v1',
@@ -69,22 +79,30 @@ function AddMoreUser() {
             },
          });
          const createUser = async () => {
-            console.log('Form Data: ', FormData);
-            const res = await axiosInstance.post('/users/register', FormData.user);
-            console.log('Role_id: ', FormData.user.role_id);
-            navigate('/admin/user');
+            try {
+               console.log('Form Data: ', FormData);
+               const res = await axiosInstance.post('/users/register', FormData.user);
+               console.log('Role_id: ', FormData.user.role_id);
+               Toast.fire({
+                  icon: 'success',
+                  title: 'Created user in successfully',
+               });
+               navigate('/admin/user');
+            } catch (error) {
+               console.log(error);
+               Toast.fire({
+                  icon: 'error',
+                  title: 'Create user failed',
+               });
+            }
          };
          createUser();
       } catch (error) {
-         console.error(error);
+         console.log(error);
       }
    };
    useEffect(() => {
       try {
-         localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyOTA1NzAsImV4cCI6MTcxNzI5NDE3MCwibmJmIjoxNzE3MjkwNTcwLCJqdGkiOiJZTE02STk3SHZ5djNXVGlNIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.l-3d7DAhEMDwcUSTbmOS91BGskTfh2PoOxykLbx3XIE',
-         );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/v1',

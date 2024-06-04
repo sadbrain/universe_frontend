@@ -5,6 +5,7 @@ import { Switch } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useState } from 'react';
+import { Toast } from '../../pages/UserManagement/AddMoreUser';
 
 function UserList(props) {
    const { userName, email, phoneNumber, id, locked } = props;
@@ -12,10 +13,6 @@ function UserList(props) {
    const onChange = async (checked) => {
       try {
          setIsLocked(checked);
-         localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyOTA1NzAsImV4cCI6MTcxNzI5NDE3MCwibmJmIjoxNzE3MjkwNTcwLCJqdGkiOiJZTE02STk3SHZ5djNXVGlNIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.l-3d7DAhEMDwcUSTbmOS91BGskTfh2PoOxykLbx3XIE',
-         );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/v1',
@@ -23,9 +20,12 @@ function UserList(props) {
                Authorization: `Bearer ${token}`,
             },
          });
-
          const res = await axiosInstance.get(`/users/lock-unclock/${id}`);
          const data = res.data.data;
+         Toast.fire({
+            icon: 'success',
+            title: 'Lock-unlock user in successfully',
+         });
       } catch (error) {
          setIsLocked(!isLocked);
          console.error(error);

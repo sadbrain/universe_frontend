@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import RoleRadio from '../../../components/RoleRadio';
 import { useParams } from 'react-router-dom';
+import { Toast } from '../AddMoreUser';
 function EditUser() {
    const navigate = useNavigate();
    const { id } = useParams();
@@ -31,10 +32,6 @@ function EditUser() {
    const handleEditUser = (e) => {
       e.preventDefault();
       try {
-         localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyOTA1NzAsImV4cCI6MTcxNzI5NDE3MCwibmJmIjoxNzE3MjkwNTcwLCJqdGkiOiJZTE02STk3SHZ5djNXVGlNIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.l-3d7DAhEMDwcUSTbmOS91BGskTfh2PoOxykLbx3XIE',
-         );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/v1',
@@ -45,6 +42,10 @@ function EditUser() {
          const editUser = async () => {
             const res = await axiosInstance.put(`/users/perrmission/${id}`, FormData.user);
             const data = res;
+            Toast.fire({
+               icon: 'success',
+               title: 'Edit user in successfully',
+            });
             navigate('/admin/user');
          };
          editUser();
@@ -54,10 +55,6 @@ function EditUser() {
    };
    useEffect(() => {
       try {
-         localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTcyOTA1NzAsImV4cCI6MTcxNzI5NDE3MCwibmJmIjoxNzE3MjkwNTcwLCJqdGkiOiJZTE02STk3SHZ5djNXVGlNIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.l-3d7DAhEMDwcUSTbmOS91BGskTfh2PoOxykLbx3XIE',
-         );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/v1',
@@ -115,6 +112,12 @@ function EditUser() {
                   </div>
                </div>
                <FormControlM label="City: " value={user.city} name="user.city" disabled />
+               <FormControlM
+                  label="Company: "
+                  value={user.company ? user.company.name : ''}
+                  name="user.company.name"
+                  disabled={!user.company}
+               />
                <RoleRadio onRoleChange={handleRoleChange} name="user.role_id" />
                <div className="row mt-2">
                   <div className="col-6"></div>
