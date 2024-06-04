@@ -3,7 +3,7 @@ export const BE_URL = 'http://localhost:3000/';
 export const vAPI = 'v1/';
 export const BASE_FE_URL = 'http://localhost:3000/';
 export const ORDER_STATUS = {
-   PENDING: 'Pending',
+   PENDING: '  ',
    APPROVED: 'Approved',
    PROCESSING: 'Processing',
    SHIPPED: 'Shipped',
