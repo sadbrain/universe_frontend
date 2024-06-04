@@ -13,6 +13,9 @@ import {
    Products,
    ProductCreate,
    ProductUpdate,
+   CompanyList, 
+   CompanyCreate, 
+   CompanyUpdate,
    Privacy,
 } from '../pages';
 
@@ -50,6 +53,30 @@ const privateRoutes = [
       layout: AdminLayout,
       path: '/admin/user',
       component: ListUser,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/company',
+      component: CompanyList,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/company/create',
+      component: CompanyCreate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/company/update',
+      component: CompanyUpdate,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');
       },
