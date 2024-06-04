@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Toast } from '../../pages/UserManagement/AddMoreUser';
 
 function UserList(props) {
-   const { userName, email, phoneNumber, id, locked } = props;
+   const { userName, email, phoneNumber, id, locked, company } = props;
    const [isLocked, setIsLocked] = useState(locked);
    const onChange = async (checked) => {
       try {
@@ -37,6 +37,7 @@ function UserList(props) {
          <td>{userName}</td>
          <td>{email}</td>
          <td>{phoneNumber}</td>
+         <td>{company}</td>
          <td>
             <SwitchLocked className="d-flex justify-content-center align-items-center" />
          </td>
@@ -45,48 +46,6 @@ function UserList(props) {
                <Link to={`/admin/user/edit/${id}`} className="maincontent-size text-white text-decoration-none">
                   <EditFilled />
                   Edit
-               </Link>
-            </button>
-            <button className="btn btn-danger maincontent-size  ">
-               <Link
-                  className="maincontent-size text-white text-decoration-none"
-                  onClick={() => {
-                     const swalWithBootstrapButtons = Swal.mixin({
-                        customClass: {
-                           confirmButton: 'btn btn-success ',
-                           cancelButton: 'btn btn-danger m-2',
-                        },
-                        buttonsStyling: false,
-                     });
-                     swalWithBootstrapButtons
-                        .fire({
-                           title: 'Are you sure?',
-                           text: "You won't be able to revert this!",
-                           icon: 'warning',
-                           showCancelButton: true,
-                           confirmButtonText: 'Yes, delete it!',
-                           cancelButtonText: 'No, cancel!',
-                           reverseButtons: true,
-                        })
-                        .then((result) => {
-                           if (result.isConfirmed) {
-                              swalWithBootstrapButtons.fire({
-                                 title: 'Deleted!',
-                                 text: 'Your file has been deleted.',
-                                 icon: 'success',
-                              });
-                           } else if (result.dismiss === Swal.DismissReason.cancel) {
-                              swalWithBootstrapButtons.fire({
-                                 title: 'Cancelled',
-                                 text: 'Your imaginary file is safe :)',
-                                 icon: 'error',
-                              });
-                           }
-                        });
-                  }}
-               >
-                  <DeleteFilled />
-                  Delete
                </Link>
             </button>
          </td>

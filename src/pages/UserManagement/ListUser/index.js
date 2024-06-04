@@ -12,7 +12,7 @@ function ListUser() {
       try {
          localStorage.setItem(
             'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc0NzcwMTMsImV4cCI6MTcxNzQ4MDYxMywibmJmIjoxNzE3NDc3MDEzLCJqdGkiOiJwZVVadTZpcjVtanJ5SHlVIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.3hTu3xDKsBLoKwDyGn496vIj9Z5oZTpjIGqu0Y9Zwgk',
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc1MTI3NDAsImV4cCI6MTcxNzUxNjM0MCwibmJmIjoxNzE3NTEyNzQwLCJqdGkiOiI2WEZsczhmcFdPdmVYN3Z5Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.A5t-Ceeb70pebWii4wn5F5KKETGcllNFPSJp5BGA_Nk',
          );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
@@ -55,6 +55,7 @@ function ListUser() {
                   <th style={{ color: '#ff6699' }}>User name</th>
                   <th style={{ color: '#ff6699' }}>Email</th>
                   <th style={{ color: '#ff6699' }}>Phone</th>
+                  <th style={{ color: '#ff6699' }}>Company</th>
                   <th style={{ color: '#ff6699' }}>Lock-Unlock</th>
                   <th style={{ color: '#ff6699' }}>Action</th>
                </tr>
@@ -66,6 +67,7 @@ function ListUser() {
                      userName={user.name}
                      email={user.email}
                      phoneNumber={user.phone}
+                     company={(user.company!==null)?user.company.name :""}
                      locked={user.locked}
                   />
                ))}
