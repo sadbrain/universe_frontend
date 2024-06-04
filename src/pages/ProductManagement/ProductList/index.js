@@ -1,8 +1,68 @@
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { useState, useEffect } from 'react';
+import { BASE_URL, vAPI } from '~/enums/core';
+
 import './index.css';
 function ProductList() {
-   const handleRemoveProduct = (e, url) => {
+   const [products, setProducts] = useState([]);
+   useEffect(() => {
+      logProducts();
+   }, []);
+   async function logProducts() {
+      const token = localStorage.getItem('token');
+      const url = BASE_URL + vAPI + `products`;
+      const options = {
+         method: 'GET',
+         headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+         },
+      };
+
+      try {
+         const response = await fetch(url, options);
+         if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+         }
+
+         const responseObj = await response.json();
+         setProducts(responseObj.data);
+      } catch (error) {
+         console.error('Fetch error:', error.message);
+         return null;
+      }
+   }
+
+   async function removeProduct(id) {
+      const token = localStorage.getItem('token');
+      const url = BASE_URL + vAPI + `products/${id}`;
+      const options = {
+         method: 'DELETE',
+         headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+         },
+      };
+      try {
+         const response = await fetch(url, options);
+         if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+         }
+         // const responseObj = await response.json();
+         setProducts((prev) => {
+            let newArray = [...prev];
+            newArray = newArray.filter((p) => p.id !== id);
+            return newArray;
+         });
+         Swal.fire('Deleted!', 'Product deleted successfully', 'success');
+      } catch (error) {
+         console.error('Fetch error:', error.message);
+         return null;
+      }
+   }
+
+   const handleRemoveProduct = (e, id) => {
       e.preventDefault();
       Swal.fire({
          title: 'Are you sure?',
@@ -13,12 +73,13 @@ function ProductList() {
          cancelButtonText: 'No, cancel!',
       }).then((result) => {
          if (result.isConfirmed) {
-            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+            removeProduct(id);
          } else if (result.dismiss === Swal.DismissReason.cancel) {
-            Swal.fire('Cancelled', 'Your file is safe :)', 'error');
+            Swal.fire('Cancelled', 'Your product is safe :)', 'error');
          }
       });
    };
+
    return (
       <div className="">
          <div className=" my-5">
@@ -61,73 +122,43 @@ function ProductList() {
                         </tr>
                      </thead>
                      <tbody>
-                        <tr>
-                           <td>1</td>
-                           <td>Clothes 1</td>
-                           <td>10 000</td>
-                           <td>1000</td>
-                           <td>100</td>
-                           <td>0%</td>
-                           <td>
-                              <div className=" btn-group d-flex justify-content-center align-items-center" role="group">
-                                 <Link
-                                    style={{ backgroundColor: '#0F881B' }}
-                                    className="order-detail-button mx-4"
-                                    onClick={(e) => handleRemoveProduct(e, '/admin/product/delete/1')}
-                                 >
-                                    Delete
-                                 </Link>
-                                 <Link to={'/admin/product/update/1'} className="order-detail-button mx-4">
-                                    Edit
-                                 </Link>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>1</td>
-                           <td>Clothes 1</td>
-                           <td>10 000</td>
-                           <td>1000</td>
-                           <td>100</td>
-                           <td>50%</td>
-                           <td>
-                              <div className=" btn-group d-flex justify-content-center align-items-center" role="group">
-                                 <Link
-                                    style={{ backgroundColor: '#0F881B' }}
-                                    className="order-detail-button mx-4"
-                                    onClick={(e) => handleRemoveProduct(e, '/admin/product/delete/1')}
-                                 >
-                                    Delete
-                                 </Link>
-                                 <Link to={'/admin/product/update/1'} className="order-detail-button mx-4">
-                                    Edit
-                                 </Link>
-                              </div>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td>1</td>
-                           <td>Clothes 1</td>
-                           <td>10 000</td>
-                           <td>1000</td>
-                           <td>100</td>
-                           <td>25%</td>
-                           <td>
-                              <div className=" btn-group d-flex justify-content-center align-items-center" role="group">
-                                 <Link
-                                    // to={'/admin/product/delete/1'}
-                                    style={{ backgroundColor: '#0F881B' }}
-                                    className="order-detail-button mx-4"
-                                    onClick={(e) => handleRemoveProduct(e, '/admin/product/delete/1')}
-                                 >
-                                    Delete
-                                 </Link>
-                                 <Link to={'/admin/product/update/1'} className="order-detail-button mx-4">
-                                    Edit
-                                 </Link>
-                              </div>
-                           </td>
-                        </tr>
+                        {products.map((p, i) => {
+                           let discount = 0;
+                           if (p?.discount?.end_date) {
+                              const discountEndDate = new Date(p.discount.end_date);
+                              const now = new Date();
+                              if (discountEndDate.getTime() >= now.getTime()) {
+                                 discount = p.discount.price;
+                              }
+                           }
+                           return (
+                              <tr key={p.id}>
+                                 <td>{p.id}</td>
+                                 <td>{p.name}</td>
+                                 <td>${p.price.toFixed(2)}</td>
+                                 <td>{p.rating}</td>
+                                 <td>{p.inventory.quantity}</td>
+                                 <td>{discount}%</td>
+                                 <td>
+                                    <div
+                                       className=" btn-group d-flex justify-content-center align-items-center"
+                                       role="group"
+                                    >
+                                       <Link
+                                          style={{ backgroundColor: '#0F881B' }}
+                                          className="order-detail-button mx-4"
+                                          onClick={(e) => handleRemoveProduct(e, p.id)}
+                                       >
+                                          Delete
+                                       </Link>
+                                       <Link to={`/admin/product/update/${p.id}`} className="order-detail-button mx-4">
+                                          Edit
+                                       </Link>
+                                    </div>
+                                 </td>
+                              </tr>
+                           );
+                        })}
                      </tbody>
                   </table>
                </div>

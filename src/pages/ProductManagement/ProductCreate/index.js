@@ -1,8 +1,14 @@
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FormControlM from '~/components/FormControlM';
 import { useState } from 'react';
+import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
+import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
+
 function ProductCreate() {
+   const navigate = useNavigate();
    const [formData, setFormData] = useState({
       product: {
          name: '',
@@ -17,7 +23,7 @@ function ProductCreate() {
       inventory: {
          quantity: 0,
       },
-      image: '',
+      image: null,
       sizes: [
          {
             name: '',
@@ -31,6 +37,13 @@ function ProductCreate() {
          },
       ],
    });
+   const handleFileChange = (e) => {
+      const file = e.target.files[0];
+      setFormData((prev) => ({
+         ...prev,
+         image: file,
+      }));
+   };
    const handleAddColor = (e) => {
       e.preventDefault();
       setFormData((prevFormData) => ({
@@ -80,9 +93,56 @@ function ProductCreate() {
          return updatedFormData;
       });
    };
+   const addProduct = async (e) => {
+      e.preventDefault();
+      const newFormData = { ...formData };
+      newFormData.sizes = newFormData.sizes.filter((s) => {
+         return s.name !== '' && s.quantity > 1;
+      });
+      newFormData.colors = newFormData.colors.filter((c) => {
+         return c.name !== '' && c.quantity > 1;
+      });
 
+      const formDataToSend = new FormData();
+      formDataToSend.append('product[name]', newFormData.product.name);
+      formDataToSend.append('product[description]', newFormData.product.description);
+      formDataToSend.append('product[price]', newFormData.product.price);
+      formDataToSend.append('discount[start_date]', newFormData.discount.start_date);
+      formDataToSend.append('discount[end_date]', newFormData.discount.end_date);
+      formDataToSend.append('discount[price]', newFormData.discount.price);
+      formDataToSend.append('inventory[quantity]', newFormData.inventory.quantity);
+      // formDataToSend.append('image', newFormData.image);
+      newFormData.colors.forEach((c, i) => {
+         formDataToSend.append(`colors[${i}][name]`, c.name);
+         formDataToSend.append(`colors[${i}][quantity]`, c.quantity);
+      });
+      newFormData.sizes.forEach((s, i) => {
+         formDataToSend.append(`sizes[${i}][name]`, s.name);
+         formDataToSend.append(`sizes[${i}][quantity]`, s.quantity);
+      });
+
+      const token = localStorage.getItem('token');
+      const url = BASE_URL + vAPI + 'products';
+      const api = axios.create({
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      });
+      try {
+         const response = await api.post(url, formDataToSend);
+         console.log(response);
+
+         if (response.status === 201) {
+            toast.success(response.data.success_messages);
+            navigate('/admin/product');
+         }
+      } catch (error) {
+         console.error('Fetch error:', error.message);
+         return null;
+      }
+   };
    return (
-      <form method="post" className="my-5" id="orderForm">
+      <form method="post" className="my-5" id="orderForm" encType="multipart/form-data">
          <div className="col-12 text-center mb-5">
             <h2 className="py-2 table-heading">Create Product</h2>
          </div>
@@ -93,6 +153,14 @@ function ProductCreate() {
                value={formData.product.description}
                onChange={handleChange}
                name="product.description"
+            />
+            <FormControlM
+               label="Price:"
+               type="number"
+               value={formData.product.price}
+               onChange={handleChange}
+               name="product.price"
+               style={{ width: '49%' }}
             />
             <FormControlM
                label="Discount:"
@@ -118,14 +186,7 @@ function ProductCreate() {
                name="discount.end_date"
                style={{ width: '49%' }}
             />
-            <FormControlM
-               label="Price:"
-               type="number"
-               value={formData.product.price}
-               onChange={handleChange}
-               name="product.price"
-               style={{ width: '49%' }}
-            />
+
             <FormControlM
                label="Quantity:"
                type="number"
@@ -133,7 +194,7 @@ function ProductCreate() {
                onChange={handleChange}
                name="inventory.quantity"
             />
-            <FormControlM label="Images:" type="file" value={formData.image} onChange={handleChange} name="image" />
+            <FormControlM label="Images:" type="file" onChange={handleFileChange} multiple name="image" />
             <div className="row my-4">
                <div className="col-6 text-start">
                   <h2>
@@ -244,7 +305,6 @@ function ProductCreate() {
             <div className="row my-4">
                <div className="col-12 text-end">
                   <Link
-                     to={'/admin/product/create'}
                      style={{
                         fontSize: '30px',
                         color: '#fff',
@@ -254,6 +314,7 @@ function ProductCreate() {
                         textDecoration: 'none',
                         marginRight: '20px',
                      }}
+                     onClick={addProduct}
                   >
                      + Create
                   </Link>

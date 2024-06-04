@@ -2,7 +2,6 @@ import './index.css';
 import { useEffect, useState } from 'react';
 import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
 import { useLocation } from 'react-router-dom';
-import { ConsoleSqlOutlined } from '@ant-design/icons';
 import { Navigate } from 'react-router-dom';
 function Summary() {
    const [formData, setFormData] = useState({
