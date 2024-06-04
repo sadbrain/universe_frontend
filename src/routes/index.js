@@ -75,7 +75,7 @@ const privateRoutes = [
    },
    {
       layout: AdminLayout,
-      path: '/admin/company/update',
+      path: '/admin/company/update/:id',
       component: CompanyUpdate,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');

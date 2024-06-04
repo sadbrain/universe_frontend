@@ -23,7 +23,7 @@
     margin-bottom: 10px;
 }
 
-.input {
+.input-cp {
     width: 100%;
     padding: 10px 0;
     border: none;
@@ -32,10 +32,15 @@
     outline: none;
 }
 
+.error{
+    color:#ec101b;
+    font-size: medium;
+    padding-top: 5px;
+}
+
 .button-group {
     display: flex;
     justify-content: flex-end;
-    font-size: 1.5em;
     gap: 10px;
     width: 50%;
     margin: 0 auto;
