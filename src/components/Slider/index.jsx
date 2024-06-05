@@ -72,17 +72,17 @@ const App = () => {
          >
             <div style={contentStyle}>
                <div style={imgContainerStyle}>
-                  <img src="./images/Slider1.jpg" alt="Slide 1" style={imgStyle} />
+                  <img src="./images/Day1.jpg" alt="Slide 1" style={imgStyle} />
                </div>
             </div>
             <div style={contentStyle}>
                <div style={imgContainerStyle}>
-                  <img src="./images/Slider2.jpg" alt="Slide 2" style={imgStyle} />
+                  <img src="./images/Hanfu1.jpg" alt="Slide 2" style={imgStyle} />
                </div>
             </div>
             <div style={contentStyle}>
                <div style={imgContainerStyle}>
-                  <img src="./images/Slider4.jpg" alt="Slide 3" style={imgStyle} />
+                  <img src="./images/Day10.jpg" alt="Slide 3" style={imgStyle} />
                </div>
             </div>
          </Carousel>

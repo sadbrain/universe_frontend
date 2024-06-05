@@ -82,7 +82,7 @@ function EditUser() {
    return (
       <form method="post" className="mt-5" id="userForm">
          <div className="col-12 text-center mb-5">
-            <h2 className="py-2 table-heading">Create User</h2>
+            <h2 className="py-2 table-heading">Edit User</h2>
          </div>
          <div className="row">
             <div className="col-6 mt-4">

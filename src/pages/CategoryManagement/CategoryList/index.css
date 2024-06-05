@@ -1,0 +1,50 @@
+body {
+   font-family: Roboto;
+}
+.create-category-form .ant-btn-primary {
+   height: 40px;
+   font-size: 16px;
+   background-color: #52c41a;
+   border-color: #52c41a;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.create-category-form .ant-btn-primary::before {
+   content: '\e633';
+   font-family: 'antd-icons';
+   margin-right: 8px;
+   font-size: 16px;
+}
+
+.create-category-form .ant-btn-link {
+   height: 40px;
+   font-size: 16px;
+   color: #666;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.create-category-form .ant-btn-link::before {
+   content: '\e6d2';
+   font-family: 'antd-icons';
+   margin-right: 8px;
+   font-size: 20px;
+}
+/* index.css */
+
+.ant-btn-primary {
+   background-color: #ff6699;
+   border-color: #ff6699;
+}
+
+.ant-btn-primary.ant-btn-dangerous {
+   background-color: #0f881b;
+   border-color: #0f881b;
+}
+
+.ant-btn-primary .anticon {
+   margin-right: 8px;
+}

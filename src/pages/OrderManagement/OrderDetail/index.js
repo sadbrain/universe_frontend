@@ -1,4 +1,4 @@
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './index.css';
 import { useState, useEffect } from 'react';
 import { BASE_URL, vAPI } from '~/enums/core';

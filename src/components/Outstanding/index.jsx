@@ -62,11 +62,7 @@ const Outstanding = () => {
                   >
                      <div className="custom-carousel-img-container">
                         <img
-                           src={
-                              p.thumbnail.includes('https://via.placeholder.com')
-                                 ? p.thumbnail
-                                 : BE_URL + 'images/product/' + p.thumbnail
-                           }
+                           src={p.thumbnail.includes('https://placehold.co') ? p.thumbnail : BE_URL + p.thumbnail}
                            alt="Slide 1"
                            className="custom-carousel-img"
                         />

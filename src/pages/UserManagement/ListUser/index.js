@@ -1,19 +1,13 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import UserList from '../../../components/UserList';
 import { Link } from 'react-router-dom';
 import './index.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Toast } from '../AddMoreUser';
 function ListUser() {
    const [users, setUsers] = useState([]);
    const [companies, setCompanies] = useState([]);
    useEffect(() => {
       try {
-         localStorage.setItem(
-            'token',
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC8xMjcuMC4wLjE6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE3MTc1MTI3NDAsImV4cCI6MTcxNzUxNjM0MCwibmJmIjoxNzE3NTEyNzQwLCJqdGkiOiI2WEZsczhmcFdPdmVYN3Z5Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.A5t-Ceeb70pebWii4wn5F5KKETGcllNFPSJp5BGA_Nk',
-         );
          const token = localStorage.getItem('token');
          const axiosInstance = axios.create({
             baseURL: 'http://127.0.0.1:8000/api/v1',
@@ -25,14 +19,12 @@ function ListUser() {
             const res = await axiosInstance.get('/users');
             const data = res.data.data;
             setUsers(data);
-            console.log('Data', users);
          };
          userManagers();
          const companyManagers = async () => {
             const res = await axiosInstance.get('/companies');
             const data = res.data.data;
             setCompanies(data);
-            console.log('Data', companies);
          };
          companyManagers();
       } catch (error) {
@@ -67,7 +59,7 @@ function ListUser() {
                      userName={user.name}
                      email={user.email}
                      phoneNumber={user.phone}
-                     company={(user.company!==null)?user.company.name :""}
+                     company={user.company !== null ? user.company.name : ''}
                      locked={user.locked}
                   />
                ))}

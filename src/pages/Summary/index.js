@@ -273,7 +273,7 @@ function Summary() {
                                              src={
                                                 c.product.thumbnail.includes('https://via.placeholder.com')
                                                    ? c.product.thumbnail
-                                                   : BE_URL + 'images/product/' + c.product.thumbnail
+                                                   : BE_URL + c.product.thumbnail
                                              }
                                              alt=""
                                           />
@@ -283,7 +283,7 @@ function Summary() {
                                           <p className="">Size: {c.size}</p>
                                           <p className="">Color: {c.color}</p>
                                        </div>
-                                       <div className="product-summary_price col-7 ">
+                                       <div className="product-summary_price col-7">
                                           <h3 className="col-4">Quantity : {c.quantity}</h3>
                                           <h3 className="col-4">Price: ${price.toFixed(2)}</h3>
                                           <h3 className="col-4 product-summary_total_price">

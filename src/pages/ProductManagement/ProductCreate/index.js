@@ -111,7 +111,7 @@ function ProductCreate() {
       formDataToSend.append('discount[end_date]', newFormData.discount.end_date);
       formDataToSend.append('discount[price]', newFormData.discount.price);
       formDataToSend.append('inventory[quantity]', newFormData.inventory.quantity);
-      // formDataToSend.append('image', newFormData.image);
+      formDataToSend.append('image', newFormData.image);
       newFormData.colors.forEach((c, i) => {
          formDataToSend.append(`colors[${i}][name]`, c.name);
          formDataToSend.append(`colors[${i}][quantity]`, c.quantity);

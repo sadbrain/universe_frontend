@@ -13,11 +13,14 @@ import {
    Products,
    ProductCreate,
    ProductUpdate,
-   CompanyList, 
-   CompanyCreate, 
+   CompanyList,
+   CompanyCreate,
    CompanyUpdate,
    Privacy,
 } from '../pages';
+import CategoryList from '../pages/CategoryManagement/CategoryList';
+import CategoryCreate from '../pages/CategoryManagement/CategoryCreate';
+import CategoryUpdate from '../pages/CategoryManagement/CategoryUpdate';
 
 const publicRoutes = [
    { path: '/', component: Home },
@@ -33,6 +36,30 @@ const publicRoutes = [
 ];
 
 const privateRoutes = [
+   {
+      layout: AdminLayout,
+      path: '/admin/category',
+      component: CategoryList,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/category/create',
+      component: CategoryCreate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
+   {
+      layout: AdminLayout,
+      path: '/admin/category/update/:id',
+      component: CategoryUpdate,
+      error: () => {
+         alert('ban khong con quyen truy cap yeu cau nay');
+      },
+   },
    {
       layout: AdminLayout,
       path: '/admin/user/create',

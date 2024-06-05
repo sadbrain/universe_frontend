@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Rate, Card } from 'antd';
 import './index.css'; // Import CSS tùy chỉnh của bạn
 import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
 
@@ -70,11 +69,7 @@ const Selling = () => {
                      cover={
                         <img
                            alt="product"
-                           src={
-                              p.thumbnail.includes('https://via.placeholder.com')
-                                 ? p.thumbnail
-                                 : BE_URL + 'images/product/' + p.thumbnail
-                           }
+                           src={p.thumbnail.includes('https://placehold.co') ? p.thumbnail : BE_URL + p.thumbnail}
                            className="product-image"
                         />
                      }

@@ -3,7 +3,7 @@ import { Card, Button as AntButton, Radio, Typography, Divider, Rate, InputNumbe
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'; // Import the custom CSS
 import { useParams, useNavigate } from 'react-router-dom';
-import { BASE_URL, vAPI } from '~/enums/core';
+import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
 import { toast } from 'react-toastify';
 import { Meta } from 'antd/es/list/Item';
 const { Title, Text } = Typography;
@@ -27,7 +27,6 @@ const ProductPage = () => {
          discountPrice = rowPrice - (rowPrice * product.discount.price) / 100;
       }
    }
-
    useEffect(() => {
       getProduct();
    }, [id]);
@@ -165,7 +164,15 @@ const ProductPage = () => {
          <Card className="p-4">
             <div className="d-flex">
                <div className="image-container">
-                  <img src="/images/Slider1.jpg" alt="Product" className="img-fluid product-image" />
+                  <img
+                     src={
+                        product?.thumbnail.includes('https://placehold.co')
+                           ? product?.thumbnail
+                           : BE_URL + product?.thumbnail
+                     }
+                     alt="Product"
+                     className="img-fluid product-image"
+                  />
                </div>
                <div className="content-container">
                   <Title level={4} className="product-title">
@@ -292,9 +299,9 @@ const ProductPage = () => {
                            <img
                               alt="product"
                               src={
-                                 product.thumbnail.includes('https://via.placeholder.com')
-                                    ? product.thumbnail
-                                    : BASE_URL + 'images/product/' + product.thumbnail
+                                 product?.thumbnail.includes('https://placehold.co')
+                                    ? product?.thumbnail
+                                    : BE_URL + product?.thumbnail
                               }
                               className="product-image"
                            />

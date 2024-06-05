@@ -168,7 +168,6 @@ function ProductUpdate() {
       e.preventDefault();
       const token = localStorage.getItem('token');
       const url = BASE_URL + vAPI + prefix + `create-size-more/${productContainer?.inventory?.id}`;
-
       const options = {
          method: 'POST',
          headers: {
@@ -196,7 +195,6 @@ function ProductUpdate() {
       e.preventDefault();
       const token = localStorage.getItem('token');
       const url = BASE_URL + vAPI + prefix + `create-color-more/${productContainer?.inventory?.id}`;
-
       const options = {
          method: 'POST',
          headers: {
@@ -267,7 +265,7 @@ function ProductUpdate() {
       formDataToSend.append('discount[end_date]', newFormData.discount.end_date);
       formDataToSend.append('discount[price]', newFormData.discount.price);
       formDataToSend.append('inventory[quantity]', newFormData.inventory.quantity);
-      // formDataToSend.append('image', newFormData.image);
+      formDataToSend.append('image', newFormData.image);
       newFormData.existingColors.forEach((c, i) => {
          formDataToSend.append(`colors[${i}][name]`, c.name);
          formDataToSend.append(`colors[${i}][id]`, c.id);
@@ -313,9 +311,9 @@ function ProductUpdate() {
                   height: '400px',
                }}
                src={
-                  productContainer?.thumbnail?.includes('placehold.co')
-                     ? productContainer.thumbnail
-                     : BE_URL + productContainer.thumbnail
+                  productContainer?.thumbnail?.includes('https://placehold.co')
+                     ? productContainer?.thumbnail
+                     : BE_URL + productContainer?.thumbnail
                }
             />
          </div>
