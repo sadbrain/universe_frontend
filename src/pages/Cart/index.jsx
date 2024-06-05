@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Breadcrumb, Card, Typography, Input, Button } from 'antd';
-import { PlusOutlined, MinusOutlined, DeleteOutlined, EditOutlined, RightOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined, DeleteOutlined, RightOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
-import { BASE_URL, vAPI } from '~/enums/core';
+import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
 import { toast } from 'react-toastify';
 
 const { Title, Text, Paragraph } = Typography;
@@ -228,7 +228,15 @@ const Cart = () => {
                               <Col span={9} className="px-1">
                                  <Row>
                                     <div className="col-4">
-                                       <img src="./images/Slider1.jpg" alt="Product Image" className="product-image" />
+                                       <img
+                                          src={
+                                             c?.product?.thumbnail.includes('https://placehold.co')
+                                                ? c?.product?.thumbnail
+                                                : BE_URL + c?.product?.thumbnail
+                                          }
+                                          alt="Product Image"
+                                          className="product-image"
+                                       />
                                     </div>
                                     <div className="col-8 px-2">
                                        <div className="cart-item-info">

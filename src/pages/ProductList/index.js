@@ -1,7 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect, useRef } from 'react';
 import { RightOutlined } from '@ant-design/icons';
-import { Link, useSearchParams, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Cards } from '../../components/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
@@ -10,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { Pagination } from 'antd';
 import { useParams } from 'react-router-dom';
 // "http://localhost:8000/api/v1/products?category=${category}&page=x&priceFrom=${priceFrom}&priceTo=${priceTo}"
+import { BE_URL } from '~/enums/core';
 
 function ProductList() {
    const navigate = useNavigate();
@@ -30,6 +30,7 @@ function ProductList() {
    const inputRef = useRef(null);
    const [products, setProducts] = useState([]);
    const [loading, setLoading] = useState(true);
+   const [cateName, setCateName] = useState('');
 
    const ProductPagination = ({ current, totalProduct, productEachPage }) => {
       const onChange = (page) => {
@@ -46,6 +47,7 @@ function ProductList() {
          />
       );
    };
+
    useEffect(() => {
       const fetchProducts = async () => {
          const categoryId = pathname.split('/')[2].match(/-(\d+)/) ? pathname.split('/')[2].match(/-(\d+)/)[1] : '1';
@@ -55,6 +57,7 @@ function ProductList() {
          url.search = searchParams.toString();
          const res = await axios.get(url.href);
          const data = res.data;
+         setCateName(data.data[0]?.category?.name);
          setProducts(data.data);
          setLoading(false);
       };
@@ -129,7 +132,7 @@ function ProductList() {
                </Link>
                <RightOutlined className="m-3 color-custom" />
                <Link to="#" className="maincontent-size text-decoration-none text-dark">
-                  Antiques Dress
+                  {cateName}
                </Link>
             </div>
          </div>
@@ -173,24 +176,44 @@ function ProductList() {
                   </div>
                </div>
                <div className="col-9">
-                  <button className="btn-pink content-size text-white rounded-10 p-2">ANTIQUE DRESS</button>
+                  <button className="btn-pink content-size text-white rounded-10 p-2">{cateName}</button>
                   <div className="row mt-4">
                      {loading ? (
                         <Skeleton active />
                      ) : (
-                        products.map((product) => (
-                           <Cards
-                              key={product.id}
-                              src={product.thumbnail}
-                              productName={product.name}
-                              rankComments={product.description}
-                              currentPrice={product.discount.price}
-                              oldPrice={product.price}
-                              onClick={() => {
-                                 handleCardClick(product.category.slug, product.category.id, product.slug, product.id);
-                              }}
-                           />
-                        ))
+                        products.map((product) => {
+                           let rowPrice = product?.price;
+                           let discountPrice = 0;
+                           if (product?.discount?.end_date) {
+                              const discountEndDate = new Date(product.discount.end_date);
+                              const now = new Date();
+                              if (discountEndDate.getTime() >= now.getTime()) {
+                                 discountPrice = rowPrice - (rowPrice * product.discount.price) / 100;
+                              }
+                           }
+                           return (
+                              <Cards
+                                 key={product.id}
+                                 src={
+                                    product.thumbnail.includes('https://placehold.co')
+                                       ? product.thumbnail
+                                       : BE_URL + product.thumbnail
+                                 }
+                                 productName={product.name}
+                                 rankComments={product.description}
+                                 currentPrice={discountPrice === 0 ? rowPrice : discountPrice}
+                                 oldPrice={discountPrice !== 0 ? rowPrice : ''}
+                                 onClick={() => {
+                                    handleCardClick(
+                                       product.category.slug,
+                                       product.category.id,
+                                       product.slug,
+                                       product.id,
+                                    );
+                                 }}
+                              />
+                           );
+                        })
                      )}
                   </div>
                </div>
