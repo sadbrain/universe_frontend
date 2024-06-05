@@ -1,39 +1,80 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Radio } from 'antd';
-const RoleRadio = () => {
-   const [value, setValue] = useState(1);
+import axios from 'axios';
+const RoleRadio = ({ onRoleChange }) => {
    const onChange = (e) => {
-      console.log('radio checked', e.target.value);
-      setValue(e.target.value);
+      onRoleChange(e.target.value);
+      
    };
-   
+   const [value, setValue] = useState(1);
+   const [companies, setCompanies] = useState([]);
+   const [roles, setRoles] = useState([]);
+   useEffect(() => {
+      try {
+         const token = localStorage.getItem('token');
+         const axiosInstance = axios.create({
+            baseURL: 'http://127.0.0.1:8000/api/v1',
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+         });
+         const companyManagers = async () => {
+            const res = await axiosInstance.get('/companies');
+            const data = res.data.data;
+            setCompanies(data);
+            console.log('Data', companies);
+         };
+         companyManagers();
+         const roleManagers = async () => {
+            const res = await axiosInstance.get('/users/get-roles');
+            const data = res.data.data;
+            setRoles(data);
+            console.log('Data', roles);
+         };
+         roleManagers();
+      } catch (error) {
+         console.error(error);
+      }
+   }, []);
 
    return (
       <Radio.Group onChange={onChange} value={value}>
          <div className="row">
-            <div className="col-6">
-               <Radio value="Customer" className="text-custom maincontent-size bold-text color-custom"
-               onClick={() =>{
-                  const select = document.getElementById("companySelected");
-                  select.classList.add("hidden");
-               }}
-               >
-                  Customer
-               </Radio>
-            </div>
-            <div className="col-6">
-               <Radio value="Company" className="text-custom maincontent-size bold-text color-custom" id="company" onClick={() =>{
-                  const select = document.getElementById("companySelected");
-                  select.classList.remove("hidden");
-               }}>
-                  Company
-                  <select id="companySelected" className="hidden">
-                     <option value="Công ty TNHH ÁO quần">Công ty TNHH ÁO quần</option>
-                     <option value="Công ty TNHH giày dép">Công ty TNHH giày dép</option>
-                     <option value="Công ty TNHH phụ kiện">Công ty TNHH phụ kiện</option>
-                  </select>
-               </Radio>
-            </div>
+            {roles.map((role) => (
+               <div className="col-6">
+                  <Radio
+                     key={role.id}
+                     value={role.id}
+                     className="text-custom content-size bold-text color-custom"
+                     onClick={() => {
+                        if (role.name === 'Company') {
+                           const select = document.getElementById('companySelected');
+                           select.classList.remove('hidden');
+                        } else {
+                           const select = document.getElementById('companySelected');
+                           select.classList.add('hidden');
+                        }
+                     }}
+                  >
+                     {role.name}
+                     <select
+                        id="companySelected"
+                        className="hidden"
+                        onChange={(e) => {
+                           const selectedCompanyId = e.target.value;
+                           localStorage.setItem('company_id', selectedCompanyId);
+                           console.log('company_id select:' + selectedCompanyId);
+                        }}
+                     >
+                        {companies.map((company) => (
+                           <option value={company.id} key={company.id}>
+                              {company.name}
+                           </option>
+                        ))}
+                     </select>
+                  </Radio>
+               </div>
+            ))}
          </div>
       </Radio.Group>
    );

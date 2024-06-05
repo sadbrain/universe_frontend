@@ -43,7 +43,7 @@ const privateRoutes = [
    },
    {
       layout: AdminLayout,
-      path: '/admin/user/edit',
+      path: '/admin/user/edit/:id',
       component: EditUser,
       error: () => {
          alert('ban khong con quyen truy cap yeu cau nay');

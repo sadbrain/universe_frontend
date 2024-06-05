@@ -1,11 +1,15 @@
-.formControlM{
-    margin: 10px;
+.formControlM {
+   margin: 10px;
 }
-.formControlM label{
-    font-size: 20px;
+.formControlM label {
+   font-size: 20px;
 }
 .img-cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+}
+.text-custom {
+   color: #ff6699;
+   font-size: 25px;
+}
