@@ -246,9 +246,19 @@ function ProductUpdate() {
          return null;
       }
    };
+
+   const handleImageChange = (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+         setFormData({ ...formData, image: reader.result });
+      };
+      reader.readAsDataURL(file);
+   };
+
    const updateProduct = async (e) => {
       e.preventDefault();
-      const newFormData = { ...formData };
+      let newFormData = { ...formData };
       newFormData.existingSizes = newFormData.existingSizes.filter((s) => {
          return s.name !== '' && s.quantity > 1;
       });
@@ -256,27 +266,9 @@ function ProductUpdate() {
          return c.name !== '' && c.quantity > 1;
       });
 
-      const formDataToSend = new FormData();
-      formDataToSend.append('product[name]', newFormData.product.name);
-      formDataToSend.append('product[id]', newFormData.product.id);
-      formDataToSend.append('product[description]', newFormData.product.description);
-      formDataToSend.append('product[price]', newFormData.product.price);
-      formDataToSend.append('discount[start_date]', newFormData.discount.start_date);
-      formDataToSend.append('discount[end_date]', newFormData.discount.end_date);
-      formDataToSend.append('discount[price]', newFormData.discount.price);
-      formDataToSend.append('inventory[quantity]', newFormData.inventory.quantity);
-      formDataToSend.append('image', newFormData.image);
-      newFormData.existingColors.forEach((c, i) => {
-         formDataToSend.append(`colors[${i}][name]`, c.name);
-         formDataToSend.append(`colors[${i}][id]`, c.id);
-         formDataToSend.append(`colors[${i}][quantity]`, c.quantity);
-      });
-      newFormData.existingSizes.forEach((s, i) => {
-         formDataToSend.append(`sizes[${i}][name]`, s.name);
-         formDataToSend.append(`sizes[${i}][id]`, s.id);
-         formDataToSend.append(`sizes[${i}][quantity]`, s.quantity);
-      });
+      newFormData = { ...newFormData, colors: newFormData.existingColors, sizes: newFormData.existingSizes };
       console.log(newFormData);
+
       const token = localStorage.getItem('token');
       const url = BASE_URL + vAPI + `products/${newFormData.product.id}`;
       const api = axios.create({
@@ -285,11 +277,12 @@ function ProductUpdate() {
          },
       });
       try {
-         const response = await api.put(url, formDataToSend);
+         const response = await api.put(url, newFormData);
          console.log(response);
 
          if (response.status === 200) {
             toast.success(response.data.success_messages);
+            navigate('/admin/product');
          }
       } catch (error) {
          console.error('Fetch error:', error.message);
@@ -365,7 +358,13 @@ function ProductUpdate() {
                onChange={handleChange}
                name="inventory.quantity"
             />
-            <FormControlM label="Images:" type="file" value={formData.image} onChange={handleChange} name="image" />
+            <FormControlM
+               label="Images:"
+               type="file"
+               // value={formData.image}
+               onChange={handleImageChange}
+               name="image"
+            />
             <div className="row my-4">
                <div className="col-6 text-start">
                   <h2>
