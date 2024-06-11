@@ -1,0 +1,45 @@
+.page-inner {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 20px;
+   font-family: Arial, sans-serif;
+   background-color: #f9f9f9;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   border-radius: 8px;
+}
+
+.page-inner h1 {
+   color: #333;
+   font-size: 28px;
+   margin-bottom: 20px;
+   text-align: center;
+}
+
+.page-inner p {
+   color: #555;
+   line-height: 1.6;
+   margin-bottom: 20px;
+}
+
+.page-inner strong {
+   color: #333;
+}
+
+.page-inner ul {
+   margin-left: 20px;
+   margin-bottom: 20px;
+   list-style: disc;
+}
+
+.page-inner ul li {
+   margin-bottom: 10px;
+}
+
+.page-inner a {
+   color: #007bff;
+   text-decoration: none;
+}
+
+.page-inner a:hover {
+   text-decoration: underline;
+}

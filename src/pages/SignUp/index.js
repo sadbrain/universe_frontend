@@ -1,0 +1,235 @@
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import axios from 'axios';
+import './index.css';
+import { toast } from 'react-toastify';
+
+const SignUp = () => {
+   const navigate = useNavigate();
+
+   const validationSchema = Yup.object({
+      email: Yup.string()
+         .email('Invalid email address')
+         .required('Email is required')
+         .min(6, 'Must be at least 6 characters')
+         .max(100, 'Must be 100 characters or less'),
+      name: Yup.string()
+         .required('Name is required')
+         .min(2, 'Must be at least 2 characters')
+         .max(255, 'Must be 255 characters or less'),
+      password: Yup.string()
+         .required('Password is required')
+         .min(6, 'Must be at least 6 characters')
+         .max(255, 'Must be 255 characters or less')
+         .matches(
+            /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W)(?!.*\s).*$/,
+            'Password must contain an uppercase letter, a lowercase letter, a number, a special character, and no spaces',
+         ),
+      password_confirmation: Yup.string()
+         .test('passwords-match', 'Passwords must match', function (value) {
+            return this.parent.password === value;
+         })
+         .required('Password confirmation is required'),
+      phone: Yup.string().nullable().min(10, 'Must be at least 10 characters').max(20, 'Must be 20 characters or less'),
+      street_address: Yup.string()
+         .nullable()
+         .min(6, 'Must be at least 6 characters')
+         .max(255, 'Must be 255 characters or less'),
+      district_address: Yup.string()
+         .nullable()
+         .min(6, 'Must be at least 6 characters')
+         .max(255, 'Must be 255 characters or less'),
+      city: Yup.string().nullable().min(6, 'Must be at least 6 characters').max(255, 'Must be 255 characters or less'),
+   });
+
+   const formik = useFormik({
+      initialValues: {
+         email: '',
+         name: '',
+         password: '',
+         password_confirmation: '',
+         phone: '',
+         street_address: '',
+         district_address: '',
+         city: '',
+      },
+      validationSchema,
+      onSubmit: async (values, { setSubmitting, setFieldError }) => {
+         try {
+            console.log('Data being sent:', values);
+            const response = await axios.post('http://127.0.0.1:8000/api/v1/auth/register', values);
+            toast.success(response.success_messages);
+            navigate('/signin');
+         } catch (error) {
+            if (error.response && error.response.data && error.response.data.errors) {
+               const errors = error.response.data.errors;
+               for (const field in errors) {
+                  setFieldError(field, errors[field][0]);
+               }
+            } else {
+               console.log('An error occurred:', error.response.data);
+            }
+            setSubmitting(false);
+         }
+      },
+   });
+
+   return (
+      <div className="form-container">
+         <div className="image-container">
+            <img
+               src="https://inkythuatso.com/uploads/thumbnails/800/2022/05/1-anh-gai-xinh-2k4-inkythuatso-07-15-20-27.jpg"
+               alt="Your Image"
+            />
+         </div>
+         <div className="form-wrapper">
+            <div className="form-header">
+               <h1>UNIVERSE</h1>
+               <h2>Register To Universe</h2>
+            </div>
+            <div className="signup-options">
+               <button className="google-signup">
+                  <img
+                     src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
+                     alt="Google Logo"
+                  />
+                  Sign up with Google
+               </button>
+               <button className="facebook-signup">
+                  <img
+                     src="https://i0.wp.com/ladolcevitasarasota.com/wp-content/uploads/2023/03/facebook-logo-icon-facebook-icon-png-images-icons-and-png-backgrounds-1.png?fit=1000%2C1000&ssl=1&w=640"
+                     alt="Facebook Logo"
+                  />
+                  Sign up with Facebook
+               </button>
+            </div>
+            <p className="or">— OR —</p>
+            <form onSubmit={formik.handleSubmit}>
+               {formik.errors.apiError && <p className="error-message">{formik.errors.apiError}</p>}
+               <div className="contact-fields">
+                  <div className="input-container">
+                     <input
+                        type="email"
+                        placeholder="Email Address"
+                        className="input-field"
+                        name="email"
+                        {...formik.getFieldProps('email')}
+                     />
+                     {formik.touched.email && formik.errors.email ? (
+                        <p className="error-message">{formik.errors.email}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+                  <div className="input-container">
+                     <input
+                        type="text"
+                        placeholder="Fullname"
+                        className="input-field"
+                        name="name"
+                        {...formik.getFieldProps('name')}
+                     />
+                     {formik.touched.name && formik.errors.name ? (
+                        <p className="error-message">{formik.errors.name}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+               </div>
+               <div className="password-fields">
+                  <div className="input-container">
+                     <input
+                        type="password"
+                        placeholder="Password"
+                        className="input-field"
+                        name="password"
+                        {...formik.getFieldProps('password')}
+                     />
+                     {formik.touched.password && formik.errors.password ? (
+                        <p className="error-message">{formik.errors.password}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+                  <div className="input-container">
+                     <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        className="input-field"
+                        name="password_confirmation"
+                        {...formik.getFieldProps('password_confirmation')}
+                     />
+                     {formik.touched.password_confirmation && formik.errors.password_confirmation ? (
+                        <p className="error-message">{formik.errors.password_confirmation}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+               </div>
+               <div className="address-fields">
+                  <div className="input-container">
+                     <input
+                        type="tel"
+                        placeholder="Phone Number"
+                        className="input-field"
+                        name="phone"
+                        {...formik.getFieldProps('phone')}
+                     />
+                     {formik.touched.phone && formik.errors.phone ? (
+                        <p className="error-message">{formik.errors.phone}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+                  <div className="input-container">
+                     <input
+                        type="text"
+                        placeholder="Street"
+                        className="input-field"
+                        name="street_address"
+                        {...formik.getFieldProps('street_address')}
+                     />
+                     {formik.touched.street_address && formik.errors.street_address ? (
+                        <p className="error-message">{formik.errors.street_address}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+               </div>
+               <div className="address-fields">
+                  <div className="input-container">
+                     <input
+                        type="text"
+                        placeholder="District"
+                        className="input-field"
+                        name="district_address"
+                        {...formik.getFieldProps('district_address')}
+                     />
+                     {formik.touched.district_address && formik.errors.district_address ? (
+                        <p className="error-message">{formik.errors.district_address}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+                  <div className="input-container">
+                     <input
+                        type="text"
+                        placeholder="City/Province"
+                        className="input-field"
+                        name="city"
+                        {...formik.getFieldProps('city')}
+                     />
+                     {formik.touched.city && formik.errors.city ? (
+                        <p className="error-message">{formik.errors.city}</p>
+                     ) : null}
+                     <div className="underline"></div>
+                  </div>
+               </div>
+               <button type="submit" className="create-account" disabled={formik.isSubmitting}>
+                  Create Account
+               </button>
+            </form>
+            <p className="login-link">
+               Already have an account? <Link to="/signin">Login</Link>
+            </p>
+         </div>
+      </div>
+   );
+};
+
+export default SignUp;
