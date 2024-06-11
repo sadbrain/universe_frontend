@@ -35,14 +35,14 @@ function Cancelled() {
                         <div className="col-4">
                            <img
                               className="w-100 h-100"
-                              src="https://hoaigiangshop.com/wp-content/uploads/2021/03/quat-co-trang-tq-2.jpg"
+                              src={`http://127.0.0.1:8000`+orderDetail.product.thumbnail}
                               alt=""
                            />
                         </div>
                         <div className="col-8">
                            <div className="row maincontent-size">
                               <div className="col-9">
-                                 <p className="mb-2 font-weight-bold">{orderCancelled.name}</p>
+                                 <p className="mb-2 font-weight-bold">{orderDetail.product.name}</p>
                                  <p className="mb-2">Size: {orderDetail.size}</p>
                                  <p className="mb-2">Color: {orderDetail.color}</p>
                                  <p className="mb-2">Quantity: {orderDetail.quantity}</p>
