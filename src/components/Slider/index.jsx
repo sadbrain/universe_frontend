@@ -4,7 +4,7 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import './index.css'; // đảm bảo bạn đã import CSS của Ant Design
 
 const contentStyle = {
-   height: '300px', // Chiều cao của banner
+   height: '100%', // Adjusted to 100% to utilize the height of the container
    color: '#fff',
    textAlign: 'center',
    background: '#364d79',
@@ -72,17 +72,17 @@ const App = () => {
          >
             <div style={contentStyle}>
                <div style={imgContainerStyle}>
-                  <img src="./images/Day1.jpg" alt="Slide 1" style={imgStyle} />
+                  <img src="./images/Quạt tay 3.jpg" alt="Slide 1" style={imgStyle} />
                </div>
             </div>
             <div style={contentStyle}>
                <div style={imgContainerStyle}>
-                  <img src="./images/Hanfu1.jpg" alt="Slide 2" style={imgStyle} />
+                  <img src="./images/Quạt tay 2.jpg" alt="Slide 2" style={imgStyle} />
                </div>
             </div>
             <div style={contentStyle}>
                <div style={imgContainerStyle}>
-                  <img src="./images/Day10.jpg" alt="Slide 3" style={imgStyle} />
+                  <img src="./images/Quạt tay 1.jpg" alt="Slide 3" style={imgStyle} />
                </div>
             </div>
          </Carousel>

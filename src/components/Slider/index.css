@@ -4,21 +4,28 @@ body {
    margin: 0;
    padding: 0;
 }
+
 .container {
    max-width: 960px;
    margin: 0 auto;
    font-family: Roboto;
 }
-.carousel .slick-slide {
+
+.ant-carousel {
+   border-radius: 10px; /* Added border-radius to the carousel container */
+   overflow: hidden; /* Ensure that the border-radius is applied correctly */
+}
+
+.ant-carousel .slick-slide {
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 300px; /* Chiều cao của slide */
-   background-color: #364d79; /* Màu nền của slide */
+   height: 400px; /* Adjust height to fit the image size */
+   background-color: #364d79;
    overflow: hidden;
 }
 
-.carousel .slick-slide div {
+.ant-carousel .slick-slide div {
    width: 100%;
    height: 100%;
    display: flex;
@@ -27,29 +34,26 @@ body {
    overflow: hidden;
 }
 
-.carousel .slick-slide img {
-   width: 1500px; /* Chiều rộng là 100% để lấp đầy container */
-   height: 100%; /* Chiều cao là 100% để lấp đầy container */
-   object-fit: cover; /* Giữ tỉ lệ ảnh và lấp đầy container */
+.ant-carousel .slick-slide img {
+   width: 100%; /* Adjust width to fill container */
+   height: 100%; /* Adjust height to fill container */
+   object-fit: cover; /* Maintain aspect ratio and fill container */
 }
 
 @media (max-width: 767px) {
-   .carousel-image {
-      width: 100%;
-      height: 300px;
+   .ant-carousel .slick-slide {
+      height: 300px; /* Adjust height for smaller screens */
    }
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
-   .carousel-image {
-      width: 100%;
-      height: 400px;
+   .ant-carousel .slick-slide {
+      height: 400px; /* Adjust height for medium screens */
    }
 }
 
 @media (min-width: 1200px) {
-   .carousel-image {
-      width: 100%;
-      height: 500px;
+   .ant-carousel .slick-slide {
+      height: 500px; /* Adjust height for larger screens */
    }
 }
