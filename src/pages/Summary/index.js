@@ -1,9 +1,9 @@
 import './index.css';
 import { useEffect, useState } from 'react';
 import { BASE_URL, vAPI, BE_URL } from '~/enums/core';
-import { useLocation } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 function Summary() {
+   const navigate = useNavigate();
    const [formData, setFormData] = useState({
       order: {
          name: '',
@@ -95,7 +95,6 @@ function Summary() {
          }
       }
    };
-   console.log(carts);
    const handleChange = (e) => {
       const { value, name } = e.target;
       const keys = name.split('.');
@@ -141,7 +140,7 @@ function Summary() {
 
          if (response.status === 200) {
             if (responseObj.success_url.includes('orderConfirmation')) {
-               <Navigate to={responseObj.success_url} replace={true} />;
+               navigate(responseObj.success_url);
             } else {
                window.location.href = responseObj.success_url;
             }
