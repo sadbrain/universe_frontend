@@ -94,15 +94,15 @@ const Header = () => {
                      <HeartOutlined className="icon-color" />
                   </Link>
                </Menu.Item>
-               <Menu.Item key="product" className="menu-item-color">
+               <Menu.Item key="product" className="menu-item-color" style={{ color: '#ff6699' }}>
                   <Link to="/product" onClick={navigateProductList}>
                      Product
                   </Link>
                </Menu.Item>
-               <Menu.Item key="about-us" className="menu-item-color">
+               <Menu.Item key="about-us" className="menu-item-color" style={{ color: '#ff6699' }}>
                   <Link to="/aboutUs">About Us</Link>
                </Menu.Item>
-               <Menu.Item key="privacy" className="menu-item-color">
+               <Menu.Item key="privacy" className="menu-item-color" style={{ color: '#ff6699' }}>
                   <Link to="/privacy">Privacy</Link>
                </Menu.Item>
                <Menu.Item key="notifications">
